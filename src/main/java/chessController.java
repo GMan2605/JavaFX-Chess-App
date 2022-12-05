@@ -4,9 +4,11 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class chessController implements Initializable{
@@ -20,18 +22,35 @@ public class chessController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Tim is dead");
+        // For-loop section that adds all components to make a visual board
+        for (int i=0; i<8; i++){ // y dimension loop
+            gridRows[i] = new HBox(0);
+            gridRows[i].setId(Integer.toString(i));
+            for (int j=0; j<8; j++){ // x dimension loop
+                gridSpot[i][j] = new StackPane();
+                tiles[i][j] = new Rectangle(70, 70);
 
-        for (int i=0; i<8; i++){
-            gridRows[i] = new HBox(1);
-            Rectangle a = new Rectangle(60, 60);
-            gridRows[i].getChildren().add(a);
-            // for (int j=0; i<8; j++){
+                if ( (j+i) % 2 == 0) // Is the sum of the x & y even? (creates "checker" pattern)
+                    tiles[i][j].setFill(Color.GHOSTWHITE);
+                else
+                    tiles[i][j].setFill(Color.GREEN);
 
-            // }
-
+                gridSpot[i][j].getChildren().add(tiles[i][j]);
+                gridRows[i].getChildren().add(gridSpot[i][j]);
+            }
             chessGrid.getChildren().add(gridRows[i]);
         }
+
+        Rectangle a = new Rectangle(35, 35);
+        a.setFill(Color.DARKBLUE);
+
+        Node boardNode = chessGrid.getChildren().get(0);
+
+        // if(boardNode instanceof StackPane){
+        
+        (( (HBox)boardNode) ).getChildren().get(0).setVisible(false);
+        System.out.println((( (HBox)boardNode) ).getChildren().get(0));
+        ((HBox)boardNode).getChildren().add(a);
     }
     
 }
