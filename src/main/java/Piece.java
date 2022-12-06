@@ -1,11 +1,17 @@
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
+import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public abstract class Piece {
 
-
-    int yPos = 2;
+    Rectangle myImage;
+    int yPos;
     int xPos;
     int xMove; 
     int yMove;
@@ -44,6 +50,14 @@ public abstract class Piece {
     }
     public void paint(){
 
+    }
+
+    //@FXML
+    //VBox chessGrid;
+
+    public void drawPiece( VBox chessGrid){
+        System.out.println(chessGrid);
+        ((StackPane) (( (HBox)chessGrid.getChildren().get(yPos)) ).getChildren().get(xPos)).getChildren().add(myImage);
     }
 }
 

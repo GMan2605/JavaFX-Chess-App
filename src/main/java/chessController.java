@@ -2,10 +2,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -43,14 +45,24 @@ public class chessController implements Initializable{
 
         Rectangle a = new Rectangle(35, 35);
         a.setFill(Color.DARKBLUE);
+        // a.setOnMouseClicked(e -> System.out.println("a"));
+        // a.setOnMouseClicked(e -> dumbClick());
 
-        Node boardNode = chessGrid.getChildren().get(0);
+        // Node boardNode = chessGrid.getChildren().get(1);
+        Pawn beanstalkBrewers = new Pawn(2, 2, a);
 
-        // if(boardNode instanceof StackPane){
-        
-        (( (HBox)boardNode) ).getChildren().get(0).setVisible(false);
-        System.out.println((( (HBox)boardNode) ).getChildren().get(0));
-        ((HBox)boardNode).getChildren().add(a);
+
+        beanstalkBrewers.givePos();
+        beanstalkBrewers.drawPiece(chessGrid);
+        // beanstalkBrewers.drawPiece(1, 1, a);
+        // beanstalkBrewers.drawPiece(0, 0, a);
+
+        // ((Pane) (( (HBox)boardNode) ).getChildren().get(1)).getChildren().add(b);
+        Rectangle b = new Rectangle(35, 35);
+        ((StackPane) (( (HBox)chessGrid.getChildren().get(4)) ).getChildren().get(4)).getChildren().add(b);
     }
-    
+
+    // private void dumbClick(){
+    //     ((Pane) (( (HBox)chessGrid.getChildren().get(3)) ).getChildren().get(4)).getChildren().add(a);
+    // }
 }

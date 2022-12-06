@@ -1,5 +1,12 @@
+import javafx.scene.shape.Rectangle;
 
 public class Pawn extends Piece {
+
+    public Pawn(int inputX, int inputY, Rectangle inputRect){
+        xPos = inputX;
+        yPos = inputY;
+        myImage = inputRect;
+    }
 
     int firstMove = 0;
 
@@ -23,5 +30,10 @@ public class Pawn extends Piece {
             }
         }
         return false;
+    }
+
+    public void givePos(){
+        System.out.println(xPos);
+        System.out.println(yPos);
     }
 }
