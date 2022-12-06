@@ -2,10 +2,10 @@
 public class King extends Piece {
 
     @Override
-    boolean moveValid(int xPos, int yPos, int xMove, int yMove) {
+    boolean moveValid() {
 
-        if ((super.horizontalVertical(yMove, yMove, yMove, yMove) == true) || 
-            (super.diagonal(xPos, yPos, xMove, yMove) == true)) {
+        if ((super.horizontalVertical() == true) || 
+            (super.diagonal() == true)) {
             if (((xMove - xPos) == 1) && (yMove - yPos) == 1){
                 return true;
             }

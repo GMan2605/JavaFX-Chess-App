@@ -1,6 +1,14 @@
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public abstract class Piece {
 
+
+    int yPos = 2;
+    int xPos;
+    int xMove; 
+    int yMove;
     /**
      * moveValid - An abstact boolean used as a template for subclasses
      * @param xPos - The x-coordinate of piece selected  
@@ -9,7 +17,7 @@ public abstract class Piece {
      * @param yMove - The y-coordinate of where the selected piece is being moved
      * @return
      */
-    abstract boolean moveValid(int xPos, int yPos, int xMove, int yMove);
+    abstract boolean moveValid();
 
     /**
      * horizontalVertical - A static
@@ -19,7 +27,7 @@ public abstract class Piece {
      * @param yMove - The y-coordinate of where the selected piece is being moved
      * @return
      */
-    public static boolean horizontalVertical(int xPos, int yPos, int xMove, int yMove){
+    public boolean horizontalVertical(){
         return ((xPos == xMove) || (yPos == yMove));
     }
 
@@ -31,8 +39,11 @@ public abstract class Piece {
      * @param yMove - The y-coordinate of where the selected piece is being moved
      * @return
      */
-    public static boolean diagonal(int xPos, int yPos, int xMove, int yMove){
+    public boolean diagonal(){
         return (Math.abs(xMove - xPos) == Math.abs(yMove - yPos));
+    }
+    public void paint(){
+
     }
 }
 
