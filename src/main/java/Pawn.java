@@ -1,12 +1,13 @@
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
 public class Pawn extends Piece {
 
-    public Pawn(int inputX, int inputY, Rectangle inputRect, String inputTeam, VBox chessGrid){
+    public Pawn(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid){
         xPos = inputX;
         yPos = inputY;
-        myImage = inputRect;
+        myImage = inputImage;
         pieceTeam = inputTeam;
         referenceGrid = chessGrid;
 

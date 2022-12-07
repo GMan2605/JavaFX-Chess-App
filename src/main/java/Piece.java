@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 public abstract class Piece {
 
     VBox referenceGrid;
-    Rectangle myImage;
+    ImageView myImage;
     int yPos;
     int xPos;
     int xMove; 
@@ -50,15 +50,8 @@ public abstract class Piece {
     public boolean diagonal(){
         return (Math.abs(xMove - xPos) == Math.abs(yMove - yPos));
     }
-    public void paint(){
-
-    }
-
-    //@FXML
-    //VBox chessGrid;
 
     public void drawPiece(){
-        System.out.println(referenceGrid);
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(yPos)) ).getChildren().get(xPos)).getChildren().add(myImage);
     }
 }
