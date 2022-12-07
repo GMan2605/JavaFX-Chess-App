@@ -10,11 +10,13 @@ import javafx.scene.layout.VBox;
 
 public abstract class Piece {
 
+    VBox referenceGrid;
     Rectangle myImage;
     int yPos;
     int xPos;
     int xMove; 
     int yMove;
+    String pieceTeam;
     /**
      * moveValid - An abstact boolean used as a template for subclasses
      * @param xPos - The x-coordinate of piece selected  
@@ -55,9 +57,9 @@ public abstract class Piece {
     //@FXML
     //VBox chessGrid;
 
-    public void drawPiece( VBox chessGrid){
-        System.out.println(chessGrid);
-        ((StackPane) (( (HBox)chessGrid.getChildren().get(yPos)) ).getChildren().get(xPos)).getChildren().add(myImage);
+    public void drawPiece(){
+        System.out.println(referenceGrid);
+        ((StackPane) (( (HBox)referenceGrid.getChildren().get(yPos)) ).getChildren().get(xPos)).getChildren().add(myImage);
     }
 }
 
