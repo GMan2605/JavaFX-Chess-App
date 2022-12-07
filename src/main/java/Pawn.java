@@ -1,11 +1,16 @@
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
 public class Pawn extends Piece {
 
-    public Pawn(int inputX, int inputY, Rectangle inputRect){
+    public Pawn(int inputX, int inputY, Rectangle inputRect, String inputTeam, VBox chessGrid){
         xPos = inputX;
         yPos = inputY;
         myImage = inputRect;
+        pieceTeam = inputTeam;
+        referenceGrid = chessGrid;
+
+        this.drawPiece();
     }
 
     int firstMove = 0;

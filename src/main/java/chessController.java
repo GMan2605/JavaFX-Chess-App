@@ -18,6 +18,9 @@ public class chessController implements Initializable{
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
     HBox[] gridRows = new HBox[8];
+    Pawn[] whitePawns = new Pawn[8];
+    Pawn[] blackPawns = new Pawn[8];
+    Rectangle[][] pawnImages = new Rectangle[2][8];
 
     @FXML
     VBox chessGrid;
@@ -43,26 +46,11 @@ public class chessController implements Initializable{
             chessGrid.getChildren().add(gridRows[i]);
         }
 
-        Rectangle a = new Rectangle(35, 35);
-        a.setFill(Color.DARKBLUE);
-        // a.setOnMouseClicked(e -> System.out.println("a"));
-        // a.setOnMouseClicked(e -> dumbClick());
-
-        // Node boardNode = chessGrid.getChildren().get(1);
-        Pawn beanstalkBrewers = new Pawn(2, 2, a);
-
-
-        beanstalkBrewers.givePos();
-        beanstalkBrewers.drawPiece(chessGrid);
-        // beanstalkBrewers.drawPiece(1, 1, a);
-        // beanstalkBrewers.drawPiece(0, 0, a);
-
-        // ((Pane) (( (HBox)boardNode) ).getChildren().get(1)).getChildren().add(b);
-        Rectangle b = new Rectangle(35, 35);
-        ((StackPane) (( (HBox)chessGrid.getChildren().get(4)) ).getChildren().get(4)).getChildren().add(b);
+        for (int i=0; i<8; i++){
+            pawnImages[0][i] = new Rectangle(35, 35, Color.ROYALBLUE);
+            pawnImages[1][i] = new Rectangle(35, 35, Color.BLACK);
+            whitePawns[i] = new Pawn(i, 6, pawnImages[0][i], "White", chessGrid);
+            blackPawns[i] = new Pawn(i, 1, pawnImages[1][i], "Black", chessGrid);
+        }
     }
-
-    // private void dumbClick(){
-    //     ((Pane) (( (HBox)chessGrid.getChildren().get(3)) ).getChildren().get(4)).getChildren().add(a);
-    // }
 }
