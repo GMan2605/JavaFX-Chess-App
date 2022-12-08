@@ -1,8 +1,8 @@
 import javafx.scene.image.ImageView;
 
-public class Queen extends Piece {
+public class Rook extends Piece {
 
-    public Queen(int inputX, int inputY, ImageView inputRect){
+    public Rook(int inputX, int inputY, ImageView inputRect){
         xPos = inputX;
         yPos = inputY;
         myImage = inputRect;
@@ -13,8 +13,6 @@ public class Queen extends Piece {
     boolean moveValid() {
 
         if (super.horizontalVertical() == true){
-            return true;
-        }else if (super.diagonal() == true){
             return true;
         }
         return false;
