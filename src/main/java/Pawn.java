@@ -11,6 +11,7 @@ public class Pawn extends Piece {
         pieceTeam = inputTeam;
         referenceGrid = chessGrid;
 
+        myImage.setOnMouseClicked(e -> pieceClicked());
         this.drawPiece();
     }
 
@@ -36,10 +37,5 @@ public class Pawn extends Piece {
             }
         }
         return false;
-    }
-
-    public void givePos(){
-        System.out.println(xPos);
-        System.out.println(yPos);
     }
 }

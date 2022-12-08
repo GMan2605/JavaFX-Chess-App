@@ -28,7 +28,7 @@ public abstract class Piece {
     abstract boolean moveValid();
 
     /**
-     * horizontalVertical - A static
+     * horizontalVertical - A static ?
      * @param xPos - The x-coordinate of piece selected  
      * @param yPos - The y-coordinate of piece selected  
      * @param xMove - The x-coordinate of where the selected piece is being moved
@@ -53,6 +53,19 @@ public abstract class Piece {
 
     public void drawPiece(){
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(yPos)) ).getChildren().get(xPos)).getChildren().add(myImage);
+    }
+
+    public void pieceClicked(){
+        if (pieceTeam == "White")
+            this.givePos();
+        else if (pieceTeam == "Black")
+            this.givePos();
+    }
+
+    public void givePos(){
+        System.out.println();
+        System.out.print(xPos + ", " + yPos);
+        System.out.println();
     }
 }
 
