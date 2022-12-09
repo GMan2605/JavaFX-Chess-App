@@ -1,6 +1,5 @@
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 
 public class Pawn extends Piece {
 
@@ -10,6 +9,9 @@ public class Pawn extends Piece {
         myImage = inputImage;
         pieceTeam = inputTeam;
         referenceGrid = chessGrid;
+        myImage.setFitHeight(70);
+        myImage.setFitHeight(70);
+        myImage.setPreserveRatio(true);
 
         myImage.setOnMouseClicked(e -> pieceClicked());
         this.drawPiece();

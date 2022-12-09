@@ -17,6 +17,7 @@ public abstract class Piece {
     int xMove; 
     int yMove;
     String pieceTeam;
+    
     /**
      * moveValid - An abstact boolean used as a template for subclasses
      * @param xPos - The x-coordinate of piece selected  

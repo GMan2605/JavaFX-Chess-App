@@ -1,10 +1,9 @@
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
+public class Knight extends Piece {
 
-public class Bishop extends Piece {
-
-    public Bishop(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid){
+    public Knight(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid){
         xPos = inputX;
         yPos = inputY;
         myImage = inputImage;
@@ -18,18 +17,11 @@ public class Bishop extends Piece {
         this.drawPiece();
     }
 
+    int firstMove = 0;
 
     @Override
     boolean moveValid() {
 
-        if (super.diagonal() == true){
-            return true;
-        }
         return false;
-    }
-
-    public void givePos(){
-        System.out.println(xPos);
-        System.out.println(yPos);
     }
 }
