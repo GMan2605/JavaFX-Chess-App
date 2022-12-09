@@ -73,6 +73,12 @@ public class chessController implements Initializable{
             rookImage[1][i].setFitHeight(70);
             rookImage[1][i].setFitHeight(70);
             rookImage[1][i].setPreserveRatio(true);
+
+            
         }
+    }
+    private void displayValidMove(StackPane[][] gridSpot){
+            // TODO 
+            // 
     }
 }
