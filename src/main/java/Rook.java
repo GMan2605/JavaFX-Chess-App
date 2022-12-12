@@ -26,10 +26,4 @@ public class Rook extends Piece {
         }
         return false;
     }
-
-    public void givePos(){
-        System.out.println();
-        System.out.print(xPos + ", " + yPos);
-        System.out.println();
-    }
 }

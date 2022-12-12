@@ -20,14 +20,14 @@ public class chessController implements Initializable{
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
     HBox[] gridRows = new HBox[8];
-    Pawn[] whitePawns = new Pawn[8];
-    Pawn[] blackPawns = new Pawn[8];
-    Rook[] whiteRooks = new Rook[2];
-    Rook[] blackRooks = new Rook[2];
-    Bishop[] whiteBishops = new Bishop[2];
-    Bishop[] blackBishops = new Bishop[2];
-    Knight[] whiteKnights = new Knight[2];
-    Knight[] blackKnights = new Knight[2];
+    Pawn[] wPawns = new Pawn[8];
+    Pawn[] bPawns = new Pawn[8];
+    Rook[] wRooks = new Rook[2];
+    Rook[] bRooks = new Rook[2];
+    Bishop[] wBishops = new Bishop[2];
+    Bishop[] bBishops = new Bishop[2];
+    Knight[] wKnights = new Knight[2];
+    Knight[] bKnights = new Knight[2];
     ImageView[][] pawnImage = new ImageView[2][8];
     ImageView[][] rookImage = new ImageView[2][2];
     ImageView[][] bishopImage = new ImageView[2][2];
@@ -57,31 +57,36 @@ public class chessController implements Initializable{
             chessGrid.getChildren().add(gridRows[i]);
         }
 
+        // Creation of Kings & Queens
+        King bKing = new King(3, 0, new ImageView("Images/B_King.png"), "Black", chessGrid);
+        King wKing = new King(4, 7, new ImageView("Images/W_King.png"), "White", chessGrid);
+        Queen bQueen = new Queen(4, 0, new ImageView("Images/B_Queen.png"), "Black", chessGrid);
+        Queen wQueen = new Queen(3, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid);
+
         // Creation of the pawn layout
         for (int i=0; i<8; i++){
             pawnImage[0][i] = new ImageView("Images/W_Pawn.png");
             pawnImage[1][i] = new ImageView("Images/B_Pawn.png");
-            whitePawns[i] = new Pawn(i, 6, pawnImage[0][i], "White", chessGrid);
-            blackPawns[i] = new Pawn(i, 1, pawnImage[1][i], "Black", chessGrid);
+            wPawns[i] = new Pawn(i, 6, pawnImage[0][i], "White", chessGrid);
+            bPawns[i] = new Pawn(i, 1, pawnImage[1][i], "Black", chessGrid);
         }
 
         // Creation of all "dual" pieces, pieces that occur twice on each team
         for (int i=0; i<2; i++){
             rookImage[0][i] = new ImageView("Images/W_Rook.png");
             rookImage[1][i] = new ImageView("Images/B_Rook.png");
-            whiteRooks[i] = new Rook(i*7, 7, rookImage[0][i], "White", chessGrid);
-            blackRooks[i] = new Rook(i*7, 0, rookImage[1][i], "Black", chessGrid);
+            wRooks[i] = new Rook(i*7, 7, rookImage[0][i], "White", chessGrid);
+            bRooks[i] = new Rook(i*7, 0, rookImage[1][i], "Black", chessGrid);
 
             bishopImage[0][i] = new ImageView("Images/W_Bishop.png");
             bishopImage[1][i] = new ImageView("Images/B_Bishop.png");
-            whiteBishops[i] = new Bishop( (i+2*(i+1)), 7, bishopImage[0][i], "White", chessGrid);
-            blackBishops[i] = new Bishop( (i+2*(i+1)), 0, bishopImage[1][i], "Black", chessGrid);
+            wBishops[i] = new Bishop( (i+2*(i+1)), 7, bishopImage[0][i], "White", chessGrid);
+            bBishops[i] = new Bishop( (i+2*(i+1)), 0, bishopImage[1][i], "Black", chessGrid);
 
-            // knightImage[0][i] = new ImageView("Images/W_Bishop.png");
-            // knightImage[1][i] = new ImageView("Images/B_Bishop.png");
-            // whiteKnights[i] = new Bishop((i+2), 7, bishopImage[0][i], "White", chessGrid);
-            // blackKnights[i] = new Bishop((i+2), 0, bishopImage[1][i], "Black", chessGrid);
-
+            knightImage[0][i] = new ImageView("Images/W_Knight.png");
+            knightImage[1][i] = new ImageView("Images/B_Knight.png");
+            wKnights[i] = new Knight((i*5+1), 7, knightImage[0][i], "White", chessGrid);
+            bKnights[i] = new Knight((i*5+1), 0, knightImage[1][i], "Black", chessGrid);
         }
     }
     private void displayValidMove(StackPane[][] gridSpot){

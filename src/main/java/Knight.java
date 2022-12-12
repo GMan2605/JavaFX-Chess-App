@@ -16,9 +16,6 @@ public class Knight extends Piece {
         myImage.setOnMouseClicked(e -> pieceClicked());
         this.drawPiece();
     }
-
-    int firstMove = 0;
-
     @Override
     boolean moveValid() {
 
