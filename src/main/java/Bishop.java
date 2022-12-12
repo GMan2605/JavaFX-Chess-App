@@ -27,9 +27,4 @@ public class Bishop extends Piece {
         }
         return false;
     }
-
-    public void givePos(){
-        System.out.println(xPos);
-        System.out.println(yPos);
-    }
 }
