@@ -84,4 +84,8 @@ public class chessController implements Initializable{
 
         }
     }
+    private void displayValidMove(StackPane[][] gridSpot){
+            // TODO 
+            // 
+    }
 }
