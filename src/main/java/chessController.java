@@ -51,6 +51,7 @@ public class chessController implements Initializable{
                 else
                     tiles[i][j].setFill(Color.GREEN);
 
+                tiles[i][j].setOnMouseClicked(e -> tileClicked(null));
                 gridSpot[i][j].getChildren().add(tiles[i][j]);
                 gridRows[i].getChildren().add(gridSpot[i][j]);
             }
@@ -84,8 +85,9 @@ public class chessController implements Initializable{
 
         }
     }
-    private void displayValidMove(StackPane[][] gridSpot){
-            // TODO 
-            // 
+    void tileClicked(ActionEvent ae){
+        System.out.println(ae);
+        Rectangle tileMove = (Rectangle) (ae.getSource());
+        tileMove.getX();
     }
 }
