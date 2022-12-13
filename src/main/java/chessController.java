@@ -1,14 +1,11 @@
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -51,7 +48,19 @@ public class chessController implements Initializable{
                 else
                     tiles[i][j].setFill(Color.GREEN);
 
-                tiles[i][j].setOnMouseClicked(e -> tileClicked(null));
+                //Rectangle tempRect = (Rectangle)tiles[i][j];
+                tiles[i][j].setOnMouseClicked(new EventHandler<MouseEvent>()
+                {
+                    @Override
+                    public void handle(MouseEvent ae){
+                        //System.out.println(ae);
+                        Rectangle tileMove = (Rectangle) (ae.getSource());
+                        double xMove = tileMove.getX(); // gets the x value of the rectangle
+                        double yMove = tileMove.getY(); // gets the y value of the rectangle
+                        System.out.println(xMove);
+                        System.out.println(yMove);
+                    }
+                    });
                 gridSpot[i][j].getChildren().add(tiles[i][j]);
                 gridRows[i].getChildren().add(gridSpot[i][j]);
             }
@@ -89,10 +98,5 @@ public class chessController implements Initializable{
             wKnights[i] = new Knight((i*5+1), 7, knightImage[0][i], "White", chessGrid);
             bKnights[i] = new Knight((i*5+1), 0, knightImage[1][i], "Black", chessGrid);
         }
-    }
-    void tileClicked(ActionEvent ae){
-        System.out.println(ae);
-        Rectangle tileMove = (Rectangle) (ae.getSource());
-        tileMove.getX();
     }
 }

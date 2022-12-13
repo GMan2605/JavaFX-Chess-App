@@ -61,6 +61,7 @@ public abstract class Piece {
             this.givePos();
         else if (pieceTeam == "Black")
             this.givePos();
+        System.out.println(pieceTeam);
     }
 
     public void givePos(){
