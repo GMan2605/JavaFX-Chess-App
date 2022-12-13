@@ -50,8 +50,6 @@ public class chessController implements Initializable{
                     tiles[i][j].setFill(Color.GHOSTWHITE);
                 else
                     tiles[i][j].setFill(Color.GREEN);
-
-                tiles[i][j].setOnMouseClicked(e -> tileClicked(null));
                 gridSpot[i][j].getChildren().add(tiles[i][j]);
                 gridRows[i].getChildren().add(gridSpot[i][j]);
             }
@@ -60,9 +58,9 @@ public class chessController implements Initializable{
 
         // Creation of Kings & Queens
         King bKing = new King(3, 0, new ImageView("Images/B_King.png"), "Black", chessGrid);
-        King wKing = new King(4, 7, new ImageView("Images/W_King.png"), "White", chessGrid);
+        King wKing = new King(3, 7, new ImageView("Images/W_King.png"), "White", chessGrid);
         Queen bQueen = new Queen(4, 0, new ImageView("Images/B_Queen.png"), "Black", chessGrid);
-        Queen wQueen = new Queen(3, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid);
+        Queen wQueen = new Queen(4, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid);
 
         // Creation of the pawn layout
         for (int i=0; i<8; i++){
@@ -90,9 +88,9 @@ public class chessController implements Initializable{
             bKnights[i] = new Knight((i*5+1), 0, knightImage[1][i], "Black", chessGrid);
         }
     }
-    void tileClicked(ActionEvent ae){
-        System.out.println(ae);
-        Rectangle tileMove = (Rectangle) (ae.getSource());
-        tileMove.getX();
+    private void displayValidMove(StackPane[][] gridSpot){
+            // TODO 
+            // 
     }
+
 }

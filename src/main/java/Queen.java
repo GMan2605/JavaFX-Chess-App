@@ -9,11 +9,8 @@ public class Queen extends Piece {
         myImage = inputImage;
         pieceTeam = inputTeam;
         referenceGrid = chessGrid;
-        myImage.setFitHeight(70);
-        myImage.setFitHeight(70);
-        myImage.setPreserveRatio(true);
-
-        myImage.setOnMouseClicked(e -> pieceClicked());
+        this.correctImage();
+        pieceType = "Queen";
         this.drawPiece();
     }
 

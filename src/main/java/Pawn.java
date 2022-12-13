@@ -9,11 +9,8 @@ public class Pawn extends Piece {
         myImage = inputImage;
         pieceTeam = inputTeam;
         referenceGrid = chessGrid;
-        myImage.setFitHeight(70);
-        myImage.setFitHeight(70);
-        myImage.setPreserveRatio(true);
-
-        myImage.setOnMouseClicked(e -> pieceClicked());
+        this.correctImage();
+        pieceType = "Pawn";
         this.drawPiece();
     }
 
