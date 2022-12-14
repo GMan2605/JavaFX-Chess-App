@@ -53,31 +53,14 @@ public class chessController implements Initializable{
                 {
                     @Override
                     public void handle(MouseEvent ae){
-                        //System.out.println(ae);
-                        // Rectangle tileMove = (Rectangle) (ae.getSource());
-                        // double xMove = tileMove.getX(); // gets the x value of the rectangle
-                        // double yMove = tileMove.getY(); // gets the y value of the rectangle
-                        // System.out.println(xMove);
-                        // System.out.println(yMove);
-
                         for (int i=0; i<8; i++){
                             for (int j=0; j<8; j++){
-                                if (ae.getSource().equals(tiles[i][j])) {
-                                    System.out.println("You are a monkey");
-                                    System.out.println(i);
-                                    System.out.println(j);
-                                }
+                                if (ae.getSource().equals(tiles[i][j]))
+                                    System.out.println("A tile at position: " + i + ", " + j + " was clicked");
                             }
                         }
-
-                        // if (ae.getSource().equals(tiles[0][0])) {
-                        //     System.out.println("You are a monkey");
-                        // }
-                        //   } else if (ae.getSource().equals(myButton2)) {
-                        //     //do something
-                        //   }
                     }
-                    });
+                });
                 gridSpot[i][j].getChildren().add(tiles[i][j]);
                 gridRows[i].getChildren().add(gridSpot[i][j]);
             }
