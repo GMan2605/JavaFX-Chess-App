@@ -64,6 +64,8 @@ public abstract class Piece extends chessController{
      * 
      */
     public void pieceClicked(){
+        System.out.println(pieceChosen);
+        
         if (pieceChosen == false){
             if (pieceTeam == "White"){
                 pieceChosen = true;
