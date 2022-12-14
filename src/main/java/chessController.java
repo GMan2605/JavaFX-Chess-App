@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
 
 public class chessController implements Initializable{
 
-    public boolean pieceChosen = false;
+    public static boolean pieceChosen = false;
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
     HBox[] gridRows = new HBox[8];
@@ -54,11 +54,28 @@ public class chessController implements Initializable{
                     @Override
                     public void handle(MouseEvent ae){
                         //System.out.println(ae);
-                        Rectangle tileMove = (Rectangle) (ae.getSource());
-                        double xMove = tileMove.getX(); // gets the x value of the rectangle
-                        double yMove = tileMove.getY(); // gets the y value of the rectangle
-                        System.out.println(xMove);
-                        System.out.println(yMove);
+                        // Rectangle tileMove = (Rectangle) (ae.getSource());
+                        // double xMove = tileMove.getX(); // gets the x value of the rectangle
+                        // double yMove = tileMove.getY(); // gets the y value of the rectangle
+                        // System.out.println(xMove);
+                        // System.out.println(yMove);
+
+                        for (int i=0; i<8; i++){
+                            for (int j=0; j<8; j++){
+                                if (ae.getSource().equals(tiles[i][j])) {
+                                    System.out.println("You are a monkey");
+                                    System.out.println(i);
+                                    System.out.println(j);
+                                }
+                            }
+                        }
+
+                        // if (ae.getSource().equals(tiles[0][0])) {
+                        //     System.out.println("You are a monkey");
+                        // }
+                        //   } else if (ae.getSource().equals(myButton2)) {
+                        //     //do something
+                        //   }
                     }
                     });
                 gridSpot[i][j].getChildren().add(tiles[i][j]);
@@ -68,10 +85,10 @@ public class chessController implements Initializable{
         }
 
         // Creation of Kings & Queens
-        King bKing = new King(3, 0, new ImageView("Images/B_King.png"), "Black", chessGrid);
-        King wKing = new King(3, 7, new ImageView("Images/W_King.png"), "White", chessGrid);
-        Queen bQueen = new Queen(4, 0, new ImageView("Images/B_Queen.png"), "Black", chessGrid);
-        Queen wQueen = new Queen(4, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid);
+        King bKing = new King(4, 0, new ImageView("Images/B_King.png"), "Black", chessGrid);
+        King wKing = new King(4, 7, new ImageView("Images/W_King.png"), "White", chessGrid);
+        Queen bQueen = new Queen(3, 0, new ImageView("Images/B_Queen.png"), "Black", chessGrid);
+        Queen wQueen = new Queen(3, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid);
 
         // Creation of the pawn layout
         for (int i=0; i<8; i++){
