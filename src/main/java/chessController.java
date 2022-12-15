@@ -64,7 +64,9 @@ public class chessController implements Initializable{
                                         for (int k=0; k<8; k++){
                                             if (wPawns[k].getHightlight()){
                                                 System.out.println("There is a white pawn that is highlighted");
-                                                wPawns[k].moveValid();
+                                                wPawns[k].setMovements(j, i);
+                                                // System.out.println(wPawns[k].getMovements());
+                                                System.out.println(wPawns[k].moveValid());
                                             }
                                         }
 
