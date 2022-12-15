@@ -123,5 +123,9 @@ public abstract class Piece extends chessController{
     public boolean getHightlight(){
         return isSelected;
     }
+    public void setMovement(int inputXMove, int inputYMove){
+        this.xMove = inputXMove;
+        this.yMove = inputYMove;
+    }
 }
 

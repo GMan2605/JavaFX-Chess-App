@@ -19,21 +19,20 @@ public class Pawn extends Piece {
 
     @Override
     boolean moveValid() {
-
+        //System.out.println(yMove);
         if (firstMove == 0) {
             if (super.horizontalVertical() == true) {
-                if (xPos == xMove) {
-                    if ((yMove - yPos) <= 2 && (yMove - yPos)!= 0) {
+                if (this.xPos == xMove) {
+                    if (Math.abs(yMove - this.yPos) <= 2 && Math.abs(yMove - this.yPos)!= 0) {
                         firstMove = 1;
                         return true;
                     }
                 }
             }
         } else if (super.horizontalVertical() == true) {
-            if (xPos == xMove) {
-                if ((yMove - yPos) == 1 ) {
+                if (Math.abs(yMove - this.yPos) == 1 ) {
                     return true;
-                }
+                
             }
         }
         return false;
