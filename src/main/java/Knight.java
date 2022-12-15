@@ -11,6 +11,7 @@ public class Knight extends Piece {
         referenceGrid = chessGrid;
         this.correctImage();
         pieceType = "Knight";
+        isSelected = false;
         this.drawPiece();
     }
     @Override

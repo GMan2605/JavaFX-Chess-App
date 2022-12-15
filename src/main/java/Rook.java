@@ -11,6 +11,7 @@ public class Rook extends Piece {
         referenceGrid = chessGrid;
         this.correctImage();
         pieceType = "Rook";
+        isSelected = false;
         this.drawPiece();
     }
 

@@ -12,6 +12,7 @@ public class Bishop extends Piece {
         referenceGrid = chessGrid;
         this.correctImage();
         pieceType = "Bishop";
+        isSelected = false;
         this.drawPiece();
     }
 

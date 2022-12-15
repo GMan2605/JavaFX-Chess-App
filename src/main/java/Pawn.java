@@ -11,6 +11,7 @@ public class Pawn extends Piece {
         referenceGrid = chessGrid;
         this.correctImage();
         pieceType = "Pawn";
+        isSelected = false;
         this.drawPiece();
     }
 

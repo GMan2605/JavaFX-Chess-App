@@ -11,6 +11,7 @@ public class King extends Piece {
         referenceGrid = chessGrid;
         this.correctImage();
         pieceType = "King";
+        isSelected = false;
         this.drawPiece();
     }
 

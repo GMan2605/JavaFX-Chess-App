@@ -18,6 +18,7 @@ public abstract class Piece extends chessController{
     int yMove;
     String pieceTeam;
     String pieceType;
+    boolean isSelected;
     
     /**
      * moveValid - An abstact boolean used as a template for subclasses
@@ -69,11 +70,13 @@ public abstract class Piece extends chessController{
         if (pieceChosen == false){
             if (pieceTeam == "White"){
                 pieceChosen = true;
+                this.isSelected = true;
                 this.highlightPiece();
                 this.givePos();
             }
             else if (pieceTeam == "Black"){
                 pieceChosen = true;
+                this.isSelected = true;
                 this.highlightPiece();
                 this.givePos();
             }
@@ -115,6 +118,10 @@ public abstract class Piece extends chessController{
         myImage.setFitHeight(70);
         myImage.setPreserveRatio(true);
         myImage.setOnMouseClicked(e -> pieceClicked());
+    }
+
+    public boolean getHightlight(){
+        return isSelected;
     }
 }
 

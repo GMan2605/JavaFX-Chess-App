@@ -1,3 +1,4 @@
+// import java.util.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
@@ -17,6 +18,7 @@ public class chessController implements Initializable{
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
     HBox[] gridRows = new HBox[8];
+    // ArrayList allPieces = new ArrayList();
     Pawn[] wPawns = new Pawn[8];
     Pawn[] bPawns = new Pawn[8];
     Rook[] wRooks = new Rook[2];
@@ -48,15 +50,26 @@ public class chessController implements Initializable{
                 else
                     tiles[i][j].setFill(Color.GREEN);
 
-                //Rectangle tempRect = (Rectangle)tiles[i][j];
                 tiles[i][j].setOnMouseClicked(new EventHandler<MouseEvent>()
                 {
                     @Override
                     public void handle(MouseEvent ae){
-                        for (int i=0; i<8; i++){
-                            for (int j=0; j<8; j++){
-                                if (ae.getSource().equals(tiles[i][j]))
-                                    System.out.println("A tile at position: " + i + ", " + j + " was clicked");
+                        if (pieceChosen){ //Only Check for tile input if a piece has been selected
+                            for (int i=0; i<8; i++){ //Search all y's
+                                for (int j=0; j<8; j++){ //Search all x's
+
+                                    if (ae.getSource().equals(tiles[i][j])){ //Check if a tile at [i][j] was the one that was clicked
+                                        System.out.println("A tile at position: " + i + ", " + j + " was chosen for movement!");
+
+                                        for (int k=0; k<8; k++){
+                                            if (wPawns[k].getHightlight()){
+                                                System.out.println("There is a white pawn that is highlighted");
+                                                wPawns[k].moveValid();
+                                            }
+                                        }
+
+                                    }
+                                }
                             }
                         }
                     }
@@ -98,5 +111,7 @@ public class chessController implements Initializable{
             wKnights[i] = new Knight((i*5+1), 7, knightImage[0][i], "White", chessGrid);
             bKnights[i] = new Knight((i*5+1), 0, knightImage[1][i], "Black", chessGrid);
         }
+        // allPieces.addAll(Arrays.asList(wKnights));
+        // allPieces.addAll(Arrays.asList(wPawns, bPawns, wRooks, bRooks, wBishops, bBishops, wKnights, bKnights));
     }
 }
