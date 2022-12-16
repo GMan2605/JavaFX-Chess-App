@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -14,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 public class chessController implements Initializable{
 
+    public boolean enemyPiece = false;
     public static boolean pieceChosen = false;
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
@@ -58,13 +60,24 @@ public class chessController implements Initializable{
                             for (int i=0; i<8; i++){ //Search all y's
                                 for (int j=0; j<8; j++){ //Search all x's
 
+                                    if (ae.getSource().equals(gridSpot[i][j])){
+                                        System.out.println(gridSpot[i][j].getChildren());
+                                    }
                                     if (ae.getSource().equals(tiles[i][j])){ //Check if a tile at [i][j] was the one that was clicked
                                         System.out.println("A tile at position: " + i + ", " + j + " was chosen for movement!");
+                                        System.out.println(gridSpot[i][j].getChildren());
+
+                                        // if (gridSpot[i][j].getChildren().size() == 2){
+                                        //     Node enemy = gridSpot[i][j].getChildren().get(2);
+                                        //     if (enemy.inputTeam.equals(Piece.pieceTeam))
+                                        //     enemyPiece = true;
+                                            
+                                        // }
 
                                         for (int k=0; k<8; k++){
                                             if (wPawns[k].getHightlight()){
                                                 System.out.println("There is a white pawn that is highlighted");
-                                                wPawns[k].setMovement(j,i);
+                                                wPawns[k].setMovements(j,i);
                                                 if (wPawns[k].moveValid() == true);
                                                 System.out.println(wPawns[k].moveValid());
                                                 System.out.println(wPawns[k].horizontalVertical());

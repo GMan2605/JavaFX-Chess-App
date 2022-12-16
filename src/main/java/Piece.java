@@ -132,5 +132,12 @@ public abstract class Piece extends chessController{
     public String getMovements(){
         return Integer.toString(xMove) + ", " + Integer.toString(yMove);
     }
+    public void enemyPiece(){
+        if (gridSpot[this.xMove][this.yMove].getChildren().size() == 2){
+            if  (wPawns[yMove].pieceTeam.equals(this.pieceTeam))
+                enemyPiece = true;
+            enemyPiece = false;
+        }
+    }
 }
 
