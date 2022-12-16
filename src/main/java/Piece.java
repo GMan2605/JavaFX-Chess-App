@@ -58,79 +58,115 @@ public abstract class Piece extends chessController{
      * 
      */
     public void drawPiece(){
-        ((StackPane) (( (HBox)referenceGrid.getChildren().get(yPos)) ).getChildren().get(xPos)).getChildren().add(myImage);
+        ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().add(this.myImage);
     }
 
     /**
      * 
      */
     public void pieceClicked(){
-        System.out.println(pieceChosen);
-        
         if (pieceChosen == false){
             if (pieceTeam == "White"){
                 pieceChosen = true;
                 this.isSelected = true;
                 this.highlightPiece();
-                this.givePos();
             }
             else if (pieceTeam == "Black"){
                 pieceChosen = true;
                 this.isSelected = true;
                 this.highlightPiece();
-                this.givePos();
             }
         }
     }
 
     //Temp method:
-    public void givePos(){
-        System.out.println();
-        System.out.print(xPos + ", " + yPos);
-        System.out.println();
-    }
+    // public void givePos(){
+    //     System.out.println();
+    //     System.out.print(xPos + ", " + yPos);
+    //     System.out.println();
+    // }
 
     /**
      * 
      */
     private void highlightPiece(){
-        if (pieceType == "Pawn")
-            myImage = new ImageView("Images/H_Pawn.png");
-        else if (pieceType == "King")
-            myImage = new ImageView("Images/H_King.png");
-        else if (pieceType == "Queen")
-            myImage = new ImageView("Images/H_Queen.png");
-        else if (pieceType == "Bishop")
-            myImage = new ImageView("Images/H_Bishop.png");
-        else if (pieceType == "Knight")
-            myImage = new ImageView("Images/H_Knight.png");
+        ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().remove(this.myImage);
+        if (this.pieceType == "Pawn")
+            this.myImage = new ImageView("Images/H_Pawn.png");
+        else if (this.pieceType == "King")
+            this.myImage = new ImageView("Images/H_King.png");
+        else if (this.pieceType == "Queen")
+            this.myImage = new ImageView("Images/H_Queen.png");
+        else if (this.pieceType == "Bishop")
+            this.myImage = new ImageView("Images/H_Bishop.png");
+        else if (this.pieceType == "Knight")
+            this.myImage = new ImageView("Images/H_Knight.png");
         else if (pieceType == "Rook")
-            myImage = new ImageView("Images/H_Rook.png");
+            this.myImage = new ImageView("Images/H_Rook.png");
         this.correctImage();
         this.drawPiece();
+    }
+
+    private void unhighlightPiece(){
+        if (this.pieceType == "Pawn")
+            this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_Pawn.png");
+        else if (this.pieceType == "King")
+            this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_King.png");
+        else if (this.pieceType == "Queen")
+            this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_Queen.png");
+        else if (this.pieceType == "Bishop")
+            this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_Bishop.png");
+        else if (this.pieceType == "Knight")
+            this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_Knight.png");
+        else if (this.pieceType == "Rook")
+            this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_Rook.png");
+        this.correctImage();
     }
 
     /**
      * 
      */
     public void correctImage(){
-        myImage.setFitHeight(70);
-        myImage.setFitHeight(70);
-        myImage.setPreserveRatio(true);
-        myImage.setOnMouseClicked(e -> pieceClicked());
+        this.myImage.setFitHeight(70);
+        this.myImage.setFitHeight(70);
+        this.myImage.setPreserveRatio(true);
+        this.myImage.setOnMouseClicked(e -> pieceClicked());
     }
 
+    /**
+     * 
+     * @return
+     */
     public boolean getHightlight(){
         return isSelected;
     }
 
+    /**
+     * 
+     * @param inputXMove
+     * @param inputYMove
+     */
     public void setMovements(int inputXMove, int inputYMove){
         this.xMove = inputXMove;
         this.yMove = inputYMove;
     }
 
-    public String getMovements(){
-        return Integer.toString(xMove) + ", " + Integer.toString(yMove);
+    /**
+     * 
+     */
+    public void move(){
+        ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().remove(this.myImage);
+        this.xPos = this.xMove;
+        this.yPos = this.yMove;
+        // System.out.println(((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yMove)) ).getChildren().get(this.xMove)).getChildren());
+        this.xMove = 0;
+        this.yMove = 0;
+        this.unhighlightPiece();
+        this.drawPiece();
     }
+
+    // public String getMovements(){
+    //     return Integer.toString(xMove) + ", " + Integer.toString(yMove);
+    // }
 }
 

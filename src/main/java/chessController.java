@@ -1,4 +1,4 @@
-// import java.util.*;
+import java.util.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
@@ -18,7 +18,6 @@ public class chessController implements Initializable{
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
     HBox[] gridRows = new HBox[8];
-    // ArrayList allPieces = new ArrayList();
     Pawn[] wPawns = new Pawn[8];
     Pawn[] bPawns = new Pawn[8];
     Rook[] wRooks = new Rook[2];
@@ -59,17 +58,17 @@ public class chessController implements Initializable{
                                 for (int j=0; j<8; j++){ //Search all x's
 
                                     if (ae.getSource().equals(tiles[i][j])){ //Check if a tile at [i][j] was the one that was clicked
-                                        System.out.println("A tile at position: " + i + ", " + j + " was chosen for movement!");
+                                        // System.out.println("A tile at position: " + i + ", " + j + " was chosen for movement!");
 
                                         for (int k=0; k<8; k++){
                                             if (wPawns[k].getHightlight()){
-                                                System.out.println("There is a white pawn that is highlighted");
-                                                wPawns[k].setMovement(j,i);
-                                                if (wPawns[k].moveValid() == true);
-                                                System.out.println(wPawns[k].moveValid());
-                                                System.out.println(wPawns[k].horizontalVertical());
-                                                
-
+                                                wPawns[k].setMovements(j, i);
+                                                if (wPawns[k].moveValid())
+                                                    wPawns[k].move();
+                                            } else if (bPawns[k].getHightlight()){
+                                                bPawns[k].setMovements(j, i);
+                                                if (bPawns[k].moveValid())
+                                                    bPawns[k].move();
                                             }
                                         }
 

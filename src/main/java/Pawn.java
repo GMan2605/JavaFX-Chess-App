@@ -3,51 +3,43 @@ import javafx.scene.layout.VBox;
 
 public class Pawn extends Piece {
 
+    boolean isFirstMove = false;
+
     public Pawn(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid){
-        xPos = inputX;
-        yPos = inputY;
-        myImage = inputImage;
-        pieceTeam = inputTeam;
-        referenceGrid = chessGrid;
+        this.xPos = inputX;
+        this.yPos = inputY;
+        this.myImage = inputImage;
+        this.pieceTeam = inputTeam;
+        this.referenceGrid = chessGrid;
         this.correctImage();
-        pieceType = "Pawn";
-        isSelected = false;
+        this.pieceType = "Pawn";
+        this.isFirstMove = true;
+        this.isSelected = false;
         this.drawPiece();
     }
 
-    int firstMove = 0;
-
     @Override
     boolean moveValid() {
-        System.out.println(this.yMove);
-        System.out.println((this.yPos-1));
-
-        if (this.pieceTeam == "White"){
-            if (this.xPos == this.xMove && (this.yPos-1) == this.yMove){
-                return true;
+        this.isSelected = false;
+        if (this.isFirstMove) {
+            if (super.horizontalVertical() == true) {
+                if (this.xPos == this.xMove) {
+                    if (Math.abs(this.yMove - this.yPos) <= 2 && Math.abs(this.yMove - this.yPos) != 0) {
+                        this.isFirstMove = false;
+                        pieceChosen = false;
+                        return true;
+                    }
+                }
             }
-
-        } else if (this.pieceTeam == "Black") {
-            
+        } else if (super.horizontalVertical() == true) {
+            if (this.xPos == this.xMove) {
+                if (Math.abs(this.yMove - this.yPos) == 1 ) {
+                    this.isFirstMove = false;
+                    pieceChosen = false;
+                    return true;
+                }
+            }
         }
         return false;
-
-    //     if (firstMove == 0) {
-    //         if (super.horizontalVertical() == true) {
-    //             if (xPos == xMove) {
-    //                 if ((yMove - yPos) <= 2 && (yMove - yPos)!= 0) {
-    //                     firstMove = 1;
-    //                     return true;
-    //                 }
-    //             }
-    //         }
-    //     } else if (super.horizontalVertical() == true) {
-    //         if (xPos == xMove) {
-    //             if (Math.abs(yMove - yPos) == 1 ) {
-    //                 return true;
-    //             }
-    //         }
-    //     }
-    //     return false;
     }
 }
