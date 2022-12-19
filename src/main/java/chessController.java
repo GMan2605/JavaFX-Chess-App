@@ -20,7 +20,7 @@ public class chessController implements Initializable{
     public boolean enemyPiece = false;
 
     public static boolean pieceChosen = false;
-    public static String turnString = "White";
+    public static String turnString = "White's Turn";
     int tileSize = 55;
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
@@ -74,29 +74,28 @@ public class chessController implements Initializable{
                                         // System.out.println("A tile at position: " + i + ", " + j + " was chosen for movement!");
 
                                         for (int k=0; k<8; k++){
-                                            if (turnString == "White"){
+                                            if (turnString == "White's Turn"){
                                                 if (wPawns[k].getHightlight()){
                                                     wPawns[k].setMovements(j, i);
                                                     if (wPawns[k].moveValid()){
                                                         wPawns[k].move();
-                                                        turnString = "Black";
+                                                        turnString = "Black's Turn";
                                                         turnBanner.setText("Black Team's Turn!");
                                                         turnBanner.setTextFill(Color.BLACK);
                                                     }
                                                 }
                                             }
-                                                else if (turnString == "Black"){
-                                                    if (bPawns[k].getHightlight()){
-                                                        bPawns[k].setMovements(j, i);
-                                                        if (bPawns[k].moveValid()){
-                                                            System.out.println("1");
-                                                            bPawns[k].move();
-                                                            turnString = "White";
-                                                            turnBanner.setText("White Team's Turn!");
-                                                            turnBanner.setTextFill(Color.WHITE);
-                                                        }
+                                            else if (turnString == "Black's Turn"){
+                                                if (bPawns[k].getHightlight()){
+                                                    bPawns[k].setMovements(j, i);
+                                                    if (bPawns[k].moveValid()){
+                                                        bPawns[k].move();
+                                                        turnString = "White's Turn";
+                                                        turnBanner.setText("White Team's Turn!");
+                                                        turnBanner.setTextFill(Color.WHITE);
                                                     }
                                                 }
+                                            }
                                         }
 
                                     }
