@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: #49524c;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #49524c;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessController">
    <children>
-      <VBox fx:id="chessGrid" layoutX="99.0" layoutY="131.0" prefHeight="452.0" prefWidth="459.0" />
+      <HBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0">
+         <children>
+            <VBox fx:id="chessGrid" alignment="CENTER" prefHeight="452.0" prefWidth="1000.0" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

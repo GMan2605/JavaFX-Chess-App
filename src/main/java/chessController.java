@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,6 +39,7 @@ public class chessController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        chessGrid.setAlignment(Pos.CENTER);
         // For-loop section that adds all components to make a visual board
         for (int i=0; i<8; i++){ // y dimension loop
             gridRows[i] = new HBox(0);

@@ -79,13 +79,6 @@ public abstract class Piece extends chessController{
         }
     }
 
-    //Temp method:
-    // public void givePos(){
-    //     System.out.println();
-    //     System.out.print(xPos + ", " + yPos);
-    //     System.out.println();
-    // }
-
     /**
      * 
      */
@@ -107,7 +100,10 @@ public abstract class Piece extends chessController{
         this.drawPiece();
     }
 
-    private void unhighlightPiece(){
+    protected void unhighlightPiece(){
+        System.out.println(this.xPos);
+        System.out.println(this.yPos);
+        // System.out.println(((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yMove)) ).getChildren().get(this.xMove)).getChildren());
         if (this.pieceType == "Pawn")
             this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_Pawn.png");
         else if (this.pieceType == "King")
@@ -121,12 +117,13 @@ public abstract class Piece extends chessController{
         else if (this.pieceType == "Rook")
             this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_Rook.png");
         this.correctImage();
+        this.drawPiece();
     }
 
     /**
      * 
      */
-    public void correctImage(){
+    protected void correctImage(){
         this.myImage.setFitHeight(70);
         this.myImage.setFitHeight(70);
         this.myImage.setPreserveRatio(true);
@@ -155,15 +152,19 @@ public abstract class Piece extends chessController{
      * 
      */
     public void move(){
-        ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().remove(this.myImage);
+        this.removeImageAtPos();
         this.xPos = this.xMove;
         this.yPos = this.yMove;
         // System.out.println(((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yMove)) ).getChildren().get(this.xMove)).getChildren());
         this.xMove = 0;
         this.yMove = 0;
         this.unhighlightPiece();
-        this.drawPiece();
     }
+
+    protected void removeImageAtPos(){
+        ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().remove(this.myImage);
+    }
+    
     public void enemyPiece(){
         if (gridSpot[this.xMove][this.yMove].getChildren().size() == 2){
             if  (wPawns[yMove].pieceTeam.equals(this.pieceTeam))
