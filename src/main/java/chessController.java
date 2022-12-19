@@ -19,6 +19,8 @@ public class chessController implements Initializable{
 
     public boolean enemyPiece = false;
 
+    public ArrayList<Piece> whitePieces = new ArrayList<>();
+    public ArrayList<Piece> blackPieces = new ArrayList<>();
     public static boolean pieceChosen = false;
     public static String turnString = "White's Turn";
     int tileSize = 55;
@@ -73,23 +75,25 @@ public class chessController implements Initializable{
                                     if (ae.getSource().equals(tiles[i][j])){ //Check if a tile at [i][j] was the one that was clicked
                                         // System.out.println("A tile at position: " + i + ", " + j + " was chosen for movement!");
 
-                                        for (int k=0; k<8; k++){
+                                        for (int k=0; k<whitePieces.size(); k++){
                                             if (turnString == "White's Turn"){
-                                                if (wPawns[k].getHightlight()){
-                                                    wPawns[k].setMovements(j, i);
-                                                    if (wPawns[k].moveValid()){
-                                                        wPawns[k].move();
+                                                if (whitePieces.get(k).getHightlight()){
+                                                    whitePieces.get(k).setMovements(j, i);
+                                                    if (whitePieces.get(k).moveValid()){
+                                                        whitePieces.get(k).move();
                                                         turnString = "Black's Turn";
                                                         turnBanner.setText("Black Team's Turn!");
                                                         turnBanner.setTextFill(Color.BLACK);
                                                     }
                                                 }
                                             }
-                                            else if (turnString == "Black's Turn"){
-                                                if (bPawns[k].getHightlight()){
-                                                    bPawns[k].setMovements(j, i);
-                                                    if (bPawns[k].moveValid()){
-                                                        bPawns[k].move();
+                                        }
+                                        for (int l=0; l<blackPieces.size(); l++){
+                                            if (turnString == "Black's Turn"){
+                                                if (blackPieces.get(l).getHightlight()){
+                                                    blackPieces.get(l).setMovements(j, i);
+                                                    if (blackPieces.get(l).moveValid()){
+                                                        blackPieces.get(l).move();
                                                         turnString = "White's Turn";
                                                         turnBanner.setText("White Team's Turn!");
                                                         turnBanner.setTextFill(Color.WHITE);
@@ -142,7 +146,19 @@ public class chessController implements Initializable{
             wKnights[i] = new Knight((i*5+1), 7, knightImage[0][i], "White", chessGrid);
             bKnights[i] = new Knight((i*5+1), 0, knightImage[1][i], "Black", chessGrid);
         }
-        // allPieces.addAll(Arrays.asList(wKnights));
-        // allPieces.addAll(Arrays.asList(wPawns, bPawns, wRooks, bRooks, wBishops, bBishops, wKnights, bKnights));
+        
+        // Adding of all pieces to lists (For future events)
+        whitePieces.addAll(Arrays.asList(wPawns));
+        whitePieces.addAll(Arrays.asList(wRooks));
+        whitePieces.addAll(Arrays.asList(wBishops));
+        whitePieces.addAll(Arrays.asList(wKnights));
+        whitePieces.add(wKing);
+        whitePieces.add(wQueen);
+        blackPieces.addAll(Arrays.asList(bPawns));
+        blackPieces.addAll(Arrays.asList(bRooks));
+        blackPieces.addAll(Arrays.asList(bBishops));
+        blackPieces.addAll(Arrays.asList(bKnights));
+        blackPieces.add(bKing);
+        blackPieces.add(bQueen);
     }
 }
