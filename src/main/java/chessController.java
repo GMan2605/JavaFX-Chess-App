@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -17,7 +18,10 @@ import javafx.scene.shape.Rectangle;
 public class chessController implements Initializable{
 
     public boolean enemyPiece = false;
+
     public static boolean pieceChosen = false;
+    public static String turnString = "White";
+    int tileSize = 55;
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
     HBox[] gridRows = new HBox[8];
@@ -37,16 +41,18 @@ public class chessController implements Initializable{
     @FXML
     VBox chessGrid;
 
+    @FXML
+    Label turnBanner;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        chessGrid.setAlignment(Pos.CENTER);
         // For-loop section that adds all components to make a visual board
         for (int i=0; i<8; i++){ // y dimension loop
             gridRows[i] = new HBox(0);
             gridRows[i].setId(Integer.toString(i));
             for (int j=0; j<8; j++){ // x dimension loop
                 gridSpot[i][j] = new StackPane();
-                tiles[i][j] = new Rectangle(70, 70);
+                tiles[i][j] = new Rectangle(tileSize, tileSize);
 
                 if ( (j+i) % 2 == 0) // Is the sum of the x & y even? (creates "checker" pattern)
                     tiles[i][j].setFill(Color.GHOSTWHITE);
@@ -68,15 +74,29 @@ public class chessController implements Initializable{
                                         // System.out.println("A tile at position: " + i + ", " + j + " was chosen for movement!");
 
                                         for (int k=0; k<8; k++){
-                                            if (wPawns[k].getHightlight()){
-                                                wPawns[k].setMovements(j, i);
-                                                if (wPawns[k].moveValid())
-                                                    wPawns[k].move();
-                                            } else if (bPawns[k].getHightlight()){
-                                                bPawns[k].setMovements(j, i);
-                                                if (bPawns[k].moveValid())
-                                                    bPawns[k].move();
+                                            if (turnString == "White"){
+                                                if (wPawns[k].getHightlight()){
+                                                    wPawns[k].setMovements(j, i);
+                                                    if (wPawns[k].moveValid()){
+                                                        wPawns[k].move();
+                                                        turnString = "Black";
+                                                        turnBanner.setText("Black Team's Turn!");
+                                                        turnBanner.setTextFill(Color.BLACK);
+                                                    }
+                                                }
                                             }
+                                                else if (turnString == "Black"){
+                                                    if (bPawns[k].getHightlight()){
+                                                        bPawns[k].setMovements(j, i);
+                                                        if (bPawns[k].moveValid()){
+                                                            System.out.println("1");
+                                                            bPawns[k].move();
+                                                            turnString = "White";
+                                                            turnBanner.setText("White Team's Turn!");
+                                                            turnBanner.setTextFill(Color.WHITE);
+                                                        }
+                                                    }
+                                                }
                                         }
 
                                     }
@@ -86,6 +106,7 @@ public class chessController implements Initializable{
                     }
                 });
                 gridSpot[i][j].getChildren().add(tiles[i][j]);
+                gridRows[i].setAlignment(Pos.CENTER);
                 gridRows[i].getChildren().add(gridSpot[i][j]);
             }
             chessGrid.getChildren().add(gridRows[i]);

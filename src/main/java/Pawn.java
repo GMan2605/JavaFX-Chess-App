@@ -14,7 +14,7 @@ public class Pawn extends Piece {
         if (this.pieceTeam == "Black")
             this.pDirection = 1;
         else
-            this.pDirection = - 1;
+            this.pDirection = -1;
         this.referenceGrid = chessGrid;
         this.correctImage();
         this.pieceType = "Pawn";
@@ -30,31 +30,22 @@ public class Pawn extends Piece {
         this.isSelected = false;
 
         // Basic 1 tile movment
-        if (this.xPos == this.xMove && (this.yPos)+this.pDirection == this.yMove){
+        if (this.xPos == this.xMove && this.yPos+this.pDirection == this.yMove){
             this.isFirstMove = false;
-            // System.out.println("1");
             return true;
         } 
         // Double movement/"first move" code
         else if (this.isFirstMove == true){
-            // System.out.println(this.yPos);
-            // System.out.println(2*this.pDirection);
-            // System.out.println((this.yPos+2*this.pDirection));
-            // System.out.println(this.yMove);
-            if (this.xPos == this.xMove && (this.yPos+2*this.pDirection) == this.yMove){
+            if (this.xPos == this.xMove && this.yPos+(2*this.pDirection) == this.yMove){
                 this.isFirstMove = false;
-                // System.out.println("2");
                 return true;
             }
         }
         // Capturing of enemy pieces
         else if ( (this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && (this.yPos)+this.pDirection == this.yMove){
             this.isFirstMove = false;
-            // System.out.println("3");
             return true;
         }
-
-        // System.out.println("4");
         
         this.isFirstMove = false;
         this.removeImageAtPos();

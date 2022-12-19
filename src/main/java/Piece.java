@@ -101,9 +101,6 @@ public abstract class Piece extends chessController{
     }
 
     protected void unhighlightPiece(){
-        System.out.println(this.xPos);
-        System.out.println(this.yPos);
-        // System.out.println(((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yMove)) ).getChildren().get(this.xMove)).getChildren());
         if (this.pieceType == "Pawn")
             this.myImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_Pawn.png");
         else if (this.pieceType == "King")
@@ -124,18 +121,21 @@ public abstract class Piece extends chessController{
      * 
      */
     protected void correctImage(){
-        this.myImage.setFitHeight(70);
-        this.myImage.setFitHeight(70);
+        this.myImage.setFitHeight(tileSize);
+        this.myImage.setFitHeight(tileSize);
         this.myImage.setPreserveRatio(true);
         this.myImage.setOnMouseClicked(e -> pieceClicked());
     }
 
     /**
+     * getHighlight - Simple boolean return method that returns a
+     * statement on wheter or not this piece is highlighted (returns 
+     * isSelected variable for this specific piece)
      * 
-     * @return
+     * @return true or false statement on if this piece is highlighted
      */
     public boolean getHightlight(){
-        return isSelected;
+        return this.isSelected;
     }
 
     /**
