@@ -42,12 +42,11 @@ public class Pawn extends Piece {
             }
         }
         // Capturing of enemy pieces
-        else if ( (this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && (this.yPos)+this.pDirection == this.yMove){
+        else if ( (enemyPiece == true && this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && (this.yPos)+this.pDirection == this.yMove){
             this.isFirstMove = false;
             return true;
         }
-        
-        this.isFirstMove = false;
+        this.isFirstMove = true;
         this.removeImageAtPos();
         this.xMove = 0;
         this.yMove = 0;

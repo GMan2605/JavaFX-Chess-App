@@ -165,11 +165,25 @@ public abstract class Piece extends chessController{
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().remove(this.myImage);
     }
     
-    public void enemyPiece(){
-        if (gridSpot[this.xMove][this.yMove].getChildren().size() == 2){
-            if  (wPawns[yMove].pieceTeam.equals(this.pieceTeam))
-                enemyPiece = true;
-            enemyPiece = false;
+    protected void enemyPiece(){
+        // if (gridSpot[this.xMove][this.yMove].getChildren().size() == 2){
+        //     if  ((this.bPawns[xMove].yPos - this.yPos) == -1 && wPawns[xMove].pieceTeam.equals(this.pieceTeam))
+        //         System.out.println(this.bPawns[xMove].yPos);
+        //         System.out.println(this.yPos);
+        //         enemyPiece = false;
+        //         if  ((this.bPawns[xMove].yPos - this.yPos) == 1 && bPawns[xMove].pieceTeam.equals(this.pieceTeam))
+        //         enemyPiece = false;
+        //     enemyPiece = true;
+        StackPane temp = ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yMove)) ).getChildren().get(this.xMove));
+        //System.out.println(temp.getChildren().get(1).getStyleClass());
+        if (temp.getChildren().size() == 2){
+            
+            temp.getChildren().remove(temp.getChildren().get(1));
+            enemyPiece = true;
+            
+            // ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().get(1).getStyleClass();
+            // if (((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().get(1).pieceTeam.equals(this.pieceTeam));
+        enemyPiece = false;
         }
     }
 }
