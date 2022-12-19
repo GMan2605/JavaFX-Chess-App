@@ -66,12 +66,12 @@ public abstract class Piece extends chessController{
      */
     public void pieceClicked(){
         if (pieceChosen == false){
-            if (pieceTeam == "White"){
+            if (this.pieceTeam == "White" && turnString == "White's Turn"){
                 pieceChosen = true;
                 this.isSelected = true;
                 this.highlightPiece();
             }
-            else if (pieceTeam == "Black"){
+            else if (this.pieceTeam == "Black" && turnString == "Black's Turn"){
                 pieceChosen = true;
                 this.isSelected = true;
                 this.highlightPiece();
