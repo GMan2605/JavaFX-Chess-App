@@ -48,20 +48,40 @@ public class Pawn extends Piece {
             if (this.pieceTeam == "Black"){
                 for (int i=0; i<wPieces.size(); i++){
                     if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
+                        this.isFirstMove = false;
                         captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage());
                         return true;
+                    }
+                }
+                for (int i=0; i<bPieces.size(); i++){
+                    if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
+                        this.isFirstMove = false;
+                        this.removeMyImage();
+                        this.xMove = 0;
+                        this.yMove = 0;
+                        this.unhighlightPiece();
+                        return false;
                     }
                 }
             } else if (this.pieceTeam == "White"){
                 for (int i=0; i<bPieces.size(); i++){
                     if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
+                        this.isFirstMove = false;
                         captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage());
                         return true;
                     }
                 }
+                for (int i=0; i<wPieces.size(); i++){
+                    if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
+                        this.isFirstMove = false;
+                        this.removeMyImage();
+                        this.xMove = 0;
+                        this.yMove = 0;
+                        this.unhighlightPiece();
+                        return false;
+                    }
+                }
             }
-            this.isFirstMove = false;
-            return true;
         }
         
         this.isFirstMove = false;

@@ -22,8 +22,16 @@ public class Rook extends Piece {
     boolean moveValid(ArrayList<Piece> wPieces, ArrayList<Piece> bPieces) {
 
         if (super.horizontalVertical() == true){
+            this.removeMyImage();
+            this.xMove = 0;
+            this.yMove = 0;
+            this.unhighlightPiece();
             return true;
         }
+        this.removeMyImage();
+        this.xMove = 0;
+        this.yMove = 0;
+        this.unhighlightPiece();
         return false;
     }
 }
