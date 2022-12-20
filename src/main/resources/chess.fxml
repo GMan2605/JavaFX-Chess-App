@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: #49524c;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #49524c;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessController">
    <children>
       <HBox alignment="CENTER" layoutY="20.0" prefHeight="150.0" prefWidth="800.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="1001.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="195.0" prefWidth="800.0" spacing="10.0">
                <children>
-                  <Label text="--- Basic Chess ---" textAlignment="CENTER" textFill="#19d700">
+                  <Label prefHeight="34.0" prefWidth="320.0" text="--- Basic Chess ---" textAlignment="CENTER" textFill="#19d700">
                      <font>
                         <Font size="40.0" />
                      </font>
@@ -26,6 +26,24 @@
             </VBox>
          </children>
       </HBox>
-      <VBox fx:id="chessGrid" alignment="CENTER" layoutY="170.0" prefHeight="410.0" prefWidth="800.0" />
+      <VBox fx:id="chessGrid" alignment="CENTER" layoutY="240.0" prefHeight="437.0" prefWidth="800.0" />
+      <AnchorPane layoutX="165.0" layoutY="179.0" prefHeight="79.0" prefWidth="320.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="43.0" prefWidth="155.0" text="Guest" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="165.0" layoutY="669.0" prefHeight="79.0" prefWidth="320.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="43.0" prefWidth="155.0" text="Guest" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
