@@ -17,8 +17,6 @@ import javafx.scene.shape.Rectangle;
 
 public class chessController implements Initializable{
 
-    public boolean enemyPiece = false;
-
     public ArrayList<Piece> whitePieces = new ArrayList<>();
     public ArrayList<Piece> blackPieces = new ArrayList<>();
     public static boolean pieceChosen = false;
@@ -79,7 +77,7 @@ public class chessController implements Initializable{
                                             if (turnString == "White's Turn"){
                                                 if (whitePieces.get(k).getHightlight()){
                                                     whitePieces.get(k).setMovements(j, i);
-                                                    if (whitePieces.get(k).moveValid()){
+                                                    if (whitePieces.get(k).moveValid(whitePieces, blackPieces)){
                                                         whitePieces.get(k).move();
                                                         turnString = "Black's Turn";
                                                         turnBanner.setText("Black Team's Turn!");
@@ -92,7 +90,7 @@ public class chessController implements Initializable{
                                             if (turnString == "Black's Turn"){
                                                 if (blackPieces.get(l).getHightlight()){
                                                     blackPieces.get(l).setMovements(j, i);
-                                                    if (blackPieces.get(l).moveValid()){
+                                                    if (blackPieces.get(l).moveValid(whitePieces, blackPieces)){
                                                         blackPieces.get(l).move();
                                                         turnString = "White's Turn";
                                                         turnBanner.setText("White Team's Turn!");

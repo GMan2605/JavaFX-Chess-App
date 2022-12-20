@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -14,8 +16,9 @@ public class Knight extends Piece {
         isSelected = false;
         this.drawPiece();
     }
+    
     @Override
-    boolean moveValid() {
+    boolean moveValid(ArrayList<Piece> wPieces, ArrayList<Piece> bPieces) {
         if (Math.abs(this.xMove - this.xPos) == 1 && Math.abs(this.yPos - this.yMove) == 2){
             return true;
         }

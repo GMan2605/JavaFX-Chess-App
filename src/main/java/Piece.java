@@ -2,6 +2,10 @@
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+
+
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -28,7 +32,7 @@ public abstract class Piece extends chessController{
      * @param yMove - The y-coordinate of where the selected piece is being moved
      * @return
      */
-    abstract boolean moveValid();
+    abstract boolean moveValid(ArrayList<Piece> wPieces, ArrayList<Piece> bPieces);
 
     /**
      * horizontalVertical - A static ?
@@ -150,9 +154,32 @@ public abstract class Piece extends chessController{
 
     /**
      * 
+     * @return
+     */
+    public int getX(){
+        return this.xPos;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public int getY(){
+        return this.yPos;
+    }
+
+    /**
+     * 
+     */
+    public ImageView getImage(){
+        return this.myImage;
+    }
+
+    /**
+     * 
      */
     public void move(){
-        this.removeImageAtPos();
+        this.removeMyImage();
         this.xPos = this.xMove;
         this.yPos = this.yMove;
         // System.out.println(((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yMove)) ).getChildren().get(this.xMove)).getChildren());
@@ -161,30 +188,12 @@ public abstract class Piece extends chessController{
         this.unhighlightPiece();
     }
 
-    protected void removeImageAtPos(){
+    protected void removeMyImage(){
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().remove(this.myImage);
     }
-    
-    protected void enemyPiece(){
-        // if (gridSpot[this.xMove][this.yMove].getChildren().size() == 2){
-        //     if  ((this.bPawns[xMove].yPos - this.yPos) == -1 && wPawns[xMove].pieceTeam.equals(this.pieceTeam))
-        //         System.out.println(this.bPawns[xMove].yPos);
-        //         System.out.println(this.yPos);
-        //         enemyPiece = false;
-        //         if  ((this.bPawns[xMove].yPos - this.yPos) == 1 && bPawns[xMove].pieceTeam.equals(this.pieceTeam))
-        //         enemyPiece = false;
-        //     enemyPiece = true;
-        StackPane temp = ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yMove)) ).getChildren().get(this.xMove));
-        //System.out.println(temp.getChildren().get(1).getStyleClass());
-        if (temp.getChildren().size() == 2){
-            
-            temp.getChildren().remove(temp.getChildren().get(1));
-            enemyPiece = true;
-            
-            // ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().get(1).getStyleClass();
-            // if (((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().get(1).pieceTeam.equals(this.pieceTeam));
-        enemyPiece = false;
-        }
+
+    protected void captureEnemy(int enemyX, int enemyY, ImageView enemyImage){
+        ((StackPane) (( (HBox)referenceGrid.getChildren().get(enemyY)) ).getChildren().get(enemyX)).getChildren().remove(enemyImage);
     }
 }
 

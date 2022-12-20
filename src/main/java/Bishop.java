@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -18,7 +20,7 @@ public class Bishop extends Piece {
 
 
     @Override
-    boolean moveValid() {
+    boolean moveValid(ArrayList<Piece> wPieces, ArrayList<Piece> bPieces) {
 
         if (super.diagonal() == true){
             return true;
