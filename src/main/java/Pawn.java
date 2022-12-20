@@ -33,12 +33,53 @@ public class Pawn extends Piece {
 
         // Basic 1 tile movment
         if (this.xPos == this.xMove && this.yPos+this.pDirection == this.yMove){
+            for (int i=0; i<wPieces.size(); i++){
+                if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
+                    this.isFirstMove = false;
+                    this.removeMyImage();
+                    this.xMove = 0;
+                    this.yMove = 0;
+                    this.unhighlightPiece();
+                    return false;
+                }
+            }
+            for (int i=0; i<bPieces.size(); i++){
+                if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
+                    this.isFirstMove = false;
+                    this.removeMyImage();
+                    this.xMove = 0;
+                    this.yMove = 0;
+                    this.unhighlightPiece();
+                    return false;
+                }
+            }
             this.isFirstMove = false;
             return true;
         } 
         // Double movement/"first move" code
         else if (this.isFirstMove == true){
             if (this.xPos == this.xMove && this.yPos+(2*this.pDirection) == this.yMove){
+                for (int i=0; i<wPieces.size(); i++){
+                    if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
+                        this.isFirstMove = false;
+                        this.removeMyImage();
+                        this.xMove = 0;
+                        this.yMove = 0;
+                        this.unhighlightPiece();
+                        return false;
+                    }
+                }
+                for (int i=0; i<bPieces.size(); i++){
+                    if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
+                        this.isFirstMove = false;
+                        this.removeMyImage();
+                        this.xMove = 0;
+                        this.yMove = 0;
+                        this.unhighlightPiece();
+                        return false;
+                    
+                    }
+                }
                 this.isFirstMove = false;
                 return true;
             }
