@@ -57,9 +57,9 @@ public class chessController implements Initializable{
                 tiles[i][j] = new Rectangle(tileSize, tileSize);
 
                 if ( (j+i) % 2 == 0) // Is the sum of the x & y even? (creates "checker" pattern)
-                    tiles[i][j].setFill(Color.GHOSTWHITE);
+                    tiles[i][j].setFill(Color.web("#EEEED2"));
                 else
-                    tiles[i][j].setFill(Color.GREEN);
+                    tiles[i][j].setFill(Color.web("#769656"));
 
                 tiles[i][j].setOnMouseClicked(new EventHandler<MouseEvent>()
                 {
@@ -101,7 +101,6 @@ public class chessController implements Initializable{
                                                 }
                                             }
                                         }
-
                                     }
                                 }
                             }

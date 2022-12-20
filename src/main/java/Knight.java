@@ -16,7 +16,12 @@ public class Knight extends Piece {
     }
     @Override
     boolean moveValid() {
-
-        return false;
+        if (Math.abs(this.xMove - this.xPos) == 1 && Math.abs(this.yPos - this.yMove) == 2){
+            return true;
+        }
+        else if (Math.abs(this.xMove - this.xPos) == 2 && Math.abs(this.yPos - this.yMove) == 1){
+            return true;
+        }
+    return false;
     }
 }
