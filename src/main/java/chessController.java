@@ -1,6 +1,6 @@
 import java.util.*;
 import java.net.URL;
-import java.util.ResourceBundle;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -37,6 +38,8 @@ public class chessController implements Initializable{
     ImageView[][] rookImage = new ImageView[2][2];
     ImageView[][] bishopImage = new ImageView[2][2];
     ImageView[][] knightImage = new ImageView[2][2];
+    int whiteLeft;
+    int blackLeft;
 
     @FXML
     VBox chessGrid;
@@ -44,9 +47,33 @@ public class chessController implements Initializable{
     @FXML
     Label turnBanner;
 
+    @FXML
+    AnchorPane player1;
+
+    @FXML
+    AnchorPane player2;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // For-loop section that adds all components to make a visual board
+
+        ImageView profilePicImg = new ImageView("Images/Profile_Pic.png");
+        ImageView profilePicImg2 = new ImageView("Images/Profile_Pic_2.png");
+
+        profilePicImg.setFitHeight(55);
+        profilePicImg2.setFitHeight(55);
+        profilePicImg.setFitWidth(55);
+        profilePicImg2.setFitWidth(55);
+
+        profilePicImg.setX(8);
+        profilePicImg2.setX(8);
+        profilePicImg.setY(16);
+        profilePicImg2.setY(6);
+        //ImageView profilePicImg3 = new ImageView("Images/Profile_Pic_3.png"); 
+
+        player1.getChildren().add(profilePicImg);
+        player2.getChildren().add(profilePicImg2);
+
         for (int i=0; i<8; i++){ // y dimension loop
             gridRows[i] = new HBox(0);
             gridRows[i].setId(Integer.toString(i));
@@ -157,5 +184,16 @@ public class chessController implements Initializable{
         blackPieces.addAll(Arrays.asList(bKnights));
         blackPieces.add(bKing);
         blackPieces.add(bQueen);
+
+       
+        // if (blackPieces.size() < whiteLeft){
+
+        // }
+        // whiteLeft = whitePieces.size();
+
+        // if (blackPieces.size() < blackLeft){
+
+        // }
+        // blackLeft = blackPieces.size();
     }
 }

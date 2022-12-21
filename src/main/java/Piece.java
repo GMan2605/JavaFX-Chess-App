@@ -23,6 +23,7 @@ public abstract class Piece extends chessController{
     String pieceTeam;
     String pieceType;
     boolean isSelected;
+    int pawnDead;
     
     /**
      * moveValid - An abstact boolean used as a template for subclasses
@@ -197,6 +198,23 @@ public abstract class Piece extends chessController{
     }
 
     protected void captureEnemy(int enemyX, int enemyY, ImageView enemyImage, String enemyType){
+        
+        if (enemyType == "Pawn"){
+            pawnDead++;
+        }
+        if (enemyType == "Queen"){
+            //pawnDead++;
+        }
+        if (enemyType == "Rook"){
+            //pawnDead++;
+        }
+        if (enemyType == "Bishop"){
+            //pawnDead++;
+        }
+        if (enemyType == "Knight"){
+            //pawnDead++;
+        }
+
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(enemyY)) ).getChildren().get(enemyX)).getChildren().remove(enemyImage);
     }
 }
