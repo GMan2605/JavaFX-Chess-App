@@ -90,7 +90,7 @@ public class Pawn extends Piece {
                 for (int i=0; i<wPieces.size(); i++){
                     if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
                         this.isFirstMove = false;
-                        captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage());
+                        captureEnemy(wPieces.get(i).getX(), wPieces.get(i).getY(), wPieces.get(i).getImage());
                         return true;
                     }
                 }
