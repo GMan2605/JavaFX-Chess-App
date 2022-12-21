@@ -175,6 +175,10 @@ public abstract class Piece extends chessController{
         return this.myImage;
     }
 
+    public String getType(){
+        return this.pieceType;
+    }
+
     /**
      * 
      */
@@ -192,7 +196,7 @@ public abstract class Piece extends chessController{
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().remove(this.myImage);
     }
 
-    protected void captureEnemy(int enemyX, int enemyY, ImageView enemyImage){
+    protected void captureEnemy(int enemyX, int enemyY, ImageView enemyImage, String enemyType){
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(enemyY)) ).getChildren().get(enemyX)).getChildren().remove(enemyImage);
     }
 }
