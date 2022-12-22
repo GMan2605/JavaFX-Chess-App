@@ -52,7 +52,7 @@ public abstract class Piece extends chessController{
      * @return
      */
     public boolean horizontalVertical(){
-        return ((xPos == xMove) || (yPos == yMove));
+        return ((this.xPos == this.xMove) || (this.yPos == this.yMove));
     }
 
     /**
@@ -64,7 +64,7 @@ public abstract class Piece extends chessController{
      * @return
      */
     public boolean diagonal(){
-        return (Math.abs(xMove - xPos) == Math.abs(yMove - yPos));
+        return (Math.abs(this.xMove - this.xPos) == Math.abs(this.yMove - this.yPos));
     }
 
     /**
@@ -210,38 +210,22 @@ public abstract class Piece extends chessController{
     }
 
     protected void captureEnemy(int enemyX, int enemyY, ImageView enemyImage, String enemyType, String enemyTeam){
-        // enemyImage.setFitHeight(25);
-        
-        // enemyImage.setFitWidth(25);
-        
-
-        // enemyImage.setX(75);
-        // enemyImage.setX(75);
-        // enemyImage.setY(26);
-        // enemyImage.setY(16);
-        
-        // if(enemyTeam == "White"){
-            if (enemyType == "Pawn"){
-                pawnDead++;
-                
-                // player2.getChildren().add(wPawnImage);
-                super.wPawnDied = true;
-                //System.out.println(wPawnDied);
-            }
-            if (enemyType == "Queen"){
-                //pawnDead++;
-            }
-            if (enemyType == "Rook"){
-                //pawnDead++;
-            }
-            if (enemyType == "Bishop"){
-                //pawnDead++;
-            }
-            if (enemyType == "Knight"){
-                //pawnDead++;
-            }
-        //}
+        this.addScore(enemyType);
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(enemyY)) ).getChildren().get(enemyX)).getChildren().remove(enemyImage);
+
+        
+        
+    }
+    private void addScore(String enemyType){
+        ImageView deadImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_" + enemyType + ".png");
+        deadImage.setFitHeight(25);
+        deadImage.setFitWidth(25);
+        deadImage.setX(75);
+        deadImage.setY(26);
+        if (this.pieceTeam == "White")
+            player1.getChildren().add(deadImage);
+        if (this.pieceTeam == "Black")
+            player2.getChildren().add(deadImage);
     }
 }
 

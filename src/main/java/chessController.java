@@ -143,10 +143,7 @@ public class chessController implements Initializable{
                                                         turnBanner.setText("White Team's Turn!");
                                                         turnBanner.setTextFill(Color.WHITE);
                                                     }
-                                                    System.out.println(wPawnDied);
-                                                    if (wPawnDied){
-                                                        player2.getChildren().add(wPawnImage);
-                                                    }
+                                                
                                                 }
                                             }
                                         }
@@ -173,8 +170,8 @@ public class chessController implements Initializable{
         for (int i=0; i<8; i++){
             pawnImage[0][i] = new ImageView("Images/W_Pawn.png");
             pawnImage[1][i] = new ImageView("Images/B_Pawn.png");
-            wPawns[i] = new Pawn(i, 6, pawnImage[0][i], "White", chessGrid);
-            bPawns[i] = new Pawn(i, 1, pawnImage[1][i], "Black", chessGrid);
+            wPawns[i] = new Pawn(i, 6, pawnImage[0][i], "White", chessGrid, player2, player1);
+            bPawns[i] = new Pawn(i, 1, pawnImage[1][i], "Black", chessGrid, player2, player1);
         }
 
         // Creation of all "dual" pieces, pieces that occur twice on each team
