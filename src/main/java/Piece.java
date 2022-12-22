@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 
 
 import java.util.ArrayList;
-
+import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -13,6 +13,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public abstract class Piece extends chessController{
+
+    @FXML
+    AnchorPane player1;
+
+    @FXML
+    AnchorPane player2;
 
     VBox referenceGrid;
     ImageView myImage;
@@ -24,6 +30,8 @@ public abstract class Piece extends chessController{
     String pieceType;
     boolean isSelected;
     int pawnDead;
+    
+
     
     /**
      * moveValid - An abstact boolean used as a template for subclasses
@@ -180,6 +188,10 @@ public abstract class Piece extends chessController{
         return this.pieceType;
     }
 
+    public String getTeam(){
+        return this.pieceTeam;
+    }
+
     /**
      * 
      */
@@ -197,24 +209,38 @@ public abstract class Piece extends chessController{
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(this.yPos)) ).getChildren().get(this.xPos)).getChildren().remove(this.myImage);
     }
 
-    protected void captureEnemy(int enemyX, int enemyY, ImageView enemyImage, String enemyType){
+    protected void captureEnemy(int enemyX, int enemyY, ImageView enemyImage, String enemyType, String enemyTeam){
+        // enemyImage.setFitHeight(25);
         
-        if (enemyType == "Pawn"){
-            pawnDead++;
-        }
-        if (enemyType == "Queen"){
-            //pawnDead++;
-        }
-        if (enemyType == "Rook"){
-            //pawnDead++;
-        }
-        if (enemyType == "Bishop"){
-            //pawnDead++;
-        }
-        if (enemyType == "Knight"){
-            //pawnDead++;
-        }
+        // enemyImage.setFitWidth(25);
+        
 
+        // enemyImage.setX(75);
+        // enemyImage.setX(75);
+        // enemyImage.setY(26);
+        // enemyImage.setY(16);
+        
+        // if(enemyTeam == "White"){
+            if (enemyType == "Pawn"){
+                pawnDead++;
+                
+                // player2.getChildren().add(wPawnImage);
+                super.wPawnDied = true;
+                //System.out.println(wPawnDied);
+            }
+            if (enemyType == "Queen"){
+                //pawnDead++;
+            }
+            if (enemyType == "Rook"){
+                //pawnDead++;
+            }
+            if (enemyType == "Bishop"){
+                //pawnDead++;
+            }
+            if (enemyType == "Knight"){
+                //pawnDead++;
+            }
+        //}
         ((StackPane) (( (HBox)referenceGrid.getChildren().get(enemyY)) ).getChildren().get(enemyX)).getChildren().remove(enemyImage);
     }
 }

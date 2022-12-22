@@ -38,6 +38,8 @@ public class chessController implements Initializable{
     ImageView[][] rookImage = new ImageView[2][2];
     ImageView[][] bishopImage = new ImageView[2][2];
     ImageView[][] knightImage = new ImageView[2][2];
+    Boolean wPawnDied = false;
+    Boolean bPawnDied = false;
     int whiteLeft;
     int blackLeft;
 
@@ -57,6 +59,23 @@ public class chessController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         // For-loop section that adds all components to make a visual board
 
+        ImageView wPawnImage = new ImageView("Images/W_Pawn.png");
+        ImageView bPawnImage = new ImageView("Images/W_Pawn.png");
+        wPawnImage.setFitHeight(25);
+        bPawnImage.setFitHeight(25);
+        wPawnImage.setFitWidth(25);
+        bPawnImage.setFitWidth(25);
+
+        wPawnImage.setX(75);
+        bPawnImage.setX(75);
+        wPawnImage.setY(26);
+        bPawnImage.setY(16);
+
+        System.out.println(wPawnDied);
+
+       
+        ///////////////////////////////////////////////////////////////////////////////////////
+
         ImageView profilePicImg = new ImageView("Images/Profile_Pic.png");
         ImageView profilePicImg2 = new ImageView("Images/Profile_Pic_2.png");
 
@@ -68,7 +87,7 @@ public class chessController implements Initializable{
         profilePicImg.setX(8);
         profilePicImg2.setX(8);
         profilePicImg.setY(16);
-        profilePicImg2.setY(6);
+        profilePicImg2.setY(0);
         //ImageView profilePicImg3 = new ImageView("Images/Profile_Pic_3.png"); 
 
         player1.getChildren().add(profilePicImg);
@@ -110,6 +129,7 @@ public class chessController implements Initializable{
                                                         turnBanner.setText("Black Team's Turn!");
                                                         turnBanner.setTextFill(Color.BLACK);
                                                     }
+                                                    
                                                 }
                                             }
                                         }
@@ -122,6 +142,10 @@ public class chessController implements Initializable{
                                                         turnString = "White's Turn";
                                                         turnBanner.setText("White Team's Turn!");
                                                         turnBanner.setTextFill(Color.WHITE);
+                                                    }
+                                                    System.out.println(wPawnDied);
+                                                    if (wPawnDied){
+                                                        player2.getChildren().add(wPawnImage);
                                                     }
                                                 }
                                             }
@@ -185,6 +209,7 @@ public class chessController implements Initializable{
         blackPieces.add(bKing);
         blackPieces.add(bQueen);
 
+       
        
         // if (blackPieces.size() < whiteLeft){
 

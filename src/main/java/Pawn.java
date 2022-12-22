@@ -91,7 +91,7 @@ public class Pawn extends Piece {
                     if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
                         this.isFirstMove = false;
                         wPieces.remove(i+1);
-                        captureEnemy(wPieces.get(i).getX(), wPieces.get(i).getY(), wPieces.get(i).getImage(), wPieces.get(i).getType());
+                        captureEnemy(wPieces.get(i).getX(), wPieces.get(i).getY(), wPieces.get(i).getImage(), wPieces.get(i).getType(), wPieces.get(i).getTeam());
                         return true;
                     }
                 }
@@ -110,7 +110,7 @@ public class Pawn extends Piece {
                     if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
                         this.isFirstMove = false;
                         bPieces.remove(i+1);
-                        captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage(), bPieces.get(i).getType());
+                        captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage(), bPieces.get(i).getType(), bPieces.get(i).getTeam());
                         return true;
                     }
                 }
