@@ -82,10 +82,7 @@ public class Pawn extends Piece {
         }
         
         this.isFirstMove = false;
-        this.removeMyImage();
-        this.xMove = 0;
-        this.yMove = 0;
-        this.unhighlightPiece();
+        this.inValidMovement();
         return false;
     }
 
@@ -101,10 +98,7 @@ public class Pawn extends Piece {
         for (int i=0; i<listOfTeam.size(); i++){
             if (listOfTeam.get(i).getX() == this.xMove && listOfTeam.get(i).getY() == this.yMove){
                 this.isFirstMove = false;
-                this.removeMyImage();
-                this.xMove = 0;
-                this.yMove = 0;
-                this.unhighlightPiece();
+                this.inValidMovement();
                 return false;
             }
         }

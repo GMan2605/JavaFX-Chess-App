@@ -230,6 +230,21 @@ public abstract class Piece extends chessController {
     }
 
     /**
+     * inValidMovement - A set of reset code that is used when a 
+     * movement is deemed invalid. It removes the current image,
+     * then it resets the movements to 0, 0 (any evaluations of
+     * movements will be rendered useless, helps with bugs). Then
+     * it finally unhighlights the piece using the unHighlight
+     * method.
+     */
+    protected void inValidMovement(){
+        this.removeMyImage();
+        this.xMove = 0;
+        this.yMove = 0;
+        this.unhighlightPiece();
+    }
+
+    /**
      * addScore - TODO: *NEEDS DESCRIPTION*
      * 
      * @param enemyType
