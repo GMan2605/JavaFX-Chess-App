@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +21,7 @@ public class chessController implements Initializable{
     public ArrayList<Piece> blackPieces = new ArrayList<>();
     public static boolean pieceChosen = false;
     public static String turnString = "White's Turn";
-    int tileSize = 55;
+    int tileSize = 45;
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
     HBox[] gridRows = new HBox[8];
@@ -40,8 +39,6 @@ public class chessController implements Initializable{
     ImageView[][] knightImage = new ImageView[2][2];
     Boolean wPawnDied = false;
     Boolean bPawnDied = false;
-    int whiteLeft;
-    int blackLeft;
 
     @FXML
     VBox chessGrid;
@@ -57,42 +54,20 @@ public class chessController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // For-loop section that adds all components to make a visual board
-
-        ImageView wPawnImage = new ImageView("Images/W_Pawn.png");
-        ImageView bPawnImage = new ImageView("Images/W_Pawn.png");
-        wPawnImage.setFitHeight(25);
-        bPawnImage.setFitHeight(25);
-        wPawnImage.setFitWidth(25);
-        bPawnImage.setFitWidth(25);
-
-        wPawnImage.setX(75);
-        bPawnImage.setX(75);
-        wPawnImage.setY(26);
-        bPawnImage.setY(16);
-
-        System.out.println(wPawnDied);
-
-       
-        ///////////////////////////////////////////////////////////////////////////////////////
-
         ImageView profilePicImg = new ImageView("Images/Profile_Pic.png");
         ImageView profilePicImg2 = new ImageView("Images/Profile_Pic_2.png");
-
-        profilePicImg.setFitHeight(55);
-        profilePicImg2.setFitHeight(55);
-        profilePicImg.setFitWidth(55);
-        profilePicImg2.setFitWidth(55);
-
-        profilePicImg.setX(8);
-        profilePicImg2.setX(8);
+        profilePicImg.setFitHeight(tileSize);
+        profilePicImg2.setFitHeight(tileSize);
+        profilePicImg.setFitWidth(tileSize);
+        profilePicImg2.setFitWidth(tileSize);
+        profilePicImg.setX(28);
+        profilePicImg2.setX(28);
         profilePicImg.setY(16);
         profilePicImg2.setY(0);
-        //ImageView profilePicImg3 = new ImageView("Images/Profile_Pic_3.png"); 
-
         player1.getChildren().add(profilePicImg);
         player2.getChildren().add(profilePicImg2);
 
+        // For-loop section that adds all components to make a visual board
         for (int i=0; i<8; i++){ // y dimension loop
             gridRows[i] = new HBox(0);
             gridRows[i].setId(Integer.toString(i));
@@ -113,9 +88,6 @@ public class chessController implements Initializable{
                             for (int i=0; i<8; i++){ //Search all y's
                                 for (int j=0; j<8; j++){ //Search all x's
 
-                                    if (ae.getSource().equals(gridSpot[i][j])){
-                                        System.out.println(gridSpot[i][j].getChildren());
-                                    }
                                     if (ae.getSource().equals(tiles[i][j])){ //Check if a tile at [i][j] was the one that was clicked
                                         // System.out.println("A tile at position: " + i + ", " + j + " was chosen for movement!");
 
@@ -205,17 +177,5 @@ public class chessController implements Initializable{
         blackPieces.addAll(Arrays.asList(bKnights));
         blackPieces.add(bKing);
         blackPieces.add(bQueen);
-
-       
-       
-        // if (blackPieces.size() < whiteLeft){
-
-        // }
-        // whiteLeft = whitePieces.size();
-
-        // if (blackPieces.size() < blackLeft){
-
-        // }
-        // blackLeft = blackPieces.size();
     }
 }

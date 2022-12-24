@@ -25,7 +25,7 @@ public class Rook extends Piece {
 
         if (this.horizontalVertical()){
             if (this.pieceTeam == "White"){
-                for (int i=0; i<wPieces.size(); i++){
+                for (int i=0; i<wPieces.size(); i++){ //Movement section
                     int pieceX = wPieces.get(i).getX();
                     int pieceY = wPieces.get(i).getY();
                     if (pieceX == this.xPos && (this.yPos < pieceY && pieceY <= this.yMove || this.yPos > pieceY && pieceY >= this.yMove) ){
@@ -42,25 +42,22 @@ public class Rook extends Piece {
                         return false;
                     }
                 }
-                for (int i=0; i<bPieces.size(); i++){
+                for (int i=0; i<bPieces.size(); i++){ //Capturing section
                     int pieceX = bPieces.get(i).getX();
                     int pieceY = bPieces.get(i).getY();
-                    // if (pieceX == this.xMove && pieceY == this.yMove){
-                    //     System.out.println("banana");
+                    // if (pieceX == this.xPos && (this.yPos < pieceY && pieceY < this.yMove || this.yPos > pieceY && pieceY > this.yMove) ){
+                    //     this.removeMyImage();
+                    //     this.xMove = 0;
+                    //     this.yMove = 0;
+                    //     this.unhighlightPiece();
+                    //     return false;
+                    // } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX < this.xMove || this.xPos > pieceX && pieceX > this.xMove) ){
+                    //     this.removeMyImage();
+                    //     this.xMove = 0;
+                    //     this.yMove = 0;
+                    //     this.unhighlightPiece();
+                    //     return false;
                     // }
-                    if (pieceX == this.xPos && (this.yPos < pieceY && pieceY < this.yMove || this.yPos > pieceY && pieceY > this.yMove) ){
-                        this.removeMyImage();
-                        this.xMove = 0;
-                        this.yMove = 0;
-                        this.unhighlightPiece();
-                        return false;
-                    } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX < this.xMove || this.xPos > pieceX && pieceX > this.xMove) ){
-                        this.removeMyImage();
-                        this.xMove = 0;
-                        this.yMove = 0;
-                        this.unhighlightPiece();
-                        return false;
-                    }
                 }
                 return true;
             } else if (this.pieceTeam == "Black"){

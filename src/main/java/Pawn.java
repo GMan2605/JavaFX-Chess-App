@@ -93,7 +93,7 @@ public class Pawn extends Piece {
                 for (int i=0; i<wPieces.size(); i++){
                     if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
                         this.isFirstMove = false;
-                        wPieces.remove(i+1);
+                        // wPieces.remove(i+1); //TODO: Change this, there might be issues here!
                         captureEnemy(wPieces.get(i).getX(), wPieces.get(i).getY(), wPieces.get(i).getImage(), wPieces.get(i).getType(), wPieces.get(i).getTeam());
                         return true;
                     }
@@ -112,7 +112,7 @@ public class Pawn extends Piece {
                 for (int i=0; i<bPieces.size(); i++){
                     if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
                         this.isFirstMove = false;
-                        bPieces.remove(i+1);
+                         // bPieces.remove(i+1); //TODO: Change this, there might be issues here!
                         captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage(), bPieces.get(i).getType(), bPieces.get(i).getTeam());
                         return true;
                     }

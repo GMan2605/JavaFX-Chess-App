@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #49524c;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="800.0" style="-fx-background-color: #49524c;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chessController">
    <children>
       <HBox alignment="CENTER" layoutY="20.0" prefHeight="150.0" prefWidth="800.0">
          <children>
@@ -19,31 +19,35 @@
                   </Label>
                   <Label fx:id="turnBanner" text="White Team's Turn!" textFill="WHITE">
                      <font>
-                        <Font name="Vineta BT" size="20.0" />
+                        <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
          </children>
       </HBox>
-      <VBox fx:id="chessGrid" alignment="CENTER" layoutX="-6.0" layoutY="239.0" prefHeight="437.0" prefWidth="800.0" />
-      <AnchorPane fx:id="player2" layoutX="165.0" layoutY="179.0" prefHeight="79.0" prefWidth="320.0">
+      <VBox layoutX="21.0" layoutY="144.0" prefHeight="505.0" prefWidth="760.0">
          <children>
-            <Label layoutX="75.0" prefHeight="43.0" prefWidth="155.0" text="Guest" textFill="#fcf9f9">
-               <font>
-                  <Font name="System Italic" size="24.0" />
-               </font>
-            </Label>
+            <AnchorPane fx:id="player1" prefHeight="79.0" prefWidth="692.0">
+               <children>
+                  <Label layoutX="144.0" layoutY="10.0" prefHeight="43.0" prefWidth="620.0" text="Guest" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <VBox fx:id="chessGrid" alignment="CENTER" prefHeight="437.0" prefWidth="800.0" />
+            <AnchorPane fx:id="player2" prefHeight="79.0" prefWidth="320.0">
+               <children>
+                  <Label layoutX="143.0" prefHeight="43.0" prefWidth="620.0" text="Guest" textFill="#fcf9f9">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="player1" layoutX="165.0" layoutY="669.0" prefHeight="79.0" prefWidth="320.0">
-         <children>
-            <Label layoutX="75.0" layoutY="10.0" prefHeight="43.0" prefWidth="155.0" text="Guest" textFill="#fcf9f9">
-               <font>
-                  <Font name="System Italic" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+      </VBox>
    </children>
 </AnchorPane>
