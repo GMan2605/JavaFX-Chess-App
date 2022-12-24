@@ -36,53 +36,22 @@ public class Pawn extends Piece {
 
         // Basic 1 tile movment
         if (this.xPos == this.xMove && this.yPos+this.pDirection == this.yMove){
-            for (int i=0; i<wPieces.size(); i++){
-                if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
-                    this.isFirstMove = false;
-                    this.removeMyImage();
-                    this.xMove = 0;
-                    this.yMove = 0;
-                    this.unhighlightPiece();
-                    return false;
-                }
-            }
-            for (int i=0; i<bPieces.size(); i++){
-                if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
-                    this.isFirstMove = false;
-                    this.removeMyImage();
-                    this.xMove = 0;
-                    this.yMove = 0;
-                    this.unhighlightPiece();
-                    return false;
-                }
-            }
+            
+            //Below uses checkInWay, cannot return checkInWay because the other team always needs to be checked
+            if (this.checkInWay(wPieces) == false)
+                return false;
+            else if (this.checkInWay(bPieces) == false)
+                return false;
             this.isFirstMove = false;
             return true;
         } 
         // Double movement/"first move" code
         else if (this.isFirstMove == true){
             if (this.xPos == this.xMove && this.yPos+(2*this.pDirection) == this.yMove){
-                for (int i=0; i<wPieces.size(); i++){
-                    if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
-                        this.isFirstMove = false;
-                        this.removeMyImage();
-                        this.xMove = 0;
-                        this.yMove = 0;
-                        this.unhighlightPiece();
-                        return false;
-                    }
-                }
-                for (int i=0; i<bPieces.size(); i++){
-                    if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
-                        this.isFirstMove = false;
-                        this.removeMyImage();
-                        this.xMove = 0;
-                        this.yMove = 0;
-                        this.unhighlightPiece();
-                        return false;
-                    
-                    }
-                }
+                if (this.checkInWay(wPieces) == false)
+                    return false;
+                else if (this.checkInWay(bPieces) == false)
+                    return false;
                 this.isFirstMove = false;
                 return true;
             }
@@ -93,40 +62,22 @@ public class Pawn extends Piece {
                 for (int i=0; i<wPieces.size(); i++){
                     if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
                         this.isFirstMove = false;
-                        // wPieces.remove(i+1); //TODO: Change this, there might be issues here!
+                        // wPieces.remove(i+1);
                         captureEnemy(wPieces.get(i).getX(), wPieces.get(i).getY(), wPieces.get(i).getImage(), wPieces.get(i).getType(), wPieces.get(i).getTeam());
                         return true;
                     }
                 }
-                for (int i=0; i<bPieces.size(); i++){
-                    if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
-                        this.isFirstMove = false;
-                        this.removeMyImage();
-                        this.xMove = 0;
-                        this.yMove = 0;
-                        this.unhighlightPiece();
-                        return false;
-                    }
-                }
+
             } else if (this.pieceTeam == "White"){
                 for (int i=0; i<bPieces.size(); i++){
                     if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
                         this.isFirstMove = false;
-                         // bPieces.remove(i+1); //TODO: Change this, there might be issues here!
+                        // bPieces.remove(i+1);
                         captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage(), bPieces.get(i).getType(), bPieces.get(i).getTeam());
                         return true;
                     }
                 }
-                for (int i=0; i<wPieces.size(); i++){
-                    if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
-                        this.isFirstMove = false;
-                        this.removeMyImage();
-                        this.xMove = 0;
-                        this.yMove = 0;
-                        this.unhighlightPiece();
-                        return false;
-                    }
-                }
+
             }
         }
         
@@ -136,5 +87,27 @@ public class Pawn extends Piece {
         this.yMove = 0;
         this.unhighlightPiece();
         return false;
+    }
+
+    /**
+     * checkInWay - Boolean method that returns false if a piece is in the way
+     * of a current movement, does all resets if so, returns true if no piece
+     * on the specified team is in the way
+     * 
+     * @param listOfTeam the list of the team to be checked
+     * @return an flipped or inverse true/false statement on if a piece is in the way
+     */
+    private boolean checkInWay(ArrayList<Piece> listOfTeam){
+        for (int i=0; i<listOfTeam.size(); i++){
+            if (listOfTeam.get(i).getX() == this.xMove && listOfTeam.get(i).getY() == this.yMove){
+                this.isFirstMove = false;
+                this.removeMyImage();
+                this.xMove = 0;
+                this.yMove = 0;
+                this.unhighlightPiece();
+                return false;
+            }
+        }
+        return true;
     }
 }
