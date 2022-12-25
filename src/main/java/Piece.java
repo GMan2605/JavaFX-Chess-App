@@ -278,11 +278,76 @@ public abstract class Piece extends chessController {
         ImageView deadImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_" + enemyType + ".png");
         deadImage.setFitHeight(25);
         deadImage.setFitWidth(25);
-        deadImage.setX(75);
+        deadImage.setX(250);
         deadImage.setY(36);
         if (this.pieceTeam == "White")
             player1.getChildren().add(deadImage);
         if (this.pieceTeam == "Black")
             player2.getChildren().add(deadImage);
     }
+
+    /**
+     * pieceInTheWay - TODO: *NEEDS DESCRIPTION* (DO NOT TOUCH GAVIN!!!)
+     * 
+     */
+    protected Boolean pieceInTheWay(){
+        if(pieceTeam == "White"){
+            for (int i=0; i<wPieces.size(); i++){ //Movement section
+                int pieceX = wPieces.get(i).getX();
+                int pieceY = wPieces.get(i).getY();
+                System.out.println(pieceX);
+                System.out.println(pieceY);
+                System.out.println(this.xPos);
+                System.out.println(this.yPos);
+                if (wPieces.get(i).getAliveDead()){
+                    if(diagonal()){
+                        if (this.yPos < this.yMove){
+                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){
+                                return true;
+                            }
+                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){
+                                return true;
+                            }
+                        }
+                        if (this.yPos > this.yMove){
+                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){
+                                return true;
+                            }
+                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(pieceTeam == "Black"){
+            for (int j=0; j<bPieces.size(); j++){ //Movement section
+                int pieceX = bPieces.get(j).getX();
+                int pieceY = bPieces.get(j).getY();
+
+                if (bPieces.get(j).getAliveDead()){
+                    if(diagonal()){
+                        if (this.yPos < this.yMove){
+                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){
+                                return true;
+                            }
+                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){
+                                return true;
+                            }
+                        }
+                        if (this.yPos > this.yMove){
+                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){
+                                return true;
+                            }
+                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+        }
 }

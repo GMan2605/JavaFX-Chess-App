@@ -62,10 +62,10 @@ public class chessController implements Initializable{
         profilePicImg2.setFitHeight(tileSize);
         profilePicImg.setFitWidth(tileSize);
         profilePicImg2.setFitWidth(tileSize);
-        profilePicImg.setX(28);
-        profilePicImg2.setX(28);
-        profilePicImg.setY(16);
-        profilePicImg2.setY(0);
+        profilePicImg.setX(201);
+        profilePicImg2.setX(201);
+        profilePicImg.setY(38);
+        profilePicImg2.setY(4);
         player1.getChildren().add(profilePicImg);
         player2.getChildren().add(profilePicImg2);
 
@@ -156,8 +156,8 @@ public class chessController implements Initializable{
 
             bishopImage[0][i] = new ImageView("Images/W_Bishop.png");
             bishopImage[1][i] = new ImageView("Images/B_Bishop.png");
-            wBishops[i] = new Bishop( (i+2*(i+1)), 7, bishopImage[0][i], "White", chessGrid);
-            bBishops[i] = new Bishop( (i+2*(i+1)), 0, bishopImage[1][i], "Black", chessGrid);
+            wBishops[i] = new Bishop( (i+2*(i+1)), 7, bishopImage[0][i], "White", chessGrid, player2, player1);
+            bBishops[i] = new Bishop( (i+2*(i+1)), 0, bishopImage[1][i], "Black", chessGrid, player2, player1);
 
             knightImage[0][i] = new ImageView("Images/W_Knight.png");
             knightImage[1][i] = new ImageView("Images/B_Knight.png");
