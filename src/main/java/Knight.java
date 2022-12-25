@@ -6,19 +6,20 @@ import javafx.scene.layout.VBox;
 public class Knight extends Piece {
 
     public Knight(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid){
-        xPos = inputX;
-        yPos = inputY;
-        myImage = inputImage;
-        pieceTeam = inputTeam;
-        referenceGrid = chessGrid;
+        this.xPos = inputX;
+        this.yPos = inputY;
+        this.myImage = inputImage;
+        this.pieceTeam = inputTeam;
+        this.referenceGrid = chessGrid;
         this.correctImage();
-        pieceType = "Knight";
-        isSelected = false;
+        this.pieceType = "Knight";
+        this.isAlive = true;
+        this.isSelected = false;
         this.drawPiece();
     }
     
     @Override
-    boolean moveValid(ArrayList<Piece> wPieces, ArrayList<Piece> bPieces) {
+    boolean moveValid() {
         if (Math.abs(this.xMove - this.xPos) == 1 && Math.abs(this.yPos - this.yMove) == 2){
             return true;
         }

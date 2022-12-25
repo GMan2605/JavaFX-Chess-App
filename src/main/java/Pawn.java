@@ -23,6 +23,7 @@ public class Pawn extends Piece {
         this.player1 = player1;
         this.correctImage();
         this.pieceType = "Pawn";
+        this.isAlive = true;
         this.isFirstMove = true;
         this.isSelected = false;
         this.drawPiece();
@@ -30,18 +31,18 @@ public class Pawn extends Piece {
     
     // Adjusted Movement Code (to be review over for directional movement of different pawn teams)
     @Override
-    boolean moveValid(ArrayList<Piece> wPieces, ArrayList<Piece> bPieces) {
+    boolean moveValid() {
         pieceChosen = false;
         this.isSelected = false;
-
+        
         // Basic 1 tile movment
         if (this.xPos == this.xMove && this.yPos+this.pDirection == this.yMove){
-            
             //Below uses checkInWay, cannot return checkInWay because the other team always needs to be checked
             if (this.checkInWay(wPieces) == false)
                 return false;
             else if (this.checkInWay(bPieces) == false)
                 return false;
+            
             this.isFirstMove = false;
             return true;
         } 
@@ -60,20 +61,21 @@ public class Pawn extends Piece {
         else if ( (this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && (this.yPos)+this.pDirection == this.yMove){
             if (this.pieceTeam == "Black"){
                 for (int i=0; i<wPieces.size(); i++){
-                    if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove){
+                    if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove && wPieces.get(i).getAliveDead() == true){
                         this.isFirstMove = false;
-                        // wPieces.remove(i+1);
+                        // wPieces.remove(i+1); TODO: Find out why specific "this" data is transfered by removal of object from piece list
                         captureEnemy(wPieces.get(i).getX(), wPieces.get(i).getY(), wPieces.get(i).getImage(), wPieces.get(i).getType(), wPieces.get(i).getTeam());
+                        wPieces.get(i).setIsAlive(false);
                         return true;
                     }
                 }
-
             } else if (this.pieceTeam == "White"){
                 for (int i=0; i<bPieces.size(); i++){
-                    if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove){
+                    if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove && bPieces.get(i).getAliveDead() == true){
                         this.isFirstMove = false;
                         // bPieces.remove(i+1);
                         captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage(), bPieces.get(i).getType(), bPieces.get(i).getTeam());
+                        bPieces.get(i).setIsAlive(false);
                         return true;
                     }
                 }
@@ -96,7 +98,7 @@ public class Pawn extends Piece {
      */
     private boolean checkInWay(ArrayList<Piece> listOfTeam){
         for (int i=0; i<listOfTeam.size(); i++){
-            if (listOfTeam.get(i).getX() == this.xMove && listOfTeam.get(i).getY() == this.yMove){
+            if (listOfTeam.get(i).getX() == this.xMove && listOfTeam.get(i).getY() == this.yMove && listOfTeam.get(i).getAliveDead() == true){
                 this.isFirstMove = false;
                 this.inValidMovement();
                 return false;

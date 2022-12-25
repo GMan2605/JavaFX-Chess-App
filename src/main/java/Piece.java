@@ -8,12 +8,11 @@ import javafx.scene.layout.VBox;
 
 public abstract class Piece extends chessController {
 
-    @FXML
+    // public static ArrayList<Piece> wPieces;
+    // public static ArrayList<Piece> bPieces;
+
     AnchorPane player1;
-
-    @FXML
     AnchorPane player2;
-
     VBox referenceGrid;
     ImageView myImage;
     int yPos;
@@ -23,6 +22,7 @@ public abstract class Piece extends chessController {
     String pieceTeam;
     String pieceType;
     boolean isSelected;
+    boolean isAlive; // May/may not be temp boolean (have to ask for a solution to a specific problem in removing objects)
 
     /**
      * moveValid - An abstact boolean used as a template for subclasses
@@ -33,7 +33,32 @@ public abstract class Piece extends chessController {
      * @param yMove - The y-coordinate of where the selected piece is being moved
      * @return
      */
-    abstract boolean moveValid(ArrayList<Piece> wPieces, ArrayList<Piece> bPieces);
+    abstract boolean moveValid();
+
+    // Temp method/needed because of problem that cannot be resolved at the moment
+    public void setIsAlive(boolean inputBoolean){
+        this.isAlive = inputBoolean;
+    }
+
+    public boolean getAliveDead(){
+        return this.isAlive;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public int getWPiecesSize(){
+        return wPieces.size();
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public int getBPiecesSize(){
+        return bPieces.size();
+    }
 
     /**
      * horizontalVertical - TODO: *NEEDS DESCRIPTION*
@@ -103,7 +128,7 @@ public abstract class Piece extends chessController {
     }
 
     /**
-     * unHiglightPiece - Similar to highlightPiece method, but instead of finding
+     * unhighlightPiece - Similar to highlightPiece method, but instead of finding
      * a highlighted variant of this piece, it finds the normal one by using
      * this piece's variables associated with team and type of piece. It then
      * also corrects and draws the new image.

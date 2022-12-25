@@ -6,23 +6,24 @@ import javafx.scene.layout.VBox;
 public class Queen extends Piece {
 
     public Queen(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid){
-        xPos = inputX;
-        yPos = inputY;
-        myImage = inputImage;
-        pieceTeam = inputTeam;
-        referenceGrid = chessGrid;
+        this.xPos = inputX;
+        this.yPos = inputY;
+        this.myImage = inputImage;
+        this.pieceTeam = inputTeam;
+        this.referenceGrid = chessGrid;
         this.correctImage();
-        pieceType = "Queen";
-        isSelected = false;
+        this.pieceType = "Queen";
+        this.isAlive = true;
+        this.isSelected = false;
         this.drawPiece();
     }
 
     @Override
-    boolean moveValid(ArrayList<Piece> wPieces, ArrayList<Piece> bPieces) {
+    boolean moveValid() {
 
         if (super.horizontalVertical() == true){
             return true;
-        }else if (super.diagonal() == true){
+        } else if (super.diagonal() == true){
             return true;
         }
         return false;
