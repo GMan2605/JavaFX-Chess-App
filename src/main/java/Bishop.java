@@ -26,7 +26,7 @@ public class Bishop extends Piece {
     boolean moveValid() {
         pieceChosen = false;
         this.isSelected = false;
-        if (diagonal() == true){
+        if (this.diagonal() == true){
             if (pieceInTheWay()){
                 this.inValidMovement();
                 return false;

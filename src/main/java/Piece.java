@@ -285,35 +285,39 @@ public abstract class Piece extends chessController {
         if (this.pieceTeam == "Black")
             player2.getChildren().add(deadImage);
     }
-
+    
     /**
-     * pieceInTheWay - TODO: *NEEDS DESCRIPTION* (DO NOT TOUCH GAVIN!!!)
+     * pieceInTheWay - A boolean that reads true if there's 
+     * another piece in between of the chosen piece's position
+     * and position of move
      * 
      */
-    protected Boolean pieceInTheWay(){
-        if(pieceTeam == "White"){
-            for (int i=0; i<wPieces.size(); i++){ //Movement section
+    protected Boolean pieceInTheWay(){ // DO NOT TOUCH GAVIN!!!
+        if(pieceTeam == "White" || pieceTeam == "Black"){
+            for (int i=0; i<wPieces.size(); i++){ 
                 int pieceX = wPieces.get(i).getX();
                 int pieceY = wPieces.get(i).getY();
                 System.out.println(pieceX);
                 System.out.println(pieceY);
                 System.out.println(this.xPos);
                 System.out.println(this.yPos);
-                if (wPieces.get(i).getAliveDead()){
+
+                if (wPieces.get(i).getAliveDead()){ // Checks if the piece is alive or not
                     if(diagonal()){
-                        if (this.yPos < this.yMove){
-                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){
+
+                        if (this.yPos > this.yMove){ // If it's going up on the board
+                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){ // If it's going right on the board
                                 return true;
                             }
-                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){
+                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){ // If it's going left on the board
                                 return true;
                             }
                         }
-                        if (this.yPos > this.yMove){
-                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){
+                        if (this.yPos < this.yMove){ // If it's going down on the board
+                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){ // If it's going right on the board 
                                 return true;
                             }
-                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){
+                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){ // If it's going left on the board
                                 return true;
                             }
                         }
@@ -321,26 +325,26 @@ public abstract class Piece extends chessController {
                 }
             }
         }
-        if(pieceTeam == "Black"){
-            for (int j=0; j<bPieces.size(); j++){ //Movement section
+        if(pieceTeam == "Black" || pieceTeam == "White"){
+            for (int j=0; j<bPieces.size(); j++){ 
                 int pieceX = bPieces.get(j).getX();
                 int pieceY = bPieces.get(j).getY();
 
-                if (bPieces.get(j).getAliveDead()){
+                if (bPieces.get(j).getAliveDead()){ // Checks if the piece is alive or not
                     if(diagonal()){
                         if (this.yPos < this.yMove){
-                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){
+                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){ // If it's going right on the board
                                 return true;
                             }
-                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){
+                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){ // If it's going left on the board
                                 return true;
                             }
                         }
                         if (this.yPos > this.yMove){
-                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){
+                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){ // If it's going right on the board
                                 return true;
                             }
-                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){
+                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){ // If it's going left on the board
                                 return true;
                             }
                         }
