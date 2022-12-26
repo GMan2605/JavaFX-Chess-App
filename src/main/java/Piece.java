@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public abstract class Piece extends chessController {
 
@@ -39,26 +40,26 @@ public abstract class Piece extends chessController {
     public void setIsAlive(boolean inputBoolean){
         this.isAlive = inputBoolean;
     }
-
     public boolean getAliveDead(){
         return this.isAlive;
     }
 
-    /**
-     * 
-     * @return
-     */
-    public int getWPiecesSize(){
-        return wPieces.size();
-    }
+    // /**
+    //  * 
+    //  * @return
+    //  */
+    // public int getWPiecesSize(){
+    //     return wPieces.size();
+    // }
 
-    /**
-     * 
-     * @return
-     */
-    public int getBPiecesSize(){
-        return bPieces.size();
-    }
+    // /**
+    //  * getBPiecesSize - returns the size
+    //  * 
+    //  * @return
+    //  */
+    // public int getBPiecesSize(){
+    //     return bPieces.size();
+    // }
 
     /**
      * horizontalVertical - TODO: *NEEDS DESCRIPTION*
@@ -95,18 +96,44 @@ public abstract class Piece extends chessController {
         ((StackPane) (((HBox) referenceGrid.getChildren().get(this.yPos))).getChildren().get(this.xPos)).getChildren().add(this.myImage);
     }
 
-    /**
+    /** TODO: Update javadoc here!!!
      * pieceClicked - Void method that detects when a piece has been clicked/chosen to
      * be higlighted. It will only highlight them and change the data for the movement phase
      * if it is the right team chosen on their turn.
      */
     public void pieceClicked() {
-        if (pieceChosen == false) {
-            if (this.pieceTeam == "White" && turnString == "White's Turn") {
+        if (this.pieceTeam == "White"){
+            if (turnString == "White's Turn" && pieceChosen == false){
                 pieceChosen = true;
                 this.isSelected = true;
                 this.highlightPiece();
-            } else if (this.pieceTeam == "Black" && turnString == "Black's Turn") {
+            } else if (turnString == "Black's Turn" && pieceChosen == true){
+                for (int i=0; i<bPieces.size(); i++){ //Similar for loop section to one inside of chessController!
+                    if (bPieces.get(i).getHightlight()){
+                        bPieces.get(i).setMovements(this.xPos, this.yPos);
+                        if (bPieces.get(i).moveValid()){
+                            bPieces.get(i).move();
+                            turnString = "White's Turn";
+                            turnBanner.setText("White Team's Turn!");
+                            turnBanner.setTextFill(Color.WHITE);
+                        }
+                    } 
+                }
+            }
+        } else if (this.pieceTeam == "Black"){
+            if (turnString == "White's Turn" && pieceChosen == true){
+                for (int i=0; i<wPieces.size(); i++){ //Similar for loop section to one inside of chessController!
+                    if (wPieces.get(i).getHightlight()){
+                        wPieces.get(i).setMovements(this.xPos, this.yPos);
+                        if (wPieces.get(i).moveValid()){
+                            wPieces.get(i).move();
+                            turnString = "Black's Turn";
+                            this.getBanner().setText("Black Team's Turn!");
+                            this.getBanner().setTextFill(Color.BLACK);
+                        }
+                    } 
+                }
+            } else if (turnString == "Black's Turn" && pieceChosen == false){
                 pieceChosen = true;
                 this.isSelected = true;
                 this.highlightPiece();
@@ -341,6 +368,24 @@ public abstract class Piece extends chessController {
             }
         }
         return true;
+    }
+
+
+    /**
+     * conflictedMovement - Boolean return method that returns true if the specified team
+     * has any piece that is alive, and has its x & y in the way of a current movement by a piece
+     * 
+     * @param checkTeam the team to be checked for a confliction in the movement
+     * @return a true or false statement depending on if a piece in the list is in the way of the currently requested movement
+     */
+    protected boolean conflictedMovement(ArrayList<Piece> checkTeam){
+        for (int i=0; i<checkTeam.size(); i++){
+            Piece tempPiece = checkTeam.get(i);
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
