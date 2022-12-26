@@ -287,13 +287,70 @@ public abstract class Piece extends chessController {
     }
     
     /**
+     * checkRookMoves - Method that returns a true or false statement regarding a rook movement pattern and this piece.
+     * It requires specified "friendly" and "enemy" teams to evaluate any possible incorrect patterns in the movement
+     * (it returns true by default, however it must not return false after all the checking/detections). To do this, it
+     * first checks that the move does not infringe/go through or even land on a friendly piece. Then it moves onto detecting
+     * if a capture should take place or not, canceling the move if an enemy piece is blocking the way of the requested
+     * movement from xMove & yMove of this specific piece.
+     * 
+     * @param myTeam A list of pieces representing this piece's team
+     * @param enemyTeam Another list of pieces that represent the enemy team
+     * @return A true or false statement on if the requested movement is valid
+     */
+    protected boolean checkRookMoves(ArrayList<Piece> myTeam, ArrayList<Piece> enemyTeam){
+        for (int i=0; i<myTeam.size(); i++){ //Movement cancellation section (for same-team pieces)
+            int pieceX = myTeam.get(i).getX();
+            int pieceY = myTeam.get(i).getY();
+            if (pieceX == this.xPos && (this.yPos < pieceY && pieceY <= this.yMove && myTeam.get(i).getAliveDead() == true
+            || this.yPos > pieceY && pieceY >= this.yMove && myTeam.get(i).getAliveDead() == true) ){
+                this.inValidMovement();
+                return false;
+            } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX <= this.xMove && myTeam.get(i).getAliveDead() == true
+            || this.xPos > pieceX && pieceX >= this.xMove && myTeam.get(i).getAliveDead() == true) ){
+                this.inValidMovement();
+                return false;
+            }
+        }
+        for (int i=0; i<enemyTeam.size(); i++){ //Capturing section
+            int pieceX = enemyTeam.get(i).getX();
+            int pieceY = enemyTeam.get(i).getY();
+
+            /* 
+            Do a similar check if there are any other black pieces in-between 
+            the movemnet, but don't count the square the capture is trying to take place
+            (no <= or >= signs, replaced with < & >)
+             */
+            if (pieceX == this.xPos && (this.yPos < pieceY && pieceY < this.yMove && enemyTeam.get(i).getAliveDead() == true
+            || this.yPos > pieceY && pieceY > this.yMove && enemyTeam.get(i).getAliveDead() == true) ){
+                this.inValidMovement();
+                return false;
+            } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX < this.xMove && enemyTeam.get(i).getAliveDead() == true 
+            || this.xPos > pieceX && pieceX > this.xMove && enemyTeam.get(i).getAliveDead() == true) ){
+                this.inValidMovement();
+                return false;
+            }
+        }
+
+        // Finally, if no black or white pieces are in the way of the movement, check if there is an enemy piece in the way
+        for (int i=0; i<enemyTeam.size(); i++){
+            Piece tempPiece = enemyTeam.get(i);
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
+                tempPiece.setIsAlive(false);
+            }
+        }
+        return true;
+    }
+
+    /**
      * pieceInTheWay - A boolean that reads true if there's 
      * another piece in between of the chosen piece's position
      * and position of move
      * 
      */
     protected Boolean pieceInTheWay(){ // DO NOT TOUCH GAVIN!!!
-        if(pieceTeam == "White" || pieceTeam == "Black"){
+        if (pieceTeam == "White" || pieceTeam == "Black"){
             for (int i=0; i<wPieces.size(); i++){ 
                 int pieceX = wPieces.get(i).getX();
                 int pieceY = wPieces.get(i).getY();
@@ -325,7 +382,7 @@ public abstract class Piece extends chessController {
                 }
             }
         }
-        if(pieceTeam == "Black" || pieceTeam == "White"){
+        if (pieceTeam == "Black" || pieceTeam == "White"){
             for (int j=0; j<bPieces.size(); j++){ 
                 int pieceX = bPieces.get(j).getX();
                 int pieceY = bPieces.get(j).getY();

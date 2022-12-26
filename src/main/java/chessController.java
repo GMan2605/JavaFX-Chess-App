@@ -136,8 +136,8 @@ public class chessController implements Initializable{
         // Creation of Kings & Queens
         King bKing = new King(4, 0, new ImageView("Images/B_King.png"), "Black", chessGrid);
         King wKing = new King(4, 7, new ImageView("Images/W_King.png"), "White", chessGrid);
-        Queen bQueen = new Queen(3, 0, new ImageView("Images/B_Queen.png"), "Black", chessGrid);
-        Queen wQueen = new Queen(3, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid);
+        Queen bQueen = new Queen(3, 0, new ImageView("Images/B_Queen.png"), "Black", chessGrid, player2, player1);
+        Queen wQueen = new Queen(3, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid, player2, player1);
 
         // Creation of the pawn layout
         for (int i=0; i<8; i++){
