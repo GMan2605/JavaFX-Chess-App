@@ -28,91 +28,70 @@ public class Rook extends Piece {
         this.isSelected = false;
 
         if (this.horizontalVertical()){ // Was the movment a horizontal or vertical movement! (in the rook pattern)
-            if (this.pieceTeam == "White"){
-                for (int i=0; i<wPieces.size(); i++){ //Movement section
-                    int pieceX = wPieces.get(i).getX();
-                    int pieceY = wPieces.get(i).getY();
-                    if (pieceX == this.xPos && (this.yPos < pieceY && pieceY <= this.yMove || this.yPos > pieceY && pieceY >= this.yMove && wPieces.get(i).getAliveDead() == true) ){
-                        this.inValidMovement();
-                        return false;
-                    } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX <= this.xMove || this.xPos > pieceX && pieceX >= this.xMove && wPieces.get(i).getAliveDead() == true) ){
-                        this.inValidMovement();
-                        return false;
-                    }
-                }
-                for (int i=0; i<bPieces.size(); i++){ //Capturing section
-                    int pieceX = bPieces.get(i).getX();
-                    int pieceY = bPieces.get(i).getY();
-
-                    /* 
-                    Do a similar check if there are any other black pieces in-between 
-                    the movemnet, but don't count the square the capture is trying to take place
-                    (no <= or >= signs, replaced with < & >)
-                     */
-                    if (pieceX == this.xPos && (this.yPos < pieceY && pieceY < this.yMove || this.yPos > pieceY && pieceY > this.yMove && bPieces.get(i).getAliveDead() == true) ){
-                        this.inValidMovement();
-                        return false;
-                    } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX < this.xMove || this.xPos > pieceX && pieceX > this.xMove && bPieces.get(i).getAliveDead() == true) ){
-                        this.inValidMovement();
-                        return false;
-                    }
-                }
-
-                // Finally, if no black or white pieces are in the way of the movement, check if there is an enemy piece in the way
-                for (int j=0; j<bPieces.size(); j++){
-                    int pieceX = bPieces.get(j).getX();
-                    int pieceY = bPieces.get(j).getY();
-                    if (pieceX == this.xMove && pieceY == this.yMove && bPieces.get(j).getAliveDead() == true){
-                        captureEnemy(bPieces.get(j).getX(), bPieces.get(j).getY(), bPieces.get(j).getImage(), bPieces.get(j).getType(), bPieces.get(j).getTeam());
-                        bPieces.get(j).setIsAlive(false);
-                    }
-                }
-
-                return true;
-            } else if (this.pieceTeam == "Black"){
-                for (int i=0; i<bPieces.size(); i++){ // Movement section
-                    int pieceX = bPieces.get(i).getX();
-                    int pieceY = bPieces.get(i).getY();
-                    if (pieceX == this.xPos && (this.yPos < pieceY && pieceY <= this.yMove || this.yPos > pieceY && pieceY >= this.yMove && bPieces.get(i).getAliveDead() == true) ){
-                        this.inValidMovement();
-                        return false;
-                    } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX <= this.xMove || this.xPos > pieceX && pieceX >= this.xMove) && bPieces.get(i).getAliveDead() == true ){
-                        this.inValidMovement();
-                        return false;
-                    }
-                }
-                for (int i=0; i<wPieces.size(); i++){ // Capturing section
-                    int pieceX = wPieces.get(i).getX();
-                    int pieceY = wPieces.get(i).getY();
-
-                    /* 
-                    Do a similar check if there are any other black pieces in-between 
-                    the movemnet, but don't count the square the capture is trying to take place
-                    (no <= or >= signs, replaced with < & >)
-                     */
-                    if (pieceX == this.xPos && (this.yPos < pieceY && pieceY < this.yMove || this.yPos > pieceY && pieceY > this.yMove) && wPieces.get(i).getAliveDead() == true ){
-                        this.inValidMovement();
-                        return false;
-                    } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX < this.xMove || this.xPos > pieceX && pieceX > this.xMove) && wPieces.get(i).getAliveDead() == true ){
-                        this.inValidMovement();
-                        return false;
-                    }
-                }
-
-                // Finally, if no black or white pieces are in the way of the movement, check if there is an enemy piece in the way
-                for (int j=0; j<wPieces.size(); j++){
-                    int pieceX = wPieces.get(j).getX();
-                    int pieceY = wPieces.get(j).getY();
-                    if (pieceX == this.xMove && pieceY == this.yMove && wPieces.get(j).getAliveDead() == true){
-                        captureEnemy(wPieces.get(j).getX(), wPieces.get(j).getY(), wPieces.get(j).getImage(), wPieces.get(j).getType(), wPieces.get(j).getTeam());
-                        wPieces.get(j).setIsAlive(false);
-                    }
-                }
-                return true;
-            }
+            if (this.pieceTeam == "White")
+                return this.checkRookMoves(wPieces, bPieces);
+            else if (this.pieceTeam == "Black")
+                return this.checkRookMoves(bPieces, wPieces);
         }
 
         this.inValidMovement();
         return false;
+    }
+
+    /**
+     * checkRookMoves - Method that returns a true or false statement regarding a rook movement pattern and this piece.
+     * It requires specified "friendly" and "enemy" teams to evaluate any possible incorrect patterns in the movement
+     * (it returns true by default, however it must not return false after all the checking/detections). To do this, it
+     * first checks that the move does not infringe/go through or even land on a friendly piece. Then it moves onto detecting
+     * if a capture should take place or not, canceling the move if an enemy piece is blocking the way of the requested
+     * movement from xMove & yMove of this specific piece.
+     * 
+     * @param myTeam A list of pieces representing this piece's team
+     * @param enemyTeam Another list of pieces that represent the enemy team
+     * @return A true or false statement on if the requested movement is valid
+     */
+    private boolean checkRookMoves(ArrayList<Piece> myTeam, ArrayList<Piece> enemyTeam){
+        for (int i=0; i<myTeam.size(); i++){ //Movement cancellation section (for same-team pieces)
+            int pieceX = myTeam.get(i).getX();
+            int pieceY = myTeam.get(i).getY();
+            if (pieceX == this.xPos && (this.yPos < pieceY && pieceY <= this.yMove && myTeam.get(i).getAliveDead() == true
+            || this.yPos > pieceY && pieceY >= this.yMove && myTeam.get(i).getAliveDead() == true) ){
+                this.inValidMovement();
+                return false;
+            } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX <= this.xMove && myTeam.get(i).getAliveDead() == true
+            || this.xPos > pieceX && pieceX >= this.xMove && myTeam.get(i).getAliveDead() == true) ){
+                this.inValidMovement();
+                return false;
+            }
+        }
+        for (int i=0; i<enemyTeam.size(); i++){ //Capturing section
+            int pieceX = enemyTeam.get(i).getX();
+            int pieceY = enemyTeam.get(i).getY();
+
+            /* 
+            Do a similar check if there are any other black pieces in-between 
+            the movemnet, but don't count the square the capture is trying to take place
+            (no <= or >= signs, replaced with < & >)
+             */
+            if (pieceX == this.xPos && (this.yPos < pieceY && pieceY < this.yMove && enemyTeam.get(i).getAliveDead() == true
+            || this.yPos > pieceY && pieceY > this.yMove && enemyTeam.get(i).getAliveDead() == true) ){
+                this.inValidMovement();
+                return false;
+            } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX < this.xMove && enemyTeam.get(i).getAliveDead() == true 
+            || this.xPos > pieceX && pieceX > this.xMove && enemyTeam.get(i).getAliveDead() == true) ){
+                this.inValidMovement();
+                return false;
+            }
+        }
+
+        // Finally, if no black or white pieces are in the way of the movement, check if there is an enemy piece in the way
+        for (int i=0; i<enemyTeam.size(); i++){
+            Piece tempPiece = enemyTeam.get(i);
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
+                tempPiece.setIsAlive(false);
+            }
+        }
+        return true;
     }
 }

@@ -61,21 +61,23 @@ public class Pawn extends Piece {
         else if ( (this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && (this.yPos)+this.pDirection == this.yMove){
             if (this.pieceTeam == "Black"){
                 for (int i=0; i<wPieces.size(); i++){
-                    if (wPieces.get(i).getX() == this.xMove && wPieces.get(i).getY() == this.yMove && wPieces.get(i).getAliveDead() == true){
+                    Piece tempPiece = wPieces.get(i);
+                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
                         this.isFirstMove = false;
                         // wPieces.remove(i+1); TODO: Find out why specific "this" data is transfered by removal of object from piece list
-                        captureEnemy(wPieces.get(i).getX(), wPieces.get(i).getY(), wPieces.get(i).getImage(), wPieces.get(i).getType(), wPieces.get(i).getTeam());
+                        captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
                         wPieces.get(i).setIsAlive(false);
                         return true;
                     }
                 }
             } else if (this.pieceTeam == "White"){
                 for (int i=0; i<bPieces.size(); i++){
-                    if (bPieces.get(i).getX() == this.xMove && bPieces.get(i).getY() == this.yMove && bPieces.get(i).getAliveDead() == true){
+                    Piece tempPiece = bPieces.get(i);
+                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
                         this.isFirstMove = false;
                         // bPieces.remove(i+1);
-                        captureEnemy(bPieces.get(i).getX(), bPieces.get(i).getY(), bPieces.get(i).getImage(), bPieces.get(i).getType(), bPieces.get(i).getTeam());
-                        bPieces.get(i).setIsAlive(false);
+                        captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
+                        tempPiece.setIsAlive(false);
                         return true;
                     }
                 }
