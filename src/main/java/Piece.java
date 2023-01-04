@@ -395,65 +395,86 @@ public abstract class Piece extends chessController {
      * 
      */
     protected Boolean pieceInTheWay(){ // DO NOT TOUCH GAVIN!!!
-        if (pieceTeam == "White" || pieceTeam == "Black"){
+        
             for (int i=0; i<wPieces.size(); i++){ 
                 int pieceX = wPieces.get(i).getX();
                 int pieceY = wPieces.get(i).getY();
-                System.out.println(pieceX);
-                System.out.println(pieceY);
-                System.out.println(this.xPos);
-                System.out.println(this.yPos);
-
+                // System.out.println(pieceX);
+                // System.out.println(pieceY);
+                // System.out.println(this.xPos);
+                // System.out.println(this.yPos);
+                // System.out.println(this.xMove);
+                // System.out.println(this.yMove);
+                // System.out.println("DONE");
+                
                 if (wPieces.get(i).getAliveDead()){ // Checks if the piece is alive or not
                     if(diagonal()){
 
                         if (this.yPos > this.yMove){ // If it's going up on the board
-                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){ // If it's going right on the board
-                                return true;
+                            if (this.xPos < this.xMove){
+                                if (pieceX - 1 == this.xPos && pieceY + 1 == this.yPos){ // If it's going right on the board
+                                    return true;
+                                }
                             }
-                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){ // If it's going left on the board
-                                return true;
+                            if (this.xPos > this.xMove){
+                                if (pieceX + 1 == this.xPos && pieceY + 1 == this.yPos){ // If it's going left on the board
+                                    return true;
+                                }
                             }
                         }
+                        
                         if (this.yPos < this.yMove){ // If it's going down on the board
-                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){ // If it's going right on the board 
+                            if (this.xPos < this.xMove){
+                                if (pieceX - 1 == this.xPos && pieceY - 1 == this.yPos){ // If it's going right on the board
                                 return true;
-                            }
-                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){ // If it's going left on the board
-                                return true;
+                                }
+                        }
+                            if (this.xPos > this.xMove){
+                                if (pieceX + 1 == this.xPos && pieceY - 1 == this.yPos){ // If it's going left on the board
+                                    return true;
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        if (pieceTeam == "Black" || pieceTeam == "White"){
+        
             for (int j=0; j<bPieces.size(); j++){ 
                 int pieceX = bPieces.get(j).getX();
                 int pieceY = bPieces.get(j).getY();
 
                 if (bPieces.get(j).getAliveDead()){ // Checks if the piece is alive or not
                     if(diagonal()){
-                        if (this.yPos < this.yMove){
-                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){ // If it's going right on the board
-                                return true;
+                        
+                        if (this.yPos > this.yMove){ // If it's going up on the board
+                            if (this.xPos < this.xMove){
+                                if (pieceX - 1 == this.xPos && pieceY + 1 == this.yPos){ // If it's going right on the board
+                                    return true;
+                                }
                             }
-                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY < this.yPos && pieceY >= this.yMove)){ // If it's going left on the board
-                                return true;
+                            if (this.xPos > this.xMove){
+                                if (pieceX + 1 == this.xPos && pieceY + 1 == this.yPos){ // If it's going left on the board
+                                    return true;
+                                }
                             }
                         }
-                        if (this.yPos > this.yMove){
-                            if (pieceX > this.xPos && pieceX <= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){ // If it's going right on the board
+                        
+                        if (this.yPos < this.yMove){ // If it's going down on the board
+                            if (this.xPos < this.xMove){
+                                if (pieceX - 1 == this.xPos && pieceY - 1 == this.yPos){ // If it's going right on the board
                                 return true;
-                            }
-                            else if (pieceX < this.xPos && pieceX >= this.xMove && (pieceY > this.yPos && pieceY <= this.yMove)){ // If it's going left on the board
-                                return true;
+                                }
+                        }
+                            if (this.xPos > this.xMove){
+                                if (pieceX + 1 == this.xPos && pieceY - 1 == this.yPos){ // If it's going left on the board
+                                    return true;
+                                }
                             }
                         }
                     }
                 }
             }
-        }
+        
         return false;
         }
 }
