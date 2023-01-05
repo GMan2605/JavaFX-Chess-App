@@ -96,17 +96,31 @@ public abstract class Piece extends chessController {
         ((StackPane) (((HBox) referenceGrid.getChildren().get(this.yPos))).getChildren().get(this.xPos)).getChildren().add(this.myImage);
     }
 
-    /** TODO: Update javadoc here!!!
+    /**
      * pieceClicked - Void method that detects when a piece has been clicked/chosen to
-     * be higlighted. It will only highlight them and change the data for the movement phase
-     * if it is the right team chosen on their turn.
+     * be higlighted. It is used for two main purposes: highlighting pieces, and
+     * deselecting/unhighlighting other pieces if they is another that is selected. It
+     * is currently designed to accomidate conditions for white and black pieces separately.
      */
     public void pieceClicked() {
-        if (this.pieceTeam == "White"){
-            if (turnString == "White's Turn" && pieceChosen == false){
-                pieceChosen = true;
-                this.isSelected = true;
-                this.highlightPiece();
+        if (this.pieceTeam == "White"){ // White piece clicked section
+            if (turnString == "White's Turn"){
+                if (pieceChosen == false){
+                    pieceChosen = true;
+                    this.isSelected = true;
+                    this.highlightPiece();
+                } else {
+                    for (int i=0; i<wPieces.size(); i++){
+                        Piece tempPiece = wPieces.get(i);
+                        if (tempPiece.getHightlight()){
+                            pieceChosen = false;
+                            tempPiece.removeMyImage();
+                            tempPiece.setHighlight(false);
+                            tempPiece.unhighlightPiece();
+                            tempPiece.setMovements(0, 0);
+                        }
+                    }
+                }
             } else if (turnString == "Black's Turn" && pieceChosen == true){
                 for (int i=0; i<bPieces.size(); i++){ //Similar for loop section to one inside of chessController!
                     if (bPieces.get(i).getHightlight()){
@@ -120,7 +134,7 @@ public abstract class Piece extends chessController {
                     } 
                 }
             }
-        } else if (this.pieceTeam == "Black"){
+        } else if (this.pieceTeam == "Black"){ // Black piece clicked section
             if (turnString == "White's Turn" && pieceChosen == true){
                 for (int i=0; i<wPieces.size(); i++){ //Similar for loop section to one inside of chessController!
                     if (wPieces.get(i).getHightlight()){
@@ -128,15 +142,28 @@ public abstract class Piece extends chessController {
                         if (wPieces.get(i).moveValid()){
                             wPieces.get(i).move();
                             turnString = "Black's Turn";
-                            this.getBanner().setText("Black Team's Turn!");
-                            this.getBanner().setTextFill(Color.BLACK);
+                            turnBanner.setText("Black Team's Turn!");
+                            turnBanner.setTextFill(Color.BLACK);
                         }
                     } 
                 }
-            } else if (turnString == "Black's Turn" && pieceChosen == false){
-                pieceChosen = true;
-                this.isSelected = true;
-                this.highlightPiece();
+            } else if (turnString == "Black's Turn"){
+                if (pieceChosen == false){
+                    pieceChosen = true;
+                    this.isSelected = true;
+                    this.highlightPiece();
+                } else {
+                    for (int i=0; i<bPieces.size(); i++){
+                        Piece tempPiece = bPieces.get(i);
+                        if (tempPiece.getHightlight()){
+                            pieceChosen = false;
+                            tempPiece.removeMyImage();
+                            tempPiece.setHighlight(false);
+                            tempPiece.unhighlightPiece();
+                            tempPiece.setMovements(0, 0);
+                        }
+                    }
+                }
             }
         }
     }
@@ -167,24 +194,14 @@ public abstract class Piece extends chessController {
     }
 
     /**
-     * correctImage - method that resizes this piece's image 
+     * correctImage - method that resizes this piece's image and
+     * sets its to have a mouse click event.
      */
     protected void correctImage() {
         this.myImage.setFitHeight(tileSize);
         this.myImage.setFitHeight(tileSize);
         this.myImage.setPreserveRatio(true);
         this.myImage.setOnMouseClicked(e -> pieceClicked());
-    }
-
-    /**
-     * getHighlight - Simple boolean return method that returns a
-     * statement on wheter or not this piece is highlighted (returns
-     * isSelected variable for this specific piece)
-     * 
-     * @return true or false statement on if this piece is highlighted
-     */
-    public boolean getHightlight() {
-        return this.isSelected;
     }
 
     /**
@@ -197,6 +214,27 @@ public abstract class Piece extends chessController {
     public void setMovements(int inputXMove, int inputYMove) {
         this.xMove = inputXMove;
         this.yMove = inputYMove;
+    }
+
+    /**
+     * setHighlight - Sets the current isSelected boolean to
+     * whatever the input was.
+     * 
+     * @param inputBoolean the boolean to change isSelected to
+     */
+    public void setHighlight(boolean inputBoolean){
+        this.isSelected = inputBoolean;
+    }
+
+    /**
+     * getHighlight - Simple boolean return method that returns a
+     * statement on wheter or not this piece is highlighted (returns
+     * isSelected variable for this specific piece)
+     * 
+     * @return true or false statement on if this piece is highlighted
+     */
+    public boolean getHightlight() {
+        return this.isSelected;
     }
 
     /**
