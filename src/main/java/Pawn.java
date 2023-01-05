@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 public class Pawn extends Piece {
 
     boolean isFirstMove = false;
-    int pDirection = 1;
+    int pDirection = 1; // pDirection, an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
 
     public Pawn(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid, AnchorPane player2, AnchorPane player1, Label inputBanner){
         this.xPos = inputX;
@@ -36,31 +36,23 @@ public class Pawn extends Piece {
     boolean moveValid() {
         pieceChosen = false;
         this.isSelected = false;
-        
+        System.out.println(this.xMove + ", " + this.yMove);
+        System.out.println((this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && this.yPos+this.pDirection == this.yMove);
         // Basic 1 tile movment
         if (this.xPos == this.xMove && this.yPos+this.pDirection == this.yMove){
             //Below uses checkInWay, cannot return checkInWay because the other team always needs to be checked
-            if (this.checkInWay(wPieces) == false)
-                return false;
-            else if (this.checkInWay(bPieces) == false)
-                return false;
-            
             this.isFirstMove = false;
+            if (this.checkInWay(wPieces) == false){
+                this.inValidMovement();
+                return false;
+            } else if (this.checkInWay(bPieces) == false){
+                this.inValidMovement();
+                return false;
+            }
             return true;
         } 
-        // Double movement/"first move" code
-        else if (this.isFirstMove == true){
-            if (this.xPos == this.xMove && this.yPos+(2*this.pDirection) == this.yMove){
-                if (this.checkInWay(wPieces) == false)
-                    return false;
-                else if (this.checkInWay(bPieces) == false)
-                    return false;
-                this.isFirstMove = false;
-                return true;
-            }
-        }
         // Capturing of enemy pieces
-        else if ( (this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && (this.yPos)+this.pDirection == this.yMove){
+        else if ( (this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && this.yPos+this.pDirection == this.yMove){
             if (this.pieceTeam == "Black"){
                 for (int i=0; i<wPieces.size(); i++){
                     Piece tempPiece = wPieces.get(i);
@@ -68,7 +60,7 @@ public class Pawn extends Piece {
                         this.isFirstMove = false;
                         // wPieces.remove(i+1); TODO: Find out why specific "this" data is transfered by removal of object from piece list
                         captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-                        wPieces.get(i).setIsAlive(false);
+                        tempPiece.setIsAlive(false);
                         return true;
                     }
                 }
@@ -84,6 +76,20 @@ public class Pawn extends Piece {
                     }
                 }
 
+            }
+        } 
+        // Double movement/"first move" code
+        else if (this.isFirstMove == true){
+            if (this.xPos == this.xMove && this.yPos+(2*this.pDirection) == this.yMove){
+                this.isFirstMove = false;
+                if (this.checkInWay(wPieces) == false){
+                    this.inValidMovement();
+                    return false;
+                } else if (this.checkInWay(bPieces) == false){
+                    this.inValidMovement();
+                    return false;
+                }
+                return true;
             }
         }
         this.inValidMovement();
@@ -101,8 +107,6 @@ public class Pawn extends Piece {
     private boolean checkInWay(ArrayList<Piece> listOfTeam){
         for (int i=0; i<listOfTeam.size(); i++){
             if (listOfTeam.get(i).getX() == this.xMove && listOfTeam.get(i).getY() == this.yMove && listOfTeam.get(i).getAliveDead() == true){
-                this.isFirstMove = false;
-                this.inValidMovement();
                 return false;
             }
         }
