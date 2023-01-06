@@ -93,7 +93,7 @@ public class chessController implements Initializable{
                                         // System.out.println("A tile at position: " + j + ", " + i + " was chosen for movement!");
                                         for (int k=0; k<wPieces.size(); k++){
                                             if (turnString == "White's Turn"){
-                                                if (wPieces.get(k).getHightlight()){
+                                                if (wPieces.get(k).getHightlight()){ // Using the loop, find out if this team has a highlighted piece, and try to move!
                                                     wPieces.get(k).setMovements(j, i);
                                                     if (wPieces.get(k).moveValid()){
                                                         wPieces.get(k).move();

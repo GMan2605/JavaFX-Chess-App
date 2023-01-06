@@ -36,8 +36,6 @@ public class Pawn extends Piece {
     boolean moveValid() {
         pieceChosen = false;
         this.isSelected = false;
-        System.out.println(this.xMove + ", " + this.yMove);
-        System.out.println((this.xPos+1 == this.xMove || this.xPos-1 == this.xMove) && this.yPos+this.pDirection == this.yMove);
         // Basic 1 tile movment
         if (this.xPos == this.xMove && this.yPos+this.pDirection == this.yMove){
             //Below uses checkInWay, cannot return checkInWay because the other team always needs to be checked

@@ -35,7 +35,7 @@ public abstract class Piece extends chessController {
      * @return
      */
     abstract boolean moveValid();
-
+    
     // Temp method/needed because of problem that cannot be resolved at the moment
     public void setIsAlive(boolean inputBoolean){
         this.isAlive = inputBoolean;
@@ -122,7 +122,7 @@ public abstract class Piece extends chessController {
                     }
                 }
             } else if (turnString == "Black's Turn" && pieceChosen == true){
-                for (int i=0; i<bPieces.size(); i++){ //Similar for loop section to one inside of chessController!
+                for (int i=0; i<bPieces.size(); i++){ // Similar for loop section to one inside of chessController!
                     if (bPieces.get(i).getHightlight()){
                         bPieces.get(i).setMovements(this.xPos, this.yPos);
                         if (bPieces.get(i).moveValid()){
@@ -136,7 +136,7 @@ public abstract class Piece extends chessController {
             }
         } else if (this.pieceTeam == "Black"){ // Black piece clicked section
             if (turnString == "White's Turn" && pieceChosen == true){
-                for (int i=0; i<wPieces.size(); i++){ //Similar for loop section to one inside of chessController!
+                for (int i=0; i<wPieces.size(); i++){ // Similar for loop section to one inside of chessController!
                     if (wPieces.get(i).getHightlight()){
                         wPieces.get(i).setMovements(this.xPos, this.yPos);
                         if (wPieces.get(i).moveValid()){
