@@ -1,14 +1,12 @@
-import java.util.ArrayList;
-
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
 public class Bishop extends Piece {
 
-    public Bishop(int inputX, int inputY, ImageView inputImage, String inputTeam,  VBox chessGrid, AnchorPane player2, AnchorPane player1, Label inputBanner){
+    public Bishop(int inputX, int inputY, ImageView inputImage, String inputTeam,  VBox chessGrid, HBox player2, HBox player1, Label inputBanner){
         this.xPos = inputX;
         this.yPos = inputY;
         this.myImage = inputImage;

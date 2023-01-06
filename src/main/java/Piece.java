@@ -1,7 +1,5 @@
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
-import javafx.scene.layout.AnchorPane;
-import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -12,8 +10,8 @@ public abstract class Piece extends chessController {
     // public static ArrayList<Piece> wPieces;
     // public static ArrayList<Piece> bPieces;
 
-    AnchorPane player1;
-    AnchorPane player2;
+    HBox player1;
+    HBox player2;
     VBox referenceGrid;
     ImageView myImage;
     int yPos;
@@ -340,15 +338,18 @@ public abstract class Piece extends chessController {
      * @param enemyType
      */
     private void addScore(String enemyType) {
-        ImageView deadImage = new ImageView("Images/" + this.pieceTeam.charAt(0) + "_" + enemyType + ".png");
-        deadImage.setFitHeight(25);
-        deadImage.setFitWidth(25);
-        deadImage.setX(250);
-        deadImage.setY(36);
-        if (this.pieceTeam == "White")
+        ImageView deadImage;
+        if (this.pieceTeam == "White"){
+            deadImage = new ImageView("Images/B_" + enemyType + ".png");
+            deadImage.setFitHeight(25);
+            deadImage.setFitWidth(25);
             player1.getChildren().add(deadImage);
-        if (this.pieceTeam == "Black")
+        } else if (this.pieceTeam == "Black"){
+            deadImage = new ImageView("Images/W_" + enemyType + ".png");
+            deadImage.setFitHeight(25);
+            deadImage.setFitWidth(25);
             player2.getChildren().add(deadImage);
+        }
     }
     
     /**
@@ -408,6 +409,34 @@ public abstract class Piece extends chessController {
         return true;
     }
 
+    /** THIS METHOD IS ONLY USED BY KING & KNIGHT! 
+     * 
+     * moveCancelCheck - Method specific to knight, it simply returns the proper movement
+     * if a valid move was already detected (checks if it should capture, captures if so, also
+     * stops a movement if a piece of the same team is in the way).
+     * 
+     * @param myTeam list of pieces on the same team as this piece
+     * @param enemyTeam list of pieces on the enemy team as this piece
+     */
+    protected boolean moveCancelCheck(ArrayList<Piece> myTeam, ArrayList<Piece> enemyTeam){
+        for (int i=0; i<myTeam.size(); i++){ // Check if any piece on this piece's team is in the way
+            Piece tempPiece = myTeam.get(i);
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                this.inValidMovement();
+                return false;
+            }
+        }
+        for (int i=0; i<enemyTeam.size(); i++){ // Check if this piece can capture, capture if so (enemy piece in movment space)
+            Piece tempPiece = enemyTeam.get(i);
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
+                tempPiece.setIsAlive(false);
+                return true;
+            }
+        }
+
+        return true; // Return true if no invalid move was found, or no capture was found (no capture code here)
+    }
 
     /**
      * conflictedMovement - Boolean return method that returns true if the specified team

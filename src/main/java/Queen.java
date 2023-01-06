@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Queen extends Piece {
 
-    public Queen(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid, AnchorPane player2, AnchorPane player1, Label inputBanner){
+    public Queen(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid, HBox player2, HBox player1, Label inputBanner){
         this.xPos = inputX;
         this.yPos = inputY;
         this.myImage = inputImage;
@@ -34,7 +32,7 @@ public class Queen extends Piece {
             else if (this.pieceTeam == "Black")
                 return this.checkRookMoves(bPieces, wPieces);
         }
-        // else if (super.diagonal() == true){
+        // else if (super.diagonal() == true){ TODO: ADD DIAGONAL/BISHOP CODE HERE
         //     return true;
         // }
         this.inValidMovement();

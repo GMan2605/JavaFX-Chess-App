@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -46,10 +45,10 @@ public class chessController implements Initializable{
     Label turnBanner;
 
     @FXML
-    AnchorPane player1;
+    HBox player1;
 
     @FXML
-    AnchorPane player2;
+    HBox player2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -67,7 +66,7 @@ public class chessController implements Initializable{
         profilePicImg2.setY(4);
         player1.getChildren().add(profilePicImg);
         player2.getChildren().add(profilePicImg2);
-
+        
         // For-loop section that adds all components to make a visual board
         for (int i=0; i<8; i++){ // y dimension loop
             gridRows[i] = new HBox(0);
