@@ -99,6 +99,9 @@ public class chessController implements Initializable{
                                                         turnString = "Black's Turn";
                                                         turnBanner.setText("Black Team's Turn!");
                                                         turnBanner.setTextFill(Color.BLACK);
+                                                            if (wPieces.get(k).isCheck()){
+                                                                System.out.println("Black's In Check");
+                                                            }
                                                     }
                                                     
                                                 }
@@ -113,6 +116,9 @@ public class chessController implements Initializable{
                                                         turnString = "White's Turn";
                                                         turnBanner.setText("White Team's Turn!");
                                                         turnBanner.setTextFill(Color.WHITE);
+                                                            if (bPieces.get(l).isCheck()){
+                                                                System.out.println("White's In Check");
+                                                            }
                                                     }
                                                 
                                                 }

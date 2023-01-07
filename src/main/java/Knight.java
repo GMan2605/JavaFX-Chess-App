@@ -34,8 +34,35 @@ public class Knight extends Piece {
             else if (this.pieceTeam == "Black")
                 return this.moveCancelCheck(bPieces, wPieces);
         }
-
         this.inValidMovement();
         return false;
     }
+
+    @Override
+    public boolean isCheck() {
+        if (this.pieceTeam == "Black"){
+            for (int i=0; i<wPieces.size(); i++){ 
+                Piece tempPiece = wPieces.get(i);
+                if (tempPiece.getType() == "King"){
+                    if (Math.abs(tempPiece.getX() - this.xPos) == 1 && Math.abs(tempPiece.getY() - this.yMove) == 2
+                        || Math.abs(tempPiece.getX() - this.xPos) == 2 && Math.abs(tempPiece.getY() - this.yMove) == 1){
+                            return true;
+                        }
+                }
+            }
+        }
+        else{
+            for (int i=0; i<bPieces.size(); i++){ 
+                Piece tempPiece = bPieces.get(i);
+                if (tempPiece.getType() == "King"){
+                    if (Math.abs(tempPiece.getX() - this.xPos) == 1 && Math.abs(tempPiece.getY() - this.yMove) == 2
+                        || Math.abs(tempPiece.getX() - this.xPos) == 2 && Math.abs(tempPiece.getY() - this.yMove) == 1){
+                            return true;
+                        }
+                }
+            }
+        }
+        return false;
+    }
+    
 }

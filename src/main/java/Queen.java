@@ -36,9 +36,37 @@ public class Queen extends Piece {
             if (this.pieceTeam == "White")
                 return this.checkBishopMoves(wPieces, bPieces);
             else if (this.pieceTeam == "Black")
-                return this.checkRookMoves(bPieces, wPieces);
+                return this.checkBishopMoves(bPieces, wPieces);
         }
         this.inValidMovement();
+        return false;
+    }
+
+    @Override
+    public boolean isCheck() {
+        if (this.pieceTeam == "Black"){
+            for (int i=0; i<wPieces.size(); i++){ 
+                Piece tempPiece = wPieces.get(i);
+                if (tempPiece.getType() == "King"){
+                    this.xMove = tempPiece.getX();
+                    this.yMove = tempPiece.getY();
+                    if (checkRookMoves(bPieces, wPieces) || checkBishopMoves(bPieces, wPieces))
+                        return true;
+                    }
+                }
+            }
+        
+        else{
+            for (int i=0; i<bPieces.size(); i++){ 
+                Piece tempPiece = bPieces.get(i);
+                if (tempPiece.getType() == "King"){
+                    this.xMove = tempPiece.getX();
+                    this.yMove = tempPiece.getY();
+                    if (checkRookMoves(wPieces, bPieces) || checkBishopMoves(wPieces, bPieces))
+                        return true;
+                }
+            }
+        }
         return false;
     }
 }

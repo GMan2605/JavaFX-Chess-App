@@ -9,6 +9,7 @@ public abstract class Piece extends chessController {
 
     // public static ArrayList<Piece> wPieces;
     // public static ArrayList<Piece> bPieces;
+    int pDirection = 1; // an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
 
     HBox player1;
     HBox player2;
@@ -399,13 +400,13 @@ public abstract class Piece extends chessController {
         }
 
         // Finally, if no black or white pieces are in the way of the movement, check if there is an enemy piece in the way
-        for (int i=0; i<enemyTeam.size(); i++){
-            Piece tempPiece = enemyTeam.get(i);
-            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
-                captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-                tempPiece.setIsAlive(false);
-            }
-        }
+        // for (int i=0; i<enemyTeam.size(); i++){
+        //     Piece tempPiece = enemyTeam.get(i);
+        //     if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+        //         captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
+        //         tempPiece.setIsAlive(false);
+        //     }
+        // }
         return true;
     }
 
@@ -474,6 +475,13 @@ public abstract class Piece extends chessController {
         for (int i=0; i<myTeam.size(); i++){ 
             int pieceX = myTeam.get(i).getX();
             int pieceY = myTeam.get(i).getY();
+            System.out.println(pieceX);
+            System.out.println(pieceY);
+            System.out.println(this.xPos);
+            System.out.println(this.yPos);
+            System.out.println(this.xMove);
+            System.out.println(this.yMove);
+            System.out.println("DONE");
             
             if (myTeam.get(i).getAliveDead()){ // Checks if the piece is alive or not
                 if(diagonal()){
@@ -481,7 +489,6 @@ public abstract class Piece extends chessController {
                         if (this.yPos > this.yMove){ // If it's going up on the board
                             if (this.xPos < this.xMove && this.xMove > pieceX){
                                 if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
-                                    System.out.println("this");
                                     return false;    
                                 }
                             }
@@ -512,16 +519,15 @@ public abstract class Piece extends chessController {
         for (int j=0; j<enemyTeam.size(); j++){ 
             int pieceX = enemyTeam.get(j).getX();
             int pieceY = enemyTeam.get(j).getY();
-            Piece tempPiece = enemyTeam.get(j);
+            //Piece tempPiece = enemyTeam.get(j);
 
             if (enemyTeam.get(j).getAliveDead()){ // Checks if the piece is alive or not
                 if(diagonal()){
                     
-                    for (int k=1; k<8; k++){ 
+                    for (int k=1; k<8; k++){
                         if (this.yPos > this.yMove){ // If it's going up on the board
                             if (this.xPos < this.xMove && this.xMove > pieceX){
                                 if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
-                                    System.out.println("this");
                                     return false;    
                                 }
                             }
@@ -532,8 +538,8 @@ public abstract class Piece extends chessController {
                             }
                         }
                         
-                        if (this.yPos < this.yMove && this.xMove > pieceX){ // If it's going down on the board
-                            if (this.xPos < this.xMove){
+                        if (this.yPos < this.yMove){ // If it's going down on the board
+                            if (this.xPos < this.xMove && this.xMove > pieceX){
                                 if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
                                 return false;
                                 }
@@ -546,15 +552,16 @@ public abstract class Piece extends chessController {
                         }
                     }
                     
-                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
-                            captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-                            tempPiece.setIsAlive(false);
-                            return true;
-                    }
+                        // if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                        //     captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
+                        //     tempPiece.setIsAlive(false);
+                        //     return true;
+                    //}
                 }
             }
         }
-
         return true;
-        }
+    }
+    public abstract boolean isCheck();
+
 }

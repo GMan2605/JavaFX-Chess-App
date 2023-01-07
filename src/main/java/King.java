@@ -38,10 +38,46 @@ public class King extends Piece {
                 else if (this.pieceTeam == "Black")
                     return this.moveCancelCheck(bPieces, wPieces);
             }
+            // if (this.pieceTeam == "White"){
+            //     System.out.println(isCheck(bPieces));
+            //     if(isCheck(bPieces))
+            //         System.out.println("In Check");
+            // }
+            // if (this.pieceTeam == "Black"){
+            //     System.out.println(isCheck(wPieces));
+            //     if(isCheck(wPieces))
+            //         System.out.println("In Check");
+            // }
+            
             this.inValidMovement();
             return false;
+            
         }
         this.inValidMovement();
+        return false;
+    }
+
+    @Override
+    public boolean isCheck() {
+        if (this.pieceTeam == "Black"){
+            for (int i=0; i<wPieces.size(); i++){ 
+                Piece tempPiece = wPieces.get(i);
+                if (tempPiece.getType() == "King"){
+                    // TODO
+                    //return true;
+                    }
+                }
+            }
+        
+        else{
+            for (int i=0; i<bPieces.size(); i++){ 
+                Piece tempPiece = bPieces.get(i);
+                if (tempPiece.getType() == "King"){
+                    // TODO
+                    //return true;
+                }
+            }
+        }
         return false;
     }
 }

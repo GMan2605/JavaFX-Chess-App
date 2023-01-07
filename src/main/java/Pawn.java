@@ -72,7 +72,6 @@ public class Pawn extends Piece {
                         return true;
                     }
                 }
-
             }
         } 
         // Double movement/"first move" code
@@ -108,5 +107,32 @@ public class Pawn extends Piece {
             }
         }
         return true;
+    }
+    @Override
+    public boolean isCheck(){
+        if (this.pieceTeam == "Black"){
+            this.pDirection = 1; 
+        
+            for (int i=0; i<wPieces.size(); i++){ 
+                Piece tempPiece = wPieces.get(i);
+                if (tempPiece.getType() == "King"){
+                    if ((this.xPos+1 == tempPiece.getX() || this.xPos-1 == tempPiece.getX()) && this.xPos+this.pDirection == tempPiece.getY()){
+                        return true;
+                    }
+                }
+            }
+        }
+        else{
+            this.pDirection = -1; 
+            for (int i=0; i<bPieces.size(); i++){ 
+                Piece tempPiece = bPieces.get(i);
+                if (tempPiece.getType() == "King"){
+                    if ((this.xPos+1 == tempPiece.getX() || this.xPos-1 == tempPiece.getX()) && this.xPos+this.pDirection == tempPiece.getY()){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
