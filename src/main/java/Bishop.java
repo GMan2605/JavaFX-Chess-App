@@ -28,19 +28,16 @@ public class Bishop extends Piece {
         pieceChosen = false;
         this.isSelected = false;
         if (this.diagonal() == true){
-            if (pieceInTheWay()){
-                this.inValidMovement();
-                return false;
+            if (this.pieceTeam == "White"){
+                if (this.checkBishopMoves(wPieces, bPieces)){
+                    return true;
+                }
             }
-            
-
-            else if (this.pieceTeam == "White"){
-                System.out.println("here");
-                return this.moveCancelCheck(wPieces, bPieces);
+            if (this.pieceTeam == "Black"){
+                if (this.checkBishopMoves(bPieces, wPieces)){
+                    return true;
+                }
             }
-            else if (this.pieceTeam == "Black")
-                return this.moveCancelCheck(bPieces, wPieces);
-            return true;
         }
         this.inValidMovement();
         return false;
