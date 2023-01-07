@@ -462,29 +462,31 @@ public abstract class Piece extends chessController {
      * 
      */
     protected Boolean pieceInTheWay(){ // DO NOT TOUCH GAVIN!!!
-        
-            for (int i=0; i<wPieces.size(); i++){ 
-                int pieceX = wPieces.get(i).getX();
-                int pieceY = wPieces.get(i).getY();
-                // System.out.println(pieceX);
-                // System.out.println(pieceY);
-                // System.out.println(this.xPos);
-                // System.out.println(this.yPos);
-                // System.out.println(this.xMove);
-                // System.out.println(this.yMove);
-                // System.out.println("DONE");
-                
-                if (wPieces.get(i).getAliveDead()){ // Checks if the piece is alive or not
-                    if(diagonal()){
-
+        for (int i=0; i<wPieces.size(); i++){ 
+            int pieceX = wPieces.get(i).getX();
+            int pieceY = wPieces.get(i).getY();
+            // int distanceX = Math.abs(this.xPos - pieceX);
+            // int distanceY = Math.abs(this.yPos - pieceY);
+            System.out.println(pieceX);
+            System.out.println(pieceY);
+            System.out.println(this.xPos);
+            System.out.println(this.yPos);
+            System.out.println(this.xMove);
+            System.out.println(this.yMove);
+            System.out.println("DONE");
+            
+            if (wPieces.get(i).getAliveDead()){ // Checks if the piece is alive or not
+                if(diagonal()){
+                    for (int k=1; k<8; k++){ 
                         if (this.yPos > this.yMove){ // If it's going up on the board
                             if (this.xPos < this.xMove){
-                                if (pieceX - 1 == this.xPos && pieceY + 1 == this.yPos){ // If it's going right on the board
-                                    return true;
+                                if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
+                                    System.out.println("this");
+                                    return true;    
                                 }
                             }
                             if (this.xPos > this.xMove){
-                                if (pieceX + 1 == this.xPos && pieceY + 1 == this.yPos){ // If it's going left on the board
+                                if (pieceX + k == this.xPos && pieceY + k == this.yPos){ // If it's going left on the board
                                     return true;
                                 }
                             }
@@ -492,12 +494,12 @@ public abstract class Piece extends chessController {
                         
                         if (this.yPos < this.yMove){ // If it's going down on the board
                             if (this.xPos < this.xMove){
-                                if (pieceX - 1 == this.xPos && pieceY - 1 == this.yPos){ // If it's going right on the board
+                                if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
                                 return true;
                                 }
                         }
                             if (this.xPos > this.xMove){
-                                if (pieceX + 1 == this.xPos && pieceY - 1 == this.yPos){ // If it's going left on the board
+                                if (pieceX + k == this.xPos && pieceY - k == this.yPos){ // If it's going left on the board
                                     return true;
                                 }
                             }
@@ -505,22 +507,27 @@ public abstract class Piece extends chessController {
                     }
                 }
             }
-        
-            for (int j=0; j<bPieces.size(); j++){ 
-                int pieceX = bPieces.get(j).getX();
-                int pieceY = bPieces.get(j).getY();
+        }
 
-                if (bPieces.get(j).getAliveDead()){ // Checks if the piece is alive or not
-                    if(diagonal()){
-                        
+        for (int j=0; j<bPieces.size(); j++){ 
+            int pieceX = bPieces.get(j).getX();
+            int pieceY = bPieces.get(j).getY();
+            // int distanceX = Math.abs(this.xPos - pieceX);
+            // int distanceY = Math.abs(this.yPos - pieceY);
+
+            if (bPieces.get(j).getAliveDead()){ // Checks if the piece is alive or not
+                if(diagonal()){
+                    
+                    for (int k=1; k<8; k++){ 
                         if (this.yPos > this.yMove){ // If it's going up on the board
                             if (this.xPos < this.xMove){
-                                if (pieceX - 1 == this.xPos && pieceY + 1 == this.yPos){ // If it's going right on the board
-                                    return true;
+                                if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
+                                    System.out.println("this");
+                                    return true;    
                                 }
                             }
                             if (this.xPos > this.xMove){
-                                if (pieceX + 1 == this.xPos && pieceY + 1 == this.yPos){ // If it's going left on the board
+                                if (pieceX + k == this.xPos && pieceY + k == this.yPos){ // If it's going left on the board
                                     return true;
                                 }
                             }
@@ -528,12 +535,12 @@ public abstract class Piece extends chessController {
                         
                         if (this.yPos < this.yMove){ // If it's going down on the board
                             if (this.xPos < this.xMove){
-                                if (pieceX - 1 == this.xPos && pieceY - 1 == this.yPos){ // If it's going right on the board
+                                if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
                                 return true;
                                 }
                         }
                             if (this.xPos > this.xMove){
-                                if (pieceX + 1 == this.xPos && pieceY - 1 == this.yPos){ // If it's going left on the board
+                                if (pieceX + k == this.xPos && pieceY - k == this.yPos){ // If it's going left on the board
                                     return true;
                                 }
                             }
@@ -541,7 +548,8 @@ public abstract class Piece extends chessController {
                     }
                 }
             }
-        
+        }
+
         return false;
         }
 }
