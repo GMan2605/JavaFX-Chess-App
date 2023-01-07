@@ -479,13 +479,13 @@ public abstract class Piece extends chessController {
                 if(diagonal()){
                     for (int k=1; k<8; k++){ 
                         if (this.yPos > this.yMove){ // If it's going up on the board
-                            if (this.xPos < this.xMove){
+                            if (this.xPos < this.xMove && this.xMove > pieceX){
                                 if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
                                     System.out.println("this");
                                     return true;    
                                 }
                             }
-                            if (this.xPos > this.xMove){
+                            if (this.xPos > this.xMove && this.xMove < pieceX){
                                 if (pieceX + k == this.xPos && pieceY + k == this.yPos){ // If it's going left on the board
                                     return true;
                                 }
@@ -493,12 +493,12 @@ public abstract class Piece extends chessController {
                         }
                         
                         if (this.yPos < this.yMove){ // If it's going down on the board
-                            if (this.xPos < this.xMove){
+                            if (this.xPos < this.xMove && this.xMove > pieceX){
                                 if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
                                 return true;
                                 }
                         }
-                            if (this.xPos > this.xMove){
+                            if (this.xPos > this.xMove && this.xMove < pieceX){
                                 if (pieceX + k == this.xPos && pieceY - k == this.yPos){ // If it's going left on the board
                                     return true;
                                 }
@@ -520,26 +520,26 @@ public abstract class Piece extends chessController {
                     
                     for (int k=1; k<8; k++){ 
                         if (this.yPos > this.yMove){ // If it's going up on the board
-                            if (this.xPos < this.xMove){
+                            if (this.xPos < this.xMove && this.xMove > pieceX){
                                 if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
                                     System.out.println("this");
                                     return true;    
                                 }
                             }
-                            if (this.xPos > this.xMove){
+                            if (this.xPos > this.xMove && this.xMove < pieceX){
                                 if (pieceX + k == this.xPos && pieceY + k == this.yPos){ // If it's going left on the board
                                     return true;
                                 }
                             }
                         }
                         
-                        if (this.yPos < this.yMove){ // If it's going down on the board
+                        if (this.yPos < this.yMove && this.xMove > pieceX){ // If it's going down on the board
                             if (this.xPos < this.xMove){
                                 if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
                                 return true;
                                 }
                         }
-                            if (this.xPos > this.xMove){
+                            if (this.xPos > this.xMove && this.xMove < pieceX){
                                 if (pieceX + k == this.xPos && pieceY - k == this.yPos){ // If it's going left on the board
                                     return true;
                                 }
