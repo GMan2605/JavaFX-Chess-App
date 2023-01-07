@@ -43,7 +43,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean isCheck() {
+    public boolean isCheck() { // 'checkRookMoves' Doesn't Work Correctly with it 
         if (this.pieceTeam == "Black"){
             for (int i=0; i<wPieces.size(); i++){ 
                 Piece tempPiece = wPieces.get(i);

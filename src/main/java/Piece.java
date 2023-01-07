@@ -400,13 +400,13 @@ public abstract class Piece extends chessController {
         }
 
         // Finally, if no black or white pieces are in the way of the movement, check if there is an enemy piece in the way
-        // for (int i=0; i<enemyTeam.size(); i++){
-        //     Piece tempPiece = enemyTeam.get(i);
-        //     if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
-        //         captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-        //         tempPiece.setIsAlive(false);
-        //     }
-        // }
+        for (int i=0; i<enemyTeam.size(); i++){
+            Piece tempPiece = enemyTeam.get(i);
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
+                tempPiece.setIsAlive(false);
+            }
+        }
         return true;
     }
 
