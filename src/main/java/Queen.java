@@ -32,9 +32,12 @@ public class Queen extends Piece {
             else if (this.pieceTeam == "Black")
                 return this.checkRookMoves(bPieces, wPieces);
         }
-        // else if (super.diagonal() == true){ TODO: ADD DIAGONAL/BISHOP CODE HERE
-        //     return true;
-        // }
+        else if (super.diagonal() == true){ // Was the movment a diagonal movement! (in the bishop pattern)
+            if (this.pieceTeam == "White")
+                return this.checkBishopMoves(wPieces, bPieces);
+            else if (this.pieceTeam == "Black")
+                return this.checkRookMoves(bPieces, wPieces);
+        }
         this.inValidMovement();
         return false;
     }
