@@ -16,7 +16,6 @@ public class Rook extends Piece {
         this.turnBanner = inputBanner;
         this.correctImage();
         this.pieceType = "Rook";
-        this.isAlive = true;
         this.isSelected = false;
         this.drawPiece();
     }
@@ -27,45 +26,40 @@ public class Rook extends Piece {
         pieceChosen = false;
         this.isSelected = false;
 
-        if (this.horizontalVertical()){ // Was the movment a horizontal or vertical movement! (in the rook pattern)
-            if (this.pieceTeam == "White")
-                return this.checkRookMoves(wPieces, bPieces);
-            else if (this.pieceTeam == "Black")
-                return this.checkRookMoves(bPieces, wPieces);
-        }
-
-        this.inValidMovement();
-        return false;
+        if (this.pieceTeam == "White")
+            return this.checkRookMoves(wPieces, bPieces);
+        else
+            return this.checkRookMoves(bPieces, wPieces);
     }
 
 
-    @Override
-    public boolean isCheck() { // 'checkRookMoves' Doesn't Work Correctly with it 
-        if (this.pieceTeam == "Black"){
-            for (int i=0; i<wPieces.size(); i++){ 
-                Piece tempPiece = wPieces.get(i);
-                if (tempPiece.getType() == "King"){
-                    this.xMove = tempPiece.getX();
-                    this.yMove = tempPiece.getY();
-                    if (checkRookMoves(bPieces, wPieces) == true){
-                        return true;
-                    }
-                    }
-                }
-            }
+    // @Override
+    // public boolean isCheck() { // 'checkRookMoves' Doesn't Work Correctly with it 
+    //     if (this.pieceTeam == "Black"){
+    //         for (int i=0; i<wPieces.size(); i++){ 
+    //             Piece tempPiece = wPieces.get(i);
+    //             if (tempPiece.getType() == "King"){
+    //                 this.xMove = tempPiece.getX();
+    //                 this.yMove = tempPiece.getY();
+    //                 if (checkRookMoves(bPieces, wPieces) == true){
+    //                     return true;
+    //                 }
+    //                 }
+    //             }
+    //         }
         
-        else{
-            for (int i=0; i<bPieces.size(); i++){ 
-                Piece tempPiece = bPieces.get(i);
-                if (tempPiece.getType() == "King"){
-                    this.xMove = tempPiece.getX();
-                    this.yMove = tempPiece.getY();
-                    if (checkRookMoves(wPieces, bPieces) == true){
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
+    //     else {
+    //         for (int i=0; i<bPieces.size(); i++){ 
+    //             Piece tempPiece = bPieces.get(i);
+    //             if (tempPiece.getType() == "King"){
+    //                 this.xMove = tempPiece.getX();
+    //                 this.yMove = tempPiece.getY();
+    //                 if (checkRookMoves(wPieces, bPieces) == true){
+    //                     return true;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
 }

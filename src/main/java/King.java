@@ -16,7 +16,6 @@ public class King extends Piece {
         this.turnBanner = inputBanner;
         this.correctImage();
         this.pieceType = "King";
-        this.isAlive = true;
         this.isSelected = false;
         this.drawPiece();
     }
@@ -57,27 +56,27 @@ public class King extends Piece {
         return false;
     }
 
-    @Override
-    public boolean isCheck() {
-        if (this.pieceTeam == "Black"){
-            for (int i=0; i<wPieces.size(); i++){ 
-                Piece tempPiece = wPieces.get(i);
-                if (tempPiece.getType() == "King"){
-                    // TODO
-                    //return true;
-                    }
-                }
-            }
+    // @Override
+    // public boolean isCheck() {
+    //     if (this.pieceTeam == "Black"){
+    //         for (int i=0; i<wPieces.size(); i++){ 
+    //             Piece tempPiece = wPieces.get(i);
+    //             if (tempPiece.getType() == "King"){
+    //                 // TODO
+    //                 //return true;
+    //                 }
+    //             }
+    //         }
         
-        else{
-            for (int i=0; i<bPieces.size(); i++){ 
-                Piece tempPiece = bPieces.get(i);
-                if (tempPiece.getType() == "King"){
-                    // TODO
-                    //return true;
-                }
-            }
-        }
-        return false;
-    }
+    //     else{
+    //         for (int i=0; i<bPieces.size(); i++){ 
+    //             Piece tempPiece = bPieces.get(i);
+    //             if (tempPiece.getType() == "King"){
+    //                 // TODO
+    //                 //return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
 }

@@ -7,8 +7,6 @@ import javafx.scene.paint.Color;
 
 public abstract class Piece extends chessController {
 
-    // public static ArrayList<Piece> wPieces;
-    // public static ArrayList<Piece> bPieces;
     int pDirection = 1; // an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
 
     HBox player1;
@@ -22,7 +20,6 @@ public abstract class Piece extends chessController {
     String pieceTeam;
     String pieceType;
     boolean isSelected;
-    boolean isAlive; // May/may not be temp boolean (have to ask for a solution to a specific problem in removing objects)
 
     /**
      * moveValid - An abstact boolean used as a template for subclasses
@@ -34,31 +31,6 @@ public abstract class Piece extends chessController {
      * @return
      */
     abstract boolean moveValid();
-    
-    // Temp method/needed because of problem that cannot be resolved at the moment
-    public void setIsAlive(boolean inputBoolean){
-        this.isAlive = inputBoolean;
-    }
-    public boolean getAliveDead(){
-        return this.isAlive;
-    }
-
-    // /**
-    //  * 
-    //  * @return
-    //  */
-    // public int getWPiecesSize(){
-    //     return wPieces.size();
-    // }
-
-    // /**
-    //  * getBPiecesSize - returns the size
-    //  * 
-    //  * @return
-    //  */
-    // public int getBPiecesSize(){
-    //     return bPieces.size();
-    // }
 
     /**
      * horizontalVertical - TODO: *NEEDS DESCRIPTION*
@@ -102,64 +74,66 @@ public abstract class Piece extends chessController {
      * is currently designed to accomidate conditions for white and black pieces separately.
      */
     public void pieceClicked() {
-        if (this.pieceTeam == "White"){ // White piece clicked section
-            if (turnString == "White's Turn"){
-                if (pieceChosen == false){
-                    pieceChosen = true;
-                    this.isSelected = true;
-                    this.highlightPiece();
-                } else {
-                    for (int i=0; i<wPieces.size(); i++){
-                        Piece tempPiece = wPieces.get(i);
-                        if (tempPiece.getHightlight()){
-                            pieceChosen = false;
-                            tempPiece.removeMyImage();
-                            tempPiece.setHighlight(false);
-                            tempPiece.unhighlightPiece();
-                            tempPiece.setMovements(0, 0);
+        if (gameRunning){
+            if (this.pieceTeam == "White"){ // White piece clicked section
+                if (turnString == "White's Turn"){
+                    if (pieceChosen == false){
+                        pieceChosen = true;
+                        this.isSelected = true;
+                        this.highlightPiece();
+                    } else {
+                        for (int i=0; i<wPieces.size(); i++){
+                            Piece tempPiece = wPieces.get(i);
+                            if (tempPiece.getHightlight()){
+                                pieceChosen = false;
+                                tempPiece.removeMyImage();
+                                tempPiece.setHighlight(false);
+                                tempPiece.unhighlightPiece();
+                                tempPiece.setMovements(0, 0);
+                            }
                         }
                     }
+                } else if (turnString == "Black's Turn" && pieceChosen == true){
+                    for (int i=0; i<bPieces.size(); i++){ // Similar for loop section to one inside of chessController!
+                        if (bPieces.get(i).getHightlight()){
+                            bPieces.get(i).setMovements(this.xPos, this.yPos);
+                            if (bPieces.get(i).moveValid()){
+                                bPieces.get(i).move();
+                                turnString = "White's Turn";
+                                turnBanner.setText("White Team's Turn!");
+                                turnBanner.setTextFill(Color.WHITE);
+                            }
+                        } 
+                    }
                 }
-            } else if (turnString == "Black's Turn" && pieceChosen == true){
-                for (int i=0; i<bPieces.size(); i++){ // Similar for loop section to one inside of chessController!
-                    if (bPieces.get(i).getHightlight()){
-                        bPieces.get(i).setMovements(this.xPos, this.yPos);
-                        if (bPieces.get(i).moveValid()){
-                            bPieces.get(i).move();
-                            turnString = "White's Turn";
-                            turnBanner.setText("White Team's Turn!");
-                            turnBanner.setTextFill(Color.WHITE);
-                        }
-                    } 
-                }
-            }
-        } else if (this.pieceTeam == "Black"){ // Black piece clicked section
-            if (turnString == "White's Turn" && pieceChosen == true){
-                for (int i=0; i<wPieces.size(); i++){ // Similar for loop section to one inside of chessController!
-                    if (wPieces.get(i).getHightlight()){
-                        wPieces.get(i).setMovements(this.xPos, this.yPos);
-                        if (wPieces.get(i).moveValid()){
-                            wPieces.get(i).move();
-                            turnString = "Black's Turn";
-                            turnBanner.setText("Black Team's Turn!");
-                            turnBanner.setTextFill(Color.BLACK);
-                        }
-                    } 
-                }
-            } else if (turnString == "Black's Turn"){
-                if (pieceChosen == false){
-                    pieceChosen = true;
-                    this.isSelected = true;
-                    this.highlightPiece();
-                } else {
-                    for (int i=0; i<bPieces.size(); i++){
-                        Piece tempPiece = bPieces.get(i);
-                        if (tempPiece.getHightlight()){
-                            pieceChosen = false;
-                            tempPiece.removeMyImage();
-                            tempPiece.setHighlight(false);
-                            tempPiece.unhighlightPiece();
-                            tempPiece.setMovements(0, 0);
+            } else if (this.pieceTeam == "Black"){ // Black piece clicked section
+                if (turnString == "White's Turn" && pieceChosen == true){
+                    for (int i=0; i<wPieces.size(); i++){ // Similar for loop section to one inside of chessController!
+                        if (wPieces.get(i).getHightlight()){
+                            wPieces.get(i).setMovements(this.xPos, this.yPos);
+                            if (wPieces.get(i).moveValid()){
+                                wPieces.get(i).move();
+                                turnString = "Black's Turn";
+                                turnBanner.setText("Black Team's Turn!");
+                                turnBanner.setTextFill(Color.BLACK);
+                            }
+                        } 
+                    }
+                } else if (turnString == "Black's Turn"){
+                    if (pieceChosen == false){
+                        pieceChosen = true;
+                        this.isSelected = true;
+                        this.highlightPiece();
+                    } else {
+                        for (int i=0; i<bPieces.size(); i++){
+                            Piece tempPiece = bPieces.get(i);
+                            if (tempPiece.getHightlight()){
+                                pieceChosen = false;
+                                tempPiece.removeMyImage();
+                                tempPiece.setHighlight(false);
+                                tempPiece.unhighlightPiece();
+                                tempPiece.setMovements(0, 0);
+                            }
                         }
                     }
                 }
@@ -305,17 +279,31 @@ public abstract class Piece extends chessController {
     }
 
     /**
-     * captureEnemy - TODO: *NEEDS DESCRIPTION*
+     * captureEnemy - TODO: ADD JAVADOC
      * 
-     * @param enemyX
-     * @param enemyY
-     * @param enemyImage
-     * @param enemyType
-     * @param enemyTeam
+     * @param enemy
      */
-    protected void captureEnemy(int enemyX, int enemyY, ImageView enemyImage, String enemyType, String enemyTeam) {
-        this.addScore(enemyType);
-        ((StackPane) (((HBox) referenceGrid.getChildren().get(enemyY))).getChildren().get(enemyX)).getChildren().remove(enemyImage);
+    protected void captureEnemy(Piece enemy, int enemyIndex) {
+
+        if (enemy.equals(bPieces.get(enemyIndex)))
+            bPieces.remove(enemy);
+        else if (enemy.equals(wPieces.get(enemyIndex)))
+            wPieces.remove(enemy);
+
+        this.addScore(enemy.getType());
+        ((StackPane) (((HBox) referenceGrid.getChildren().get(enemy.getY()))).getChildren().get(enemy.getX())).getChildren().remove(enemy.getImage());
+
+        if (enemy.getType() == "King"){
+            if (enemy.getTeam() == "White"){
+                System.out.println("White's King has been killed!");
+                displayWinner("Black"); // Black team wins the game (white's king is captured)
+                gameRunning = false;
+            } else if (enemy.getTeam() == "Black"){
+                System.out.println("Black's King has been killed!");
+                displayWinner("White"); // White team wins the game (black's king is captured)
+                gameRunning = false;
+            }
+        }
     }
 
     /**
@@ -366,48 +354,51 @@ public abstract class Piece extends chessController {
      * @return A true or false statement on if the requested movement is valid
      */
     protected boolean checkRookMoves(ArrayList<Piece> myTeam, ArrayList<Piece> enemyTeam){
-        for (int i=0; i<myTeam.size(); i++){ //Movement cancellation section (for same-team pieces)
-            int pieceX = myTeam.get(i).getX();
-            int pieceY = myTeam.get(i).getY();
-            if (pieceX == this.xPos && (this.yPos < pieceY && pieceY <= this.yMove && myTeam.get(i).getAliveDead() == true
-            || this.yPos > pieceY && pieceY >= this.yMove && myTeam.get(i).getAliveDead() == true) ){
-                this.inValidMovement();
-                return false;
-            } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX <= this.xMove && myTeam.get(i).getAliveDead() == true
-            || this.xPos > pieceX && pieceX >= this.xMove && myTeam.get(i).getAliveDead() == true) ){
-                this.inValidMovement();
-                return false;
+        if (this.horizontalVertical()){ // Was the movment a horizontal or vertical movement! (in the rook pattern)
+            for (int i=0; i<myTeam.size(); i++){ //Movement cancellation section (for same-team pieces)
+                int pieceX = myTeam.get(i).getX();
+                int pieceY = myTeam.get(i).getY();
+                if (pieceX == this.xPos && (this.yPos < pieceY && pieceY <= this.yMove
+                || this.yPos > pieceY && pieceY >= this.yMove) ){
+                    this.inValidMovement();
+                    return false;
+                } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX <= this.xMove
+                || this.xPos > pieceX && pieceX >= this.xMove) ){
+                    this.inValidMovement();
+                    return false;
+                }
             }
-        }
-        for (int i=0; i<enemyTeam.size(); i++){ //Capturing section
-            int pieceX = enemyTeam.get(i).getX();
-            int pieceY = enemyTeam.get(i).getY();
+            for (int i=0; i<enemyTeam.size(); i++){ //Capturing section
+                int pieceX = enemyTeam.get(i).getX();
+                int pieceY = enemyTeam.get(i).getY();
 
-            /* 
-            Do a similar check if there are any other black pieces in-between 
-            the movemnet, but don't count the square the capture is trying to take place
-            (no <= or >= signs, replaced with < & >)
-             */
-            if (pieceX == this.xPos && (this.yPos < pieceY && pieceY < this.yMove && enemyTeam.get(i).getAliveDead() == true
-            || this.yPos > pieceY && pieceY > this.yMove && enemyTeam.get(i).getAliveDead() == true) ){
-                this.inValidMovement();
-                return false;
-            } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX < this.xMove && enemyTeam.get(i).getAliveDead() == true 
-            || this.xPos > pieceX && pieceX > this.xMove && enemyTeam.get(i).getAliveDead() == true) ){
-                this.inValidMovement();
-                return false;
+                /* 
+                Do a similar check if there are any other black pieces in-between 
+                the movemnet, but don't count the square the capture is trying to take place
+                (no <= or >= signs, replaced with < & >)
+                */
+                if (pieceX == this.xPos && (this.yPos < pieceY && pieceY < this.yMove
+                || this.yPos > pieceY && pieceY > this.yMove) ){
+                    this.inValidMovement();
+                    return false;
+                } else if (pieceY == this.yPos && (this.xPos < pieceX && pieceX < this.xMove 
+                || this.xPos > pieceX && pieceX > this.xMove) ){
+                    this.inValidMovement();
+                    return false;
+                }
             }
-        }
 
-        // Finally, if no black or white pieces are in the way of the movement, check if there is an enemy piece in the way
-        for (int i=0; i<enemyTeam.size(); i++){
-            Piece tempPiece = enemyTeam.get(i);
-            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
-                captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-                tempPiece.setIsAlive(false);
+            // Finally, if no black or white pieces are in the way of the movement, check if there is an enemy piece in the way
+            for (int i=0; i<enemyTeam.size(); i++){
+                Piece tempPiece = enemyTeam.get(i);
+                if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
+                    captureEnemy(tempPiece, i);
+                }
             }
+            return true;
         }
-        return true;
+        this.inValidMovement();
+        return false;
     }
 
     /** THIS METHOD IS ONLY USED BY KING & KNIGHT! 
@@ -422,16 +413,15 @@ public abstract class Piece extends chessController {
     protected boolean moveCancelCheck(ArrayList<Piece> myTeam, ArrayList<Piece> enemyTeam){
         for (int i=0; i<myTeam.size(); i++){ // Check if any piece on this piece's team is in the way
             Piece tempPiece = myTeam.get(i);
-            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
                 this.inValidMovement();
                 return false;
             }
         }
         for (int i=0; i<enemyTeam.size(); i++){ // Check if this piece can capture, capture if so (enemy piece in movment space)
             Piece tempPiece = enemyTeam.get(i);
-            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
-                captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-                tempPiece.setIsAlive(false);
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
+                captureEnemy(tempPiece, i);
                 return true;
             }
         }
@@ -449,7 +439,7 @@ public abstract class Piece extends chessController {
     protected boolean conflictedMovement(ArrayList<Piece> checkTeam){
         for (int i=0; i<checkTeam.size(); i++){
             Piece tempPiece = checkTeam.get(i);
-            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+            if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
                 return true;
             }
         }
@@ -475,40 +465,38 @@ public abstract class Piece extends chessController {
         for (int i=0; i<myTeam.size(); i++){ 
             int pieceX = myTeam.get(i).getX();
             int pieceY = myTeam.get(i).getY();
-            System.out.println(pieceX);
-            System.out.println(pieceY);
-            System.out.println(this.xPos);
-            System.out.println(this.yPos);
-            System.out.println(this.xMove);
-            System.out.println(this.yMove);
-            System.out.println("DONE");
+            // System.out.println(pieceX);
+            // System.out.println(pieceY);
+            // System.out.println(this.xPos);
+            // System.out.println(this.yPos);
+            // System.out.println(this.xMove);
+            // System.out.println(this.yMove);
+            // System.out.println("DONE");
             
-            if (myTeam.get(i).getAliveDead()){ // Checks if the piece is alive or not
-                if(diagonal()){
-                    for (int k=1; k<8; k++){ 
-                        if (this.yPos > this.yMove){ // If it's going up on the board
-                            if (this.xPos < this.xMove && this.xMove > pieceX){
-                                if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
-                                    return false;    
-                                }
-                            }
-                            if (this.xPos > this.xMove && this.xMove < pieceX){
-                                if (pieceX + k == this.xPos && pieceY + k == this.yPos){ // If it's going left on the board
-                                    return false;
-                                }
+            if (diagonal()){
+                for (int k=1; k<8; k++){ 
+                    if (this.yPos > this.yMove){ // If it's going up on the board
+                        if (this.xPos < this.xMove && this.xMove > pieceX){
+                            if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
+                                return false;    
                             }
                         }
-                        
-                        if (this.yPos < this.yMove){ // If it's going down on the board
-                            if (this.xPos < this.xMove && this.xMove > pieceX){
-                                if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
+                        if (this.xPos > this.xMove && this.xMove < pieceX){
+                            if (pieceX + k == this.xPos && pieceY + k == this.yPos){ // If it's going left on the board
                                 return false;
-                                }
+                            }
                         }
-                            if (this.xPos > this.xMove && this.xMove < pieceX){
-                                if (pieceX + k == this.xPos && pieceY - k == this.yPos){ // If it's going left on the board
-                                    return false;
-                                }
+                    }
+                    
+                    if (this.yPos < this.yMove){ // If it's going down on the board
+                        if (this.xPos < this.xMove && this.xMove > pieceX){
+                            if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
+                            return false;
+                            }
+                    }
+                        if (this.xPos > this.xMove && this.xMove < pieceX){
+                            if (pieceX + k == this.xPos && pieceY - k == this.yPos){ // If it's going left on the board
+                                return false;
                             }
                         }
                     }
@@ -521,47 +509,45 @@ public abstract class Piece extends chessController {
             int pieceY = enemyTeam.get(j).getY();
             //Piece tempPiece = enemyTeam.get(j);
 
-            if (enemyTeam.get(j).getAliveDead()){ // Checks if the piece is alive or not
-                if(diagonal()){
-                    
-                    for (int k=1; k<8; k++){
-                        if (this.yPos > this.yMove){ // If it's going up on the board
-                            if (this.xPos < this.xMove && this.xMove > pieceX){
-                                if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
-                                    return false;    
-                                }
-                            }
-                            if (this.xPos > this.xMove && this.xMove < pieceX){
-                                if (pieceX + k == this.xPos && pieceY + k == this.yPos){ // If it's going left on the board
-                                    return false;
-                                }
+            if (diagonal()){
+                
+                for (int k=1; k<8; k++){
+                    if (this.yPos > this.yMove){ // If it's going up on the board
+                        if (this.xPos < this.xMove && this.xMove > pieceX){
+                            if (pieceX - k == this.xPos && pieceY + k == this.yPos){ // If it's going right on the board
+                                return false;    
                             }
                         }
-                        
-                        if (this.yPos < this.yMove){ // If it's going down on the board
-                            if (this.xPos < this.xMove && this.xMove > pieceX){
-                                if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
+                        if (this.xPos > this.xMove && this.xMove < pieceX){
+                            if (pieceX + k == this.xPos && pieceY + k == this.yPos){ // If it's going left on the board
                                 return false;
-                                }
-                        }
-                            if (this.xPos > this.xMove && this.xMove < pieceX){
-                                if (pieceX + k == this.xPos && pieceY - k == this.yPos){ // If it's going left on the board
-                                    return false;
-                                }
                             }
                         }
                     }
                     
-                        // if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
-                        //     captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-                        //     tempPiece.setIsAlive(false);
-                        //     return true;
-                    //}
+                    if (this.yPos < this.yMove){ // If it's going down on the board
+                        if (this.xPos < this.xMove && this.xMove > pieceX){
+                            if (pieceX - k == this.xPos && pieceY - k == this.yPos){ // If it's going right on the board
+                            return false;
+                            }
+                    }
+                        if (this.xPos > this.xMove && this.xMove < pieceX){
+                            if (pieceX + k == this.xPos && pieceY - k == this.yPos){ // If it's going left on the board
+                                return false;
+                            }
+                        }
+                    }
                 }
+                
+                    // if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                    //     captureEnemy(tempPiece);
+                    //     tempPiece.setIsAlive(false);
+                    //     return true;
+                //}
             }
         }
         return true;
     }
-    public abstract boolean isCheck();
+    // public abstract boolean isCheck();
 
 }

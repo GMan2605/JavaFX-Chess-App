@@ -24,7 +24,6 @@ public class Pawn extends Piece {
         this.turnBanner = inputBanner;
         this.correctImage();
         this.pieceType = "Pawn";
-        this.isAlive = true;
         this.isFirstMove = true;
         this.isSelected = false;
         this.drawPiece();
@@ -53,22 +52,20 @@ public class Pawn extends Piece {
             if (this.pieceTeam == "Black"){
                 for (int i=0; i<wPieces.size(); i++){
                     Piece tempPiece = wPieces.get(i);
-                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
                         this.isFirstMove = false;
                         // wPieces.remove(i+1); TODO: Find out why specific "this" data is transfered by removal of object from piece list
-                        captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-                        tempPiece.setIsAlive(false);
+                        captureEnemy(tempPiece, i);
                         return true;
                     }
                 }
             } else if (this.pieceTeam == "White"){
                 for (int i=0; i<bPieces.size(); i++){
                     Piece tempPiece = bPieces.get(i);
-                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
                         this.isFirstMove = false;
                         // bPieces.remove(i+1);
-                        captureEnemy(tempPiece.getX(), tempPiece.getY(), tempPiece.getImage(), tempPiece.getType(), tempPiece.getTeam());
-                        tempPiece.setIsAlive(false);
+                        captureEnemy(tempPiece, i);
                         return true;
                     }
                 }
@@ -102,37 +99,38 @@ public class Pawn extends Piece {
      */
     private boolean checkInWay(ArrayList<Piece> listOfTeam){
         for (int i=0; i<listOfTeam.size(); i++){
-            if (listOfTeam.get(i).getX() == this.xMove && listOfTeam.get(i).getY() == this.yMove && listOfTeam.get(i).getAliveDead() == true){
+            if (listOfTeam.get(i).getX() == this.xMove && listOfTeam.get(i).getY() == this.yMove){
                 return false;
             }
         }
         return true;
     }
-    @Override
-    public boolean isCheck(){
-        if (this.pieceTeam == "Black"){
-            this.pDirection = 1; 
+
+    // @Override
+    // public boolean isCheck(){
+    //     if (this.pieceTeam == "Black"){
+    //         this.pDirection = 1; 
         
-            for (int i=0; i<wPieces.size(); i++){ 
-                Piece tempPiece = wPieces.get(i);
-                if (tempPiece.getType() == "King"){
-                    if ((this.xPos+1 == tempPiece.getX() || this.xPos-1 == tempPiece.getX()) && this.xPos+this.pDirection == tempPiece.getY()){
-                        return true;
-                    }
-                }
-            }
-        }
-        else{
-            this.pDirection = -1; 
-            for (int i=0; i<bPieces.size(); i++){ 
-                Piece tempPiece = bPieces.get(i);
-                if (tempPiece.getType() == "King"){
-                    if ((this.xPos+1 == tempPiece.getX() || this.xPos-1 == tempPiece.getX()) && this.xPos+this.pDirection == tempPiece.getY()){
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
+    //         for (int i=0; i<wPieces.size(); i++){ 
+    //             Piece tempPiece = wPieces.get(i);
+    //             if (tempPiece.getType() == "King"){
+    //                 if ((this.xPos+1 == tempPiece.getX() || this.xPos-1 == tempPiece.getX()) && this.xPos+this.pDirection == tempPiece.getY()){
+    //                     return true;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     else{
+    //         this.pDirection = -1; 
+    //         for (int i=0; i<bPieces.size(); i++){ 
+    //             Piece tempPiece = bPieces.get(i);
+    //             if (tempPiece.getType() == "King"){
+    //                 if ((this.xPos+1 == tempPiece.getX() || this.xPos-1 == tempPiece.getX()) && this.xPos+this.pDirection == tempPiece.getY()){
+    //                     return true;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
 }

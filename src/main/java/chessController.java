@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 public class chessController implements Initializable{
 
+    public static boolean gameRunning = true;
     public static ArrayList<Piece> wPieces = new ArrayList<>();
     public static ArrayList<Piece> bPieces = new ArrayList<>();
     public static boolean pieceChosen = false;
@@ -87,40 +88,41 @@ public class chessController implements Initializable{
                         if (pieceChosen){ //Only Check for tile input if a piece has been selected
                             for (int i=0; i<8; i++){ //Search all y's
                                 for (int j=0; j<8; j++){ //Search all x's
-
-                                    if (ae.getSource().equals(tiles[i][j])){ //Check if a tile at [i][j] was the one that was clicked
-                                        // System.out.println("A tile at position: " + j + ", " + i + " was chosen for movement!");
-                                        for (int k=0; k<wPieces.size(); k++){
-                                            if (turnString == "White's Turn"){
-                                                if (wPieces.get(k).getHightlight()){ // Using the loop, find out if this team has a highlighted piece, and try to move!
-                                                    wPieces.get(k).setMovements(j, i);
-                                                    if (wPieces.get(k).moveValid()){
-                                                        wPieces.get(k).move();
-                                                        turnString = "Black's Turn";
-                                                        turnBanner.setText("Black Team's Turn!");
-                                                        turnBanner.setTextFill(Color.BLACK);
-                                                            if (wPieces.get(k).isCheck()){
-                                                                System.out.println("Black's In Check");
-                                                            }
+                                    if (gameRunning){
+                                        if (ae.getSource().equals(tiles[i][j])){ //Check if a tile at [i][j] was the one that was clicked
+                                            // System.out.println("A tile at position: " + j + ", " + i + " was chosen for movement!");
+                                            for (int k=0; k<wPieces.size(); k++){
+                                                if (turnString == "White's Turn"){
+                                                    if (wPieces.get(k).getHightlight()){ // Using the loop, find out if this team has a highlighted piece, and try to move!
+                                                        wPieces.get(k).setMovements(j, i);
+                                                        if (wPieces.get(k).moveValid()){
+                                                            wPieces.get(k).move();
+                                                            turnString = "Black's Turn";
+                                                            turnBanner.setText("Black Team's Turn!");
+                                                            turnBanner.setTextFill(Color.BLACK);
+                                                                // if (wPieces.get(k).isCheck()){
+                                                                //     System.out.println("Black's In Check");
+                                                                // }
+                                                        }
+                                                        
                                                     }
-                                                    
                                                 }
                                             }
-                                        }
-                                        for (int l=0; l<bPieces.size(); l++){
-                                            if (turnString == "Black's Turn"){
-                                                if (bPieces.get(l).getHightlight()){
-                                                    bPieces.get(l).setMovements(j, i);
-                                                    if (bPieces.get(l).moveValid()){
-                                                        bPieces.get(l).move();
-                                                        turnString = "White's Turn";
-                                                        turnBanner.setText("White Team's Turn!");
-                                                        turnBanner.setTextFill(Color.WHITE);
-                                                            if (bPieces.get(l).isCheck()){
-                                                                System.out.println("White's In Check");
-                                                            }
+                                            for (int l=0; l<bPieces.size(); l++){
+                                                if (turnString == "Black's Turn"){
+                                                    if (bPieces.get(l).getHightlight()){
+                                                        bPieces.get(l).setMovements(j, i);
+                                                        if (bPieces.get(l).moveValid()){
+                                                            bPieces.get(l).move();
+                                                            turnString = "White's Turn";
+                                                            turnBanner.setText("White Team's Turn!");
+                                                            turnBanner.setTextFill(Color.WHITE);
+                                                                // if (bPieces.get(l).isCheck()){
+                                                                //     System.out.println("White's In Check");
+                                                                // }
+                                                        }
+                                                    
                                                     }
-                                                
                                                 }
                                             }
                                         }
@@ -185,15 +187,8 @@ public class chessController implements Initializable{
 
     }
 
-    /**
-     * getBanner - Returns the "turnBanner" label object. It is used
-     * for getting turnBanner inside of piece objects, which only
-     * require its use about twice (this just avoids adding another
-     * parameter to all constructors)
-     * 
-     * @return the current turnBanner label object
-     */
-    public Label getBanner(){
-        return turnBanner;
+
+    public void displayWinner(String winTeam){
+        System.out.println(winTeam + " has won the game!");
     }
 }
