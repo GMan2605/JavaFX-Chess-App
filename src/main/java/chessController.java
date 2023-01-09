@@ -62,8 +62,8 @@ public class chessController implements Initializable{
         profilePicImg2.setFitWidth(tileSize);
         profilePicImg.setX(201);
         profilePicImg2.setX(201);
-        profilePicImg.setY(38);
-        profilePicImg2.setY(4);
+        profilePicImg.setY(20);
+        profilePicImg2.setY(0);
         player1.getChildren().add(profilePicImg);
         player2.getChildren().add(profilePicImg2);
         

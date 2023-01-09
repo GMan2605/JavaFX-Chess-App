@@ -30,7 +30,7 @@
          <children>
             <AnchorPane prefHeight="79.0" prefWidth="692.0">
                <children>
-                  <Label layoutX="144.0" layoutY="10.0" prefHeight="43.0" prefWidth="620.0" text="Guest" textFill="#fcf9f9">
+                  <Label layoutX="250.0" layoutY="10.0" prefHeight="43.0" prefWidth="376.0" text="Guest" textFill="#fcf9f9">
                      <font>
                         <Font name="System Italic" size="18.0" />
                      </font>
@@ -41,15 +41,17 @@
             <VBox fx:id="chessGrid" alignment="CENTER" prefHeight="437.0" prefWidth="800.0" />
             <AnchorPane prefHeight="79.0" prefWidth="320.0">
                <children>
-                  <Label layoutX="143.0" prefHeight="43.0" prefWidth="620.0" text="Guest" textFill="#fcf9f9">
+                  <Label layoutX="250.0" prefHeight="43.0" prefWidth="477.0" text="Guest" textFill="#fcf9f9">
                      <font>
                         <Font name="System Italic" size="18.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="player2" alignment="CENTER_LEFT" layoutX="200.0" prefHeight="50.0" prefWidth="500.0" />
+                  <HBox fx:id="player2" alignment="CENTER_LEFT" layoutX="200.0" prefHeight="50.0" prefWidth="477.0" />
                </children>
             </AnchorPane>
          </children>
       </VBox>
+      <VBox fx:id="helpMenu" prefHeight="675.0" prefWidth="200.0" />
+      <VBox fx:id="startMenu" alignment="TOP_RIGHT" layoutX="601.0" prefHeight="675.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
