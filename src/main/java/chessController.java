@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+//import javafx.scene.control.Button;
 
 public class chessController implements Initializable{
 
@@ -38,6 +39,10 @@ public class chessController implements Initializable{
     ImageView[][] knightImage = new ImageView[2][2];
     Boolean wPawnDied = false;
     Boolean bPawnDied = false;
+
+
+    @FXML 
+    VBox helpMenu;
 
     @FXML
     VBox chessGrid;
@@ -68,6 +73,26 @@ public class chessController implements Initializable{
         player1.getChildren().add(profilePicImg);
         player2.getChildren().add(profilePicImg2);
         
+        ImageView pButton = new ImageView("Images/W_Pawn.png");
+        ImageView knButton = new ImageView("Images/W_Knight.png");
+        ImageView bButton = new ImageView("Images/W_Bishop.png");
+        ImageView rButton = new ImageView("Images/W_Rook.png");
+        ImageView kButton = new ImageView("Images/W_Pawn.png");
+        ImageView qButton = new ImageView("Images/W_Knight.png");
+        pButton.setX(42.5);
+        knButton.setX(75);
+        bButton.setX(42.5);
+        rButton.setX(75);
+        kButton.setX(42.5);
+        qButton.setX(75);
+        pButton.setY(50);
+        knButton.setY(50);
+        bButton.setY(150);
+        rButton.setY(150);
+        kButton.setY(250);
+        qButton.setY(250);
+        helpMenu.getChildren().addAll(pButton,knButton,bButton,rButton,kButton,qButton);
+
         // For-loop section that adds all components to make a visual board
         for (int i=0; i<8; i++){ // y dimension loop
             gridRows[i] = new HBox(0);
