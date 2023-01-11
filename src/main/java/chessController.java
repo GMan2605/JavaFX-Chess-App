@@ -1,10 +1,14 @@
 import java.util.*;
 import java.net.URL;
+
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -39,6 +43,22 @@ public class chessController implements Initializable{
     ImageView[][] knightImage = new ImageView[2][2];
     Boolean wPawnDied = false;
     Boolean bPawnDied = false;
+
+    String pawnText = "Can only move once except when it makes its first move and then it can move 2 times can only go forward and capture diagonally";
+
+    String knightText = "Text Moves in an l shape: 2 up 1 left or right-or-1 up 2 left or tight. only piece that can can only capture when jumping jump over another if lands on square with enemy";
+    
+
+    
+    String bishopText = "A bishop may only move diagonally and can move as far as its line of sight";
+    
+    String rookText = "A rook may only move straight and can move as far as its line of sight- rook be it forward/backward, left/right";
+    String queenText = "She can move on the straights and on the diagonals in line of sight";
+    
+    String kingText = "Can move and capture on any square restricted to one move per turn-can move in any direction - straights or diagonals may capture in any direction that's within its legal move range";
+
+    @FXML 
+    TextField pieceInfo;
 
     @FXML 
     VBox helpMenu;
@@ -195,4 +215,31 @@ public class chessController implements Initializable{
     public void displayWinner(String winTeam){
         System.out.println(winTeam + " has won the game!");
     }
+
+    @FXML
+    void buttonClicked(ActionEvent ae) { 
+        Button tempButton = (Button)(ae.getSource());
+        System.out.println(tempButton.getId());
+
+        if (tempButton.getId().equals("pawn")){
+            System.out.println("here");
+            pieceInfo.setText("pawn");
+        }
+        if (tempButton.getId().equals("knight")){
+            pieceInfo.setText("knight");
+        }
+        if (tempButton.getId().equals("bishop")){
+            pieceInfo.setText("bishop");
+        }
+        if (tempButton.getId().equals("rook")){
+            pieceInfo.setText("rook");
+        }
+        if (tempButton.getId().equals("king")){
+            pieceInfo.setText("king");
+        }
+        if (tempButton.getId().equals("queen")){
+            pieceInfo.setText("queen");
+        }
+    }
+
 }

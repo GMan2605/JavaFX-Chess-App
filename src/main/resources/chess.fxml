@@ -64,7 +64,7 @@
                <children>
                   <StackPane fx:id="s1" prefHeight="100.0" prefWidth="221.0">
                      <children>
-                        <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
+                        <Button fx:id="pawn" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -72,7 +72,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
+                        <Button fx:id="knight" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -80,12 +80,12 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="40.0">
                            <image>
                               <Image url="@Images/W_Knight.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-40.0">
                            <image>
                               <Image url="@Images/W_Pawn.png" />
                            </image>
@@ -98,7 +98,7 @@
                <children>
                   <StackPane fx:id="s2" prefHeight="150.0" prefWidth="221.0">
                      <children>
-                        <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
+                        <Button fx:id="bishop" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -106,7 +106,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
+                        <Button fx:id="rook" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -114,12 +114,12 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="40.0">
                            <image>
                               <Image url="@Images/W_Rook.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-40.0">
                            <image>
                               <Image url="@Images/W_Bishop.png" />
                            </image>
@@ -132,7 +132,7 @@
                <children>
                   <StackPane fx:id="s3" prefHeight="150.0" prefWidth="221.0">
                      <children>
-                        <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
+                        <Button fx:id="king" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -140,7 +140,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
+                        <Button fx:id="queen" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -148,12 +148,12 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="40.0">
                            <image>
                               <Image url="@Images/W_Queen.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-40.0">
                            <image>
                               <Image url="@Images/W_King.png" />
                            </image>
@@ -162,7 +162,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <TextField minHeight="325.0" prefHeight="350.0" prefWidth="218.0" translateY="25.0" />
+            <TextField fx:id="pieceInfo" alignment="TOP_LEFT" minHeight="325.0" prefHeight="350.0" prefWidth="218.0" translateY="25.0" />
          </children></VBox>
    </children>
 </AnchorPane>
