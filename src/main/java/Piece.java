@@ -295,12 +295,12 @@ public abstract class Piece extends chessController {
 
         if (enemy.getType() == "King"){
             if (enemy.getTeam() == "White"){
-                System.out.println("White's King has been killed!");
-                displayWinner("Black"); // Black team wins the game (white's king is captured)
+                winTeam = "Black"; // Black team wins the game (white's king is captured)
+                displayWinner();
                 gameRunning = false;
             } else if (enemy.getTeam() == "Black"){
-                System.out.println("Black's King has been killed!");
-                displayWinner("White"); // White team wins the game (black's king is captured)
+                winTeam = "White"; // White team wins the game (black's king is captured)
+                displayWinner(); 
                 gameRunning = false;
             }
         }

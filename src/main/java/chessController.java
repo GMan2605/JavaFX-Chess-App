@@ -1,18 +1,20 @@
 import java.util.*;
+import java.io.IOException;
 import java.net.URL;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-//import javafx.scene.control.Button;
 
 public class chessController implements Initializable{
 
@@ -21,6 +23,7 @@ public class chessController implements Initializable{
     public static ArrayList<Piece> bPieces = new ArrayList<>();
     public static boolean pieceChosen = false;
     public static String turnString = "White's Turn";
+    public static String winTeam = null;
     int tileSize = 45;
     StackPane[][] gridSpot = new StackPane[8][8];
     Rectangle[][] tiles = new Rectangle[8][8];
@@ -40,6 +43,12 @@ public class chessController implements Initializable{
     Boolean wPawnDied = false;
     Boolean bPawnDied = false;
 
+    Button returnToMenu = new Button("Return to Menu.");
+    Button replayB = new Button("Start Another Game!");
+
+    @FXML
+    AnchorPane mainAnchor;
+
     @FXML 
     VBox helpMenu;
 
@@ -58,19 +67,15 @@ public class chessController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        //TODO: Fix this to be more efficient, make player1 and player2 variables differnet names
-        ImageView profilePicImg = new ImageView("Images/Profile_Pic.png");
-        ImageView profilePicImg2 = new ImageView("Images/Profile_Pic_2.png");
-        profilePicImg.setFitHeight(tileSize);
-        profilePicImg2.setFitHeight(tileSize);
-        profilePicImg.setFitWidth(tileSize);
-        profilePicImg2.setFitWidth(tileSize);
-        profilePicImg.setX(201);
-        profilePicImg2.setX(201);
-        profilePicImg.setY(20);
-        profilePicImg2.setY(0);
-        player1.getChildren().add(profilePicImg);
-        player2.getChildren().add(profilePicImg2);
+        ImageView[] profilePicImgs = new ImageView[2];
+        for (int i=0; i<profilePicImgs.length; i++){
+            profilePicImgs[i] = new ImageView("Images/Profile_Pic_" + (i+1) + ".png");
+            profilePicImgs[i].setFitHeight(tileSize);
+            profilePicImgs[i].setFitWidth(tileSize);
+            profilePicImgs[i].setX(200);
+        }
+        player1.getChildren().add(profilePicImgs[0]);
+        player2.getChildren().add(profilePicImgs[1]);
 
         // For-loop section that adds all components to make a visual board
         for (int i=0; i<8; i++){ // y dimension loop
@@ -104,9 +109,6 @@ public class chessController implements Initializable{
                                                             turnString = "Black's Turn";
                                                             turnBanner.setText("Black Team's Turn!");
                                                             turnBanner.setTextFill(Color.BLACK);
-                                                                // if (wPieces.get(k).isCheck()){
-                                                                //     System.out.println("Black's In Check");
-                                                                // }
                                                         }
                                                         
                                                     }
@@ -121,9 +123,6 @@ public class chessController implements Initializable{
                                                             turnString = "White's Turn";
                                                             turnBanner.setText("White Team's Turn!");
                                                             turnBanner.setTextFill(Color.WHITE);
-                                                                // if (bPieces.get(l).isCheck()){
-                                                                //     System.out.println("White's In Check");
-                                                                // }
                                                         }
                                                     
                                                     }
@@ -188,11 +187,42 @@ public class chessController implements Initializable{
         bPieces.addAll(Arrays.asList(bKnights));
         bPieces.add(bKing);
         bPieces.add(bQueen);
-
     }
 
 
-    public void displayWinner(String winTeam){
-        System.out.println(winTeam + " has won the game!");
+    /**
+     * 
+     */
+    public void displayWinner(){
+        try {
+            App.setRoot("winScreen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML 
+    Button playButton;
+
+    //-----Play-Button-Methods-----
+    // (Used for replay & play buttons!)
+
+    /**
+     * 
+     * @throws IOException
+     */
+    @FXML
+    public void playClicked() throws IOException{
+        App.setRoot("chess");
+    }
+
+    @FXML
+    public void playEntered(){
+        playButton.setStyle("-fx-background-color: #0a6100");
+    }
+
+    @FXML
+    public void playExited(){
+        playButton.setStyle("-fx-background-color: #00d607");
     }
 }
