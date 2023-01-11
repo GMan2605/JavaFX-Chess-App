@@ -56,11 +56,11 @@
          </children>
       </VBox>
       <VBox fx:id="Menu" prefHeight="675.0" prefWidth="200.0" />
-      <VBox fx:id="helpMenu" alignment="TOP_RIGHT" layoutX="583.0" prefHeight="675.0" prefWidth="218.0">
+      <VBox fx:id="helpMenu" alignment="TOP_RIGHT" layoutX="601.0" prefHeight="675.0" prefWidth="200.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="238.0">
                <children>
-                  <StackPane prefHeight="100.0" prefWidth="221.0">
+                  <StackPane fx:id="s1" prefHeight="100.0" prefWidth="221.0">
                      <children>
                         <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
                            <font>
@@ -84,7 +84,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="238.0">
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="221.0">
+                  <StackPane fx:id="s2" prefHeight="150.0" prefWidth="221.0">
                      <children>
                         <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
                            <font>
@@ -108,7 +108,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="238.0">
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="221.0">
+                  <StackPane fx:id="s3" prefHeight="150.0" prefWidth="221.0">
                      <children>
                         <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
                            <font>

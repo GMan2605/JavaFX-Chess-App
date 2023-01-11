@@ -40,6 +40,14 @@ public class chessController implements Initializable{
     Boolean wPawnDied = false;
     Boolean bPawnDied = false;
 
+    @FXML 
+    StackPane s1;
+
+    @FXML 
+    StackPane s2;
+
+    @FXML 
+    StackPane s3;
 
     @FXML 
     VBox helpMenu;
@@ -73,25 +81,44 @@ public class chessController implements Initializable{
         player1.getChildren().add(profilePicImg);
         player2.getChildren().add(profilePicImg2);
         
+
         ImageView pButton = new ImageView("Images/W_Pawn.png");
         ImageView knButton = new ImageView("Images/W_Knight.png");
         ImageView bButton = new ImageView("Images/W_Bishop.png");
         ImageView rButton = new ImageView("Images/W_Rook.png");
         ImageView kButton = new ImageView("Images/W_Pawn.png");
         ImageView qButton = new ImageView("Images/W_Knight.png");
-        pButton.setX(42.5);
-        knButton.setX(75);
-        bButton.setX(42.5);
-        rButton.setX(75);
-        kButton.setX(42.5);
-        qButton.setX(75);
+
+        pButton.setFitHeight(tileSize);
+        knButton.setFitHeight(tileSize);
+        pButton.setFitWidth(tileSize);
+        knButton.setFitWidth(tileSize);
+        bButton.setFitHeight(tileSize);
+        rButton.setFitHeight(tileSize);
+        bButton.setFitWidth(tileSize);
+        rButton.setFitWidth(tileSize);
+        kButton.setFitHeight(tileSize);
+        qButton.setFitHeight(tileSize);
+        kButton.setFitWidth(tileSize);
+        qButton.setFitWidth(tileSize);
+
+        pButton.setX(99);
+        knButton.setX(139);
+        bButton.setX(99);
+        rButton.setX(139);
+        kButton.setX(99);
+        qButton.setX(139);
         pButton.setY(50);
         knButton.setY(50);
-        bButton.setY(150);
-        rButton.setY(150);
-        kButton.setY(250);
-        qButton.setY(250);
-        helpMenu.getChildren().addAll(pButton,knButton,bButton,rButton,kButton,qButton);
+        bButton.setY(50);
+        rButton.setY(50);
+        kButton.setY(50);
+        qButton.setY(50);
+
+        // s1.getChildren().addAll(pButton, knButton);
+        // s2.getChildren().addAll(bButton, rButton);
+        // s3.getChildren().addAll(kButton, qButton);
+        
 
         // For-loop section that adds all components to make a visual board
         for (int i=0; i<8; i++){ // y dimension loop
