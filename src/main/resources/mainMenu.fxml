@@ -19,17 +19,17 @@
       </VBox>
       <VBox alignment="CENTER" layoutX="175.0" layoutY="163.0" prefHeight="350.0" prefWidth="450.0" spacing="20.0">
          <children>
-            <Button fx:id="playButton" mnemonicParsing="false" onAction="#playClicked" onMouseEntered="#playEntered" onMouseExited="#playExited" prefHeight="75.0" prefWidth="350.0" style="-fx-background-color: #00d607;" text="Play Chess!" textFill="WHITE">
+            <Button fx:id="playButton" mnemonicParsing="false" onAction="#playClicked" onMouseEntered="#playEntered" onMouseExited="#playExited" prefHeight="75.0" prefWidth="350.0" style="-fx-background-color: #95BB4A;" text="Play Chess!" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="instructionButton" mnemonicParsing="false" onAction="#helpClicked" onMouseEntered="#helpEntered" onMouseExited="#helpExited" prefHeight="75.0" prefWidth="400.0" style="-fx-background-color: #aee300;" text="Instructions &amp; Basic Help" textFill="WHITE">
+            <Button fx:id="instructionButton" mnemonicParsing="false" onAction="#helpClicked" onMouseEntered="#helpEntered" onMouseExited="#helpExited" prefHeight="75.0" prefWidth="350.0" style="-fx-background-color: #b5a903;" text="Instructions &amp; Basic Help" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitClicked" onMouseEntered="#exitEntered" onMouseExited="#exitExited" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #a60000;" text="Exit Chess" textFill="WHITE">
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitClicked" onMouseEntered="#exitEntered" onMouseExited="#exitExited" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #900909;" text="Exit Chess" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

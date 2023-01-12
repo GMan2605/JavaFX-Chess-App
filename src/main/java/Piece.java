@@ -506,7 +506,7 @@ public abstract class Piece extends chessController {
         for (int j=0; j<enemyTeam.size(); j++){ 
             int pieceX = enemyTeam.get(j).getX();
             int pieceY = enemyTeam.get(j).getY();
-            //Piece tempPiece = enemyTeam.get(j);
+            Piece tempPiece = enemyTeam.get(j);
 
             if (diagonal()){
                 
@@ -538,11 +538,11 @@ public abstract class Piece extends chessController {
                     }
                 }
                 
-                    // if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
-                    //     captureEnemy(tempPiece);
-                    //     tempPiece.setIsAlive(false);
-                    //     return true;
-                //}
+                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
+                        captureEnemy(tempPiece);
+                        tempPiece.setIsAlive(false);
+                        return true;
+                }
             }
         }
         return true;
