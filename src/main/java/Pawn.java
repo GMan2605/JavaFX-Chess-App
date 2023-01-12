@@ -31,7 +31,7 @@ public class Pawn extends Piece {
     
     // Adjusted Movement Code (to be review over for directional movement of different pawn teams)
     @Override
-    boolean moveValid() {
+    public boolean moveValid() {
         pieceChosen = false;
         this.isSelected = false;
         // Basic 1 tile movment

@@ -1,3 +1,4 @@
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import javafx.scene.layout.HBox;
@@ -30,7 +31,7 @@ public abstract class Piece extends chessController {
      * @param yMove - The y-coordinate of where the selected piece is being moved
      * @return
      */
-    abstract boolean moveValid();
+    public abstract boolean moveValid();
 
     /**
      * horizontalVertical - TODO: *NEEDS DESCRIPTION*
@@ -295,12 +296,10 @@ public abstract class Piece extends chessController {
 
         if (enemy.getType() == "King"){
             if (enemy.getTeam() == "White"){
-                winTeam = "Black"; // Black team wins the game (white's king is captured)
-                displayWinner();
+                displayWinner("Black"); // Black team wins the game (white's king is captured)
                 gameRunning = false;
             } else if (enemy.getTeam() == "Black"){
-                winTeam = "White"; // White team wins the game (black's king is captured)
-                displayWinner(); 
+                displayWinner("White"); // White team wins the game (black's king is captured)
                 gameRunning = false;
             }
         }

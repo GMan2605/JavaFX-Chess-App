@@ -3,13 +3,41 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class MainMenuController{
+public class MainMenu{
 
     @FXML
     Button instructionButton;
 
     @FXML
     Button exitButton;
+
+    @FXML
+    Button playButton;
+
+    @FXML
+    Button returnButton;
+
+    //-----Play-Button-Methods-----
+    // (Used for replay & play buttons!)
+
+    /**
+     * 
+     * @throws IOException
+     */
+    @FXML
+    public void playClicked() throws IOException{
+        App.setRoot("chess");
+    }
+
+    @FXML
+    public void playEntered(){
+        playButton.setStyle("-fx-background-color: #0a6100");
+    }
+
+    @FXML
+    public void playExited(){
+        playButton.setStyle("-fx-background-color: #00d607");
+    }
 
     //-----Help-Button-Methods-----
 
@@ -20,7 +48,7 @@ public class MainMenuController{
 
     @FXML
     private void helpEntered(){
-        instructionButton.setStyle("-fx-background-color: #bfff00");
+        instructionButton.setStyle("-fx-background-color: #6b6b00");
     }
 
     @FXML
@@ -44,4 +72,12 @@ public class MainMenuController{
     private void exitExited(){
         exitButton.setStyle("-fx-background-color: #a60000");
     }
+
+    //-----Return-to-Menu-Button-Method-----
+
+    @FXML
+    public void returnClicked() throws IOException{
+        App.setRoot("mainMenu");
+    }
+
 }

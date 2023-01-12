@@ -49,19 +49,11 @@ public class chessController implements Initializable{
     Button returnToMenu = new Button("Return to Menu.");
     Button replayB = new Button("Start Another Game!");
     String pawnText = "Can only move once except when it makes its first move and then it can move 2 times can only go forward and capture diagonally";
-
     String knightText = "Text Moves in an l shape: 2 up 1 left or right-or-1 up 2 left or tight. only piece that can can only capture when jumping jump over another if lands on square with enemy";
-    
-
-    
     String bishopText = "A bishop may only move diagonally and can move as far as its line of sight";
-    
     String rookText = "A rook may only move straight and can move as far as its line of sight- rook be it forward/backward, left/right";
     String queenText = "She can move on the straights and on the diagonals in line of sight";
-    
     String kingText = "Can move and capture on any square restricted to one move per turn-can move in any direction - straights or diagonals may capture in any direction that's within its legal move range";
-
-
     
 
     @FXML
@@ -87,6 +79,16 @@ public class chessController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        /* Confirm variables are what they should be for a new game to start
+            (To avoid bugs/reset game for a retry game/when user has pressed a replay button)
+        */
+        gameRunning = true;
+        wPieces.clear();;
+        bPieces.clear();
+        pieceChosen = false;
+        turnString = "White's Turn";
+        winTeam = null;
 
         ImageView[] profilePicImgs = new ImageView[2];
         for (int i=0; i<profilePicImgs.length; i++){
@@ -214,7 +216,8 @@ public class chessController implements Initializable{
     /**
      * 
      */
-    public void displayWinner(){
+    public void displayWinner(String winner){
+        WinMenu.setWinner(winner);
         try {
             App.setRoot("winScreen");
         } catch (IOException e) {
@@ -222,33 +225,8 @@ public class chessController implements Initializable{
         }
     }
 
-    @FXML 
-    Button playButton;
-
-    //-----Play-Button-Methods-----
-    // (Used for replay & play buttons!)
-
-    /**
-     * 
-     * @throws IOException
-     */
     @FXML
-    public void playClicked() throws IOException{
-        App.setRoot("chess");
-    }
-
-    @FXML
-    public void playEntered(){
-        playButton.setStyle("-fx-background-color: #0a6100");
-    }
-
-    @FXML
-    public void playExited(){
-        playButton.setStyle("-fx-background-color: #00d607");
-    }
-
-    @FXML
-    void buttonClicked(ActionEvent ae) { 
+    private void buttonClicked(ActionEvent ae) { 
         Button tempButton = (Button)(ae.getSource());
         System.out.println(tempButton.getId());
 

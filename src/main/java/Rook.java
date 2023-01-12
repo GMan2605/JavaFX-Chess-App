@@ -22,7 +22,7 @@ public class Rook extends Piece {
 
 
     @Override
-    boolean moveValid() {
+    public boolean moveValid() {
         pieceChosen = false;
         this.isSelected = false;
 

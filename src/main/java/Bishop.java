@@ -23,7 +23,7 @@ public class Bishop extends Piece {
 
 
     @Override
-    boolean moveValid() {
+    public boolean moveValid() {
         pieceChosen = false;
         this.isSelected = false;
         if (this.diagonal() == true){

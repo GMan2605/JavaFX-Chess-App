@@ -1,18 +1,12 @@
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class HelpMenu{
+public class HelpMenu extends MainMenu{
 
     @FXML
     Button returnButton;
 
     //-----Return-to-Menu-Button-Methods-----
-
-    @FXML
-    private void returnClicked() throws IOException{
-        App.setRoot("mainMenu");
-    }
 
     @FXML
     private void returnEntered(){

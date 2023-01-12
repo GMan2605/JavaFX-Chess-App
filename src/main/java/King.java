@@ -21,7 +21,7 @@ public class King extends Piece {
     }
 
     @Override
-    boolean moveValid() {
+    public boolean moveValid() {
         pieceChosen = false;
         this.isSelected = false;
 
