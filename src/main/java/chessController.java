@@ -48,18 +48,13 @@ public class chessController implements Initializable{
 
     Button returnToMenu = new Button("Return to Menu.");
     Button replayB = new Button("Start Another Game!");
-    String pawnText = "Can only move once except when it makes its first move and then it can move 2 times can only go forward and capture diagonally";
 
-    String knightText = "Text Moves in an l shape: 2 up 1 left or right-or-1 up 2 left or tight. only piece that can can only capture when jumping jump over another if lands on square with enemy";
-    
-
-    
-    String bishopText = "A bishop may only move diagonally and can move as far as its line of sight";
-    
-    String rookText = "A rook may only move straight and can move as far as its line of sight- rook be it forward/backward, left/right";
-    String queenText = "She can move on the straights and on the diagonals in line of sight";
-    
-    String kingText = "Can move and capture on any square restricted to one move per turn-can move in any direction - straights or diagonals may capture in any direction that's within its legal move range";
+    String pawnText = "Can only move once\nexcept when it makes\nits first move and\nthen it canmove\n2 times can only go\nforward and capture\ndiagonally";
+    String knightText = "Text Moves in an\nl shape: 2 up 1 left\nor right-or-1 up\n2 left or tight\n\nOnly piece that can\nonly capture\nwhen jumping";
+    String bishopText = "A bishop may only\nmove diagonally and\ncan move as far\nas its line of sight";
+    String rookText = "A rook may only move\nstraight and can move\nas far as its\nline of sight be\nit forward/backward,\nleft/right";
+    String queenText = "She can move on\nthe straights and on\nthe diagonals in\nline of sight";
+    String kingText = "Can move and capture\non any square\nrestricted to one\nmove per turn-can\nmove in any direction\n- straights or diagonals\nmay capture in any\ndirection that's within\nits legal move range";
 
 
     
@@ -68,7 +63,7 @@ public class chessController implements Initializable{
     AnchorPane mainAnchor;
 
     @FXML 
-    TextField pieceInfo;
+    Label pieceInfo;
 
     @FXML 
     VBox helpMenu;
@@ -222,30 +217,7 @@ public class chessController implements Initializable{
         }
     }
 
-    @FXML 
-    Button playButton;
 
-    //-----Play-Button-Methods-----
-    // (Used for replay & play buttons!)
-
-    /**
-     * 
-     * @throws IOException
-     */
-    @FXML
-    public void playClicked() throws IOException{
-        App.setRoot("chess");
-    }
-
-    @FXML
-    public void playEntered(){
-        playButton.setStyle("-fx-background-color: #0a6100");
-    }
-
-    @FXML
-    public void playExited(){
-        playButton.setStyle("-fx-background-color: #00d607");
-    }
 
     @FXML
     void buttonClicked(ActionEvent ae) { 
@@ -254,22 +226,22 @@ public class chessController implements Initializable{
 
         if (tempButton.getId().equals("pawn")){
             System.out.println("here");
-            pieceInfo.setText("pawn");
+            pieceInfo.setText(pawnText);
         }
         if (tempButton.getId().equals("knight")){
-            pieceInfo.setText("knight");
+            pieceInfo.setText(knightText);
         }
         if (tempButton.getId().equals("bishop")){
-            pieceInfo.setText("bishop");
+            pieceInfo.setText(bishopText);
         }
         if (tempButton.getId().equals("rook")){
-            pieceInfo.setText("rook");
+            pieceInfo.setText(rookText);
         }
         if (tempButton.getId().equals("king")){
-            pieceInfo.setText("king");
+            pieceInfo.setText(kingText);
         }
         if (tempButton.getId().equals("queen")){
-            pieceInfo.setText("queen");
+            pieceInfo.setText(queenText);
         }
     }
 

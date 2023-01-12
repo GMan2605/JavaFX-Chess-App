@@ -11,6 +11,31 @@ public class MainMenuController{
     @FXML
     Button exitButton;
 
+    @FXML 
+    Button playButton;
+
+    //-----Play-Button-Methods-----
+    // (Used for replay & play buttons!)
+
+    /**
+     * 
+     * @throws IOException
+     */
+    @FXML
+    public void playClicked() throws IOException{
+        App.setRoot("chess");
+    }
+
+    @FXML
+    public void playEntered(){
+        playButton.setStyle("-fx-background-color: #0a6100");
+    }
+
+    @FXML
+    public void playExited(){
+        playButton.setStyle("-fx-background-color: #00d607");
+    }
+
     //-----Help-Button-Methods-----
 
     @FXML

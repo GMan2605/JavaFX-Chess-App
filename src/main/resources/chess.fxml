@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -60,11 +59,11 @@
       <VBox fx:id="Menu" prefHeight="675.0" prefWidth="200.0" />
       <VBox fx:id="helpMenu" alignment="TOP_RIGHT" layoutX="601.0" prefHeight="675.0" prefWidth="200.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="238.0">
+            <HBox prefHeight="50.0" prefWidth="238.0" translateY="65.0">
                <children>
                   <StackPane fx:id="s1" prefHeight="100.0" prefWidth="221.0">
                      <children>
-                        <Button fx:id="pawn" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
+                        <Button fx:id="pawn" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-25.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -72,7 +71,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="knight" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
+                        <Button fx:id="knight" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="25.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -80,12 +79,12 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="25.0">
                            <image>
                               <Image url="@Images/W_Knight.png" />
                            </image>
                         </ImageView>
-                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
                            <image>
                               <Image url="@Images/W_Pawn.png" />
                            </image>
@@ -94,11 +93,11 @@
                   </StackPane>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="238.0">
+            <HBox prefHeight="50.0" prefWidth="238.0" translateY="65.0">
                <children>
                   <StackPane fx:id="s2" prefHeight="150.0" prefWidth="221.0">
                      <children>
-                        <Button fx:id="bishop" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
+                        <Button fx:id="bishop" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-25.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -106,7 +105,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="rook" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
+                        <Button fx:id="rook" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="25.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -114,12 +113,12 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="25.0">
                            <image>
                               <Image url="@Images/W_Rook.png" />
                            </image>
                         </ImageView>
-                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
                            <image>
                               <Image url="@Images/W_Bishop.png" />
                            </image>
@@ -128,11 +127,11 @@
                   </StackPane>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="238.0">
+            <HBox prefHeight="50.0" prefWidth="238.0" translateY="65.0">
                <children>
-                  <StackPane fx:id="s3" prefHeight="150.0" prefWidth="221.0">
+                  <StackPane fx:id="s3" prefHeight="50.0" prefWidth="221.0">
                      <children>
-                        <Button fx:id="king" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-40.0">
+                        <Button fx:id="king" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="-25.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -140,7 +139,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="queen" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="40.0">
+                        <Button fx:id="queen" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" translateX="25.0">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -148,12 +147,12 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="25.0">
                            <image>
                               <Image url="@Images/W_Queen.png" />
                            </image>
                         </ImageView>
-                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-40.0">
+                        <ImageView disable="true" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
                            <image>
                               <Image url="@Images/W_King.png" />
                            </image>
@@ -162,7 +161,11 @@
                   </StackPane>
                </children>
             </HBox>
-            <TextField fx:id="pieceInfo" alignment="TOP_LEFT" minHeight="325.0" prefHeight="350.0" prefWidth="218.0" translateY="25.0" />
+            <Label fx:id="pieceInfo" alignment="TOP_CENTER" prefHeight="265.0" prefWidth="200.0" textAlignment="CENTER" textFill="#eeeed2" translateY="125.0">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
          </children></VBox>
    </children>
 </AnchorPane>
