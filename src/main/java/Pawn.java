@@ -10,7 +10,7 @@ public class Pawn extends Piece {
     boolean isFirstMove = false;
     int pDirection = 1; // pDirection, an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
 
-    public Pawn(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid, StackPane player2, StackPane player1, Label inputBanner){
+    public Pawn(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid, HBox score2, HBox score1, Label inputBanner){
         this.xPos = inputX;
         this.yPos = inputY;
         this.myImage = inputImage;
@@ -20,8 +20,8 @@ public class Pawn extends Piece {
         else
             this.pDirection = -1;
         this.referenceGrid = chessGrid;
-        this.player2 = player2;
-        this.player1 = player1;
+        this.score2 = score2;
+        this.score1 = score1;
         this.turnBanner = inputBanner;
         this.correctImage();
         this.pieceType = "Pawn";

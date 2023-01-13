@@ -57,7 +57,11 @@ public class chessController implements Initializable{
     String kingText = "Can move and capture\non any square\nrestricted to one\nmove per turn-can\nmove in any direction\n- straights or diagonals\nmay capture in any\ndirection that's within\nits legal move range";
 
 
-    
+    @FXML
+    HBox score1;
+
+    @FXML
+    HBox score2;
 
     @FXML
     AnchorPane mainAnchor;
@@ -169,35 +173,35 @@ public class chessController implements Initializable{
         }
 
         // Creation of Kings & Queens
-        King bKing = new King(4, 0, new ImageView("Images/B_King.png"), "Black", chessGrid, player2, player1, turnBanner);
-        King wKing = new King(4, 7, new ImageView("Images/W_King.png"), "White", chessGrid, player2, player1, turnBanner);
-        Queen bQueen = new Queen(3, 0, new ImageView("Images/B_Queen.png"), "Black", chessGrid, player2, player1, turnBanner);
-        Queen wQueen = new Queen(3, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid, player2, player1, turnBanner);
+        King bKing = new King(4, 0, new ImageView("Images/B_King.png"), "Black", chessGrid, score2, score1, turnBanner);
+        King wKing = new King(4, 7, new ImageView("Images/W_King.png"), "White", chessGrid, score2, score1, turnBanner);
+        Queen bQueen = new Queen(3, 0, new ImageView("Images/B_Queen.png"), "Black", chessGrid, score2, score1, turnBanner);
+        Queen wQueen = new Queen(3, 7, new ImageView("Images/W_Queen.png"), "White", chessGrid, score2, score1, turnBanner);
 
         // Creation of the pawn layout
         for (int i=0; i<8; i++){
             pawnImage[0][i] = new ImageView("Images/W_Pawn.png");
             pawnImage[1][i] = new ImageView("Images/B_Pawn.png");
-            wPawns[i] = new Pawn(i, 6, pawnImage[0][i], "White", chessGrid, player2, player1, turnBanner);
-            bPawns[i] = new Pawn(i, 1, pawnImage[1][i], "Black", chessGrid, player2, player1, turnBanner);
+            wPawns[i] = new Pawn(i, 6, pawnImage[0][i], "White", chessGrid, score2, score1, turnBanner);
+            bPawns[i] = new Pawn(i, 1, pawnImage[1][i], "Black", chessGrid, score2, score1, turnBanner);
         }
 
         // Creation of all "dual" pieces, pieces that occur twice on each team
         for (int i=0; i<2; i++){
             rookImage[0][i] = new ImageView("Images/W_Rook.png");
             rookImage[1][i] = new ImageView("Images/B_Rook.png");
-            wRooks[i] = new Rook(i*7, 7, rookImage[0][i], "White", chessGrid, player2, player1, turnBanner);
-            bRooks[i] = new Rook(i*7, 0, rookImage[1][i], "Black", chessGrid, player2, player1, turnBanner);
+            wRooks[i] = new Rook(i*7, 7, rookImage[0][i], "White", chessGrid, score2, score1, turnBanner);
+            bRooks[i] = new Rook(i*7, 0, rookImage[1][i], "Black", chessGrid, score2, score1, turnBanner);
 
             bishopImage[0][i] = new ImageView("Images/W_Bishop.png");
             bishopImage[1][i] = new ImageView("Images/B_Bishop.png");
-            wBishops[i] = new Bishop( (i+2*(i+1)), 7, bishopImage[0][i], "White", chessGrid, player2, player1, turnBanner);
-            bBishops[i] = new Bishop( (i+2*(i+1)), 0, bishopImage[1][i], "Black", chessGrid, player2, player1, turnBanner);
+            wBishops[i] = new Bishop( (i+2*(i+1)), 7, bishopImage[0][i], "White", chessGrid, score2, score1, turnBanner);
+            bBishops[i] = new Bishop( (i+2*(i+1)), 0, bishopImage[1][i], "Black", chessGrid, score2, score1, turnBanner);
 
             knightImage[0][i] = new ImageView("Images/W_Knight.png");
             knightImage[1][i] = new ImageView("Images/B_Knight.png");
-            wKnights[i] = new Knight((i*5+1), 7, knightImage[0][i], "White", chessGrid, player2, player1, turnBanner);
-            bKnights[i] = new Knight((i*5+1), 0, knightImage[1][i], "Black", chessGrid, player2, player1, turnBanner);
+            wKnights[i] = new Knight((i*5+1), 7, knightImage[0][i], "White", chessGrid, score2, score1, turnBanner);
+            bKnights[i] = new Knight((i*5+1), 0, knightImage[1][i], "Black", chessGrid, score2, score1, turnBanner);
         }
         
         // Adding of all pieces to lists (For future events)
@@ -231,10 +235,10 @@ public class chessController implements Initializable{
     @FXML
     private void buttonClicked(ActionEvent ae) { 
         Button tempButton = (Button)(ae.getSource());
-        System.out.println(tempButton.getId());
+        //System.out.println(tempButton.getId());
 
         if (tempButton.getId().equals("pawn")){
-            System.out.println("here");
+
             pieceInfo.setText(pawnText);
         }
         if (tempButton.getId().equals("knight")){
