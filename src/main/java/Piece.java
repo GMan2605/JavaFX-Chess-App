@@ -75,66 +75,64 @@ public abstract class Piece extends chessController {
      * is currently designed to accomidate conditions for white and black pieces separately.
      */
     public void pieceClicked() {
-        if (gameRunning){
-            if (this.pieceTeam == "White"){ // White piece clicked section
-                if (turnString == "White's Turn"){
-                    if (pieceChosen == false){
-                        pieceChosen = true;
-                        this.isSelected = true;
-                        this.highlightPiece();
-                    } else {
-                        for (int i=0; i<wPieces.size(); i++){
-                            Piece tempPiece = wPieces.get(i);
-                            if (tempPiece.getHightlight()){
-                                pieceChosen = false;
-                                tempPiece.removeMyImage();
-                                tempPiece.setHighlight(false);
-                                tempPiece.unhighlightPiece();
-                                tempPiece.setMovements(0, 0);
-                            }
+        if (this.pieceTeam == "White"){ // White piece clicked section
+            if (turnString == "White's Turn"){
+                if (pieceChosen == false){
+                    pieceChosen = true;
+                    this.isSelected = true;
+                    this.highlightPiece();
+                } else {
+                    for (int i=0; i<wPieces.size(); i++){
+                        Piece tempPiece = wPieces.get(i);
+                        if (tempPiece.getHightlight()){
+                            pieceChosen = false;
+                            tempPiece.removeMyImage();
+                            tempPiece.setHighlight(false);
+                            tempPiece.unhighlightPiece();
+                            tempPiece.setMovements(0, 0);
                         }
                     }
-                } else if (turnString == "Black's Turn" && pieceChosen == true){
-                    for (int i=0; i<bPieces.size(); i++){ // Similar for loop section to one inside of chessController!
-                        if (bPieces.get(i).getHightlight()){
-                            bPieces.get(i).setMovements(this.xPos, this.yPos);
-                            if (bPieces.get(i).moveValid()){
-                                bPieces.get(i).move();
-                                turnString = "White's Turn";
-                                turnBanner.setText("White Team's Turn!");
-                                turnBanner.setTextFill(Color.WHITE);
-                            }
-                        } 
-                    }
                 }
-            } else if (this.pieceTeam == "Black"){ // Black piece clicked section
-                if (turnString == "White's Turn" && pieceChosen == true){
-                    for (int i=0; i<wPieces.size(); i++){ // Similar for loop section to one inside of chessController!
-                        if (wPieces.get(i).getHightlight()){
-                            wPieces.get(i).setMovements(this.xPos, this.yPos);
-                            if (wPieces.get(i).moveValid()){
-                                wPieces.get(i).move();
-                                turnString = "Black's Turn";
-                                turnBanner.setText("Black Team's Turn!");
-                                turnBanner.setTextFill(Color.BLACK);
-                            }
-                        } 
-                    }
-                } else if (turnString == "Black's Turn"){
-                    if (pieceChosen == false){
-                        pieceChosen = true;
-                        this.isSelected = true;
-                        this.highlightPiece();
-                    } else {
-                        for (int i=0; i<bPieces.size(); i++){
-                            Piece tempPiece = bPieces.get(i);
-                            if (tempPiece.getHightlight()){
-                                pieceChosen = false;
-                                tempPiece.removeMyImage();
-                                tempPiece.setHighlight(false);
-                                tempPiece.unhighlightPiece();
-                                tempPiece.setMovements(0, 0);
-                            }
+            } else if (turnString == "Black's Turn" && pieceChosen == true){
+                for (int i=0; i<bPieces.size(); i++){ // Similar for loop section to one inside of chessController!
+                    if (bPieces.get(i).getHightlight()){
+                        bPieces.get(i).setMovements(this.xPos, this.yPos);
+                        if (bPieces.get(i).moveValid()){
+                            bPieces.get(i).move();
+                            turnString = "White's Turn";
+                            turnBanner.setText("White Team's Turn!");
+                            turnBanner.setTextFill(Color.WHITE);
+                        }
+                    } 
+                }
+            }
+        } else if (this.pieceTeam == "Black"){ // Black piece clicked section
+            if (turnString == "White's Turn" && pieceChosen == true){
+                for (int i=0; i<wPieces.size(); i++){ // Similar for loop section to one inside of chessController!
+                    if (wPieces.get(i).getHightlight()){
+                        wPieces.get(i).setMovements(this.xPos, this.yPos);
+                        if (wPieces.get(i).moveValid()){
+                            wPieces.get(i).move();
+                            turnString = "Black's Turn";
+                            turnBanner.setText("Black Team's Turn!");
+                            turnBanner.setTextFill(Color.BLACK);
+                        }
+                    } 
+                }
+            } else if (turnString == "Black's Turn"){
+                if (pieceChosen == false){
+                    pieceChosen = true;
+                    this.isSelected = true;
+                    this.highlightPiece();
+                } else {
+                    for (int i=0; i<bPieces.size(); i++){
+                        Piece tempPiece = bPieces.get(i);
+                        if (tempPiece.getHightlight()){
+                            pieceChosen = false;
+                            tempPiece.removeMyImage();
+                            tempPiece.setHighlight(false);
+                            tempPiece.unhighlightPiece();
+                            tempPiece.setMovements(0, 0);
                         }
                     }
                 }
@@ -297,10 +295,8 @@ public abstract class Piece extends chessController {
         if (enemy.getType() == "King"){
             if (enemy.getTeam() == "White"){
                 displayWinner("Black"); // Black team wins the game (white's king is captured)
-                gameRunning = false;
             } else if (enemy.getTeam() == "Black"){
                 displayWinner("White"); // White team wins the game (black's king is captured)
-                gameRunning = false;
             }
         }
     }

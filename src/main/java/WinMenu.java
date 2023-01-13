@@ -9,8 +9,6 @@ import javafx.scene.control.Label;
 
 public class WinMenu extends MainMenu implements Initializable{
 
-    private static String wString = "";
-
     /*
      * "Play Another Game" button uses existing
      * commands in superClass MainMenu!
@@ -24,11 +22,13 @@ public class WinMenu extends MainMenu implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // if (wString == "Black")
+        // if (App.wString == "Black"){
         //     winLabel.setTextFill(null);
-        // else if (wString == "White")
+        // } else if (App.wString == "White") {
         //     winLabel.setTextFill(null);
-        winLabel.setText(wString);
+        // }
+        System.out.println(App.wString);
+        winLabel.setText( "..." + App.wString);
         
     }
 
@@ -42,10 +42,5 @@ public class WinMenu extends MainMenu implements Initializable{
     @FXML
     private void winReturnExited(){
         winReturn.setStyle("-fx-background-color: #a3a39b");
-    }
-
-
-    public static void setWinner(String inputWinner){
-        wString = inputWinner;
     }
 }

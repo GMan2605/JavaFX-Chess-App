@@ -31,12 +31,12 @@ public class MainMenu{
 
     @FXML
     public void playEntered(){
-        playButton.setStyle("-fx-background-color: #0a6100");
+        playButton.setStyle("-fx-background-color: #708c37");
     }
 
     @FXML
     public void playExited(){
-        playButton.setStyle("-fx-background-color: #00d607");
+        playButton.setStyle("-fx-background-color: #95BB4A");
     }
 
     //-----Help-Button-Methods-----
