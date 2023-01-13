@@ -1,6 +1,6 @@
-import javafx.fxml.FXMLLoader;
-import javafx.scene.image.ImageView;
 import java.util.ArrayList;
+
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -10,6 +10,8 @@ public abstract class Piece extends chessController {
 
     int pDirection = 1; // an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
 
+    HBox score1;
+    HBox score2;
     StackPane player1;
     StackPane player2;
     VBox referenceGrid;
@@ -327,22 +329,37 @@ public abstract class Piece extends chessController {
             deadImage = new ImageView("Images/B_" + enemyType + ".png");
             deadImage.setFitHeight(25);
             deadImage.setFitWidth(25);
-            // deadImage.setX(55);
-            // deadImage.setY(40);
-            player2.getChildren().add(deadImage);
+            deadImage.setTranslateX(0);
+            score1.getChildren().add(deadImage);
         } else if (this.pieceTeam == "Black"){
             deadImage = new ImageView("Images/W_" + enemyType + ".png");
             deadImage.setFitHeight(25);
             deadImage.setFitWidth(25);
-            // deadImage.setX(55);
-            // deadImage.setY(40);
-            player1.getChildren().add(deadImage);
+            deadImage.setTranslateX(0);
+            deadImage.setTranslateY(25);
+            score2.getChildren().add(deadImage);
         }
     }
     
     /**
      * checkRookMoves - Method that returns a true or false statement regarding a rook movement pattern and this piece.
-     * It requires specified "friendly" and "enemy" teams to evaluate any possible incorrect patterns in the movement
+     * It requires specified "friendly" and "ene<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane fx:id="player2" alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="BOTTOM_LEFT" pickOnBounds="false" prefHeight="21.0" prefWidth="477.0" text="Guest" textFill="#fcf9f9" translateX="55.0">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</StackPane>
+my" teams to evaluate any possible incorrect patterns in the movement
      * (it returns true by default, however it must not return false after all the checking/detections). To do this, it
      * first checks that the move does not infringe/go through or even land on a friendly piece. Then it moves onto detecting
      * if a capture should take place or not, canceling the move if an enemy piece is blocking the way of the requested
