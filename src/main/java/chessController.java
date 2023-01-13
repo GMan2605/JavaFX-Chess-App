@@ -75,10 +75,10 @@ public class chessController implements Initializable{
     Label turnBanner;
 
     @FXML
-    HBox player1;
+    StackPane player1;
 
     @FXML
-    HBox player2;
+    StackPane player2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,7 +98,7 @@ public class chessController implements Initializable{
             profilePicImgs[i] = new ImageView("Images/Profile_Pic_" + (i+1) + ".png");
             profilePicImgs[i].setFitHeight(tileSize);
             profilePicImgs[i].setFitWidth(tileSize);
-            profilePicImgs[i].setX(200);
+            profilePicImgs[i].setX(0);
         }
         player1.getChildren().add(profilePicImgs[0]);
         player2.getChildren().add(profilePicImgs[1]);

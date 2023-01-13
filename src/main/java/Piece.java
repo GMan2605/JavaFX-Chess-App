@@ -10,8 +10,8 @@ public abstract class Piece extends chessController {
 
     int pDirection = 1; // an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
 
-    HBox player1;
-    HBox player2;
+    StackPane player1;
+    StackPane player2;
     VBox referenceGrid;
     ImageView myImage;
     int yPos;
@@ -331,12 +331,16 @@ public abstract class Piece extends chessController {
             deadImage = new ImageView("Images/B_" + enemyType + ".png");
             deadImage.setFitHeight(25);
             deadImage.setFitWidth(25);
-            player1.getChildren().add(deadImage);
+            // deadImage.setX(55);
+            // deadImage.setY(40);
+            player2.getChildren().add(deadImage);
         } else if (this.pieceTeam == "Black"){
             deadImage = new ImageView("Images/W_" + enemyType + ".png");
             deadImage.setFitHeight(25);
             deadImage.setFitWidth(25);
-            player2.getChildren().add(deadImage);
+            // deadImage.setX(55);
+            // deadImage.setY(40);
+            player1.getChildren().add(deadImage);
         }
     }
     
@@ -538,9 +542,8 @@ public abstract class Piece extends chessController {
                     }
                 }
                 
-                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove && tempPiece.getAliveDead() == true){
-                        captureEnemy(tempPiece);
-                        tempPiece.setIsAlive(false);
+                    if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
+                        captureEnemy(tempPiece, j);
                         return true;
                 }
             }

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class Pawn extends Piece {
@@ -9,7 +10,7 @@ public class Pawn extends Piece {
     boolean isFirstMove = false;
     int pDirection = 1; // pDirection, an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
 
-    public Pawn(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid, HBox player2, HBox player1, Label inputBanner){
+    public Pawn(int inputX, int inputY, ImageView inputImage, String inputTeam, VBox chessGrid, StackPane player2, StackPane player1, Label inputBanner){
         this.xPos = inputX;
         this.yPos = inputY;
         this.myImage = inputImage;
