@@ -25,7 +25,8 @@ public abstract class Piece extends chessController {
     boolean isSelected;
 
     /**
-     * moveValid - An abstact boolean used as a template for subclasses
+     * moveValid - An abstact boolean used as a template for subclasses to validate their
+     * movements 
      * 
      * @param xPos  - The x-coordinate of piece selected
      * @param yPos  - The y-coordinate of piece selected
@@ -36,7 +37,9 @@ public abstract class Piece extends chessController {
     public abstract boolean moveValid();
 
     /**
-     * horizontalVertical - TODO: *NEEDS DESCRIPTION*
+     * horizontalVertical - A boolean that's used to check if the movement is in a stright line
+     * on not. Therefore, it would return true if the movement was straight, but false if the
+     * movement was diagonal or something else.
      * 
      * @param xPos  - The x-coordinate of piece selected
      * @param yPos  - The y-coordinate of piece selected
@@ -49,7 +52,9 @@ public abstract class Piece extends chessController {
     }
 
     /**
-     * diagonal - TODO: *NEEDS DESCRIPTION*
+     * diagonal - A boolean that's used to check if the movement is in a diagonal line
+     * on not. Therefore, it would return true if the movement was diagonal, but false if the
+     * movement was straight  or something else.
      * 
      * @param xPos  - The x-coordinate of piece selected
      * @param yPos  - The y-coordinate of piece selected
@@ -319,9 +324,9 @@ public abstract class Piece extends chessController {
     }
 
     /**
-     * addScore - TODO: *NEEDS DESCRIPTION*
+     * addScore - A method that adds the taken pieces images next to the name tag
      * 
-     * @param enemyType
+     * @param enemyType A string of of type of piece that was taken out
      */
     private void addScore(String enemyType) {
         ImageView deadImage;
