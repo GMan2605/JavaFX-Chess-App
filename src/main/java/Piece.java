@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -9,7 +11,8 @@ import javafx.scene.paint.Color;
 public abstract class Piece extends chessController {
 
     int pDirection = 1; // an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
-
+    public static ArrayList<ImageView> wTaken = new ArrayList<>();
+    public static ArrayList<ImageView> bTaken = new ArrayList<>();
     HBox score1;
     HBox score2;
     StackPane player1;
@@ -330,22 +333,42 @@ public abstract class Piece extends chessController {
      */
     private void addScore(String enemyType) {
         ImageView deadImage;
+        
         if (this.pieceTeam == "White"){
             deadImage = new ImageView("Images/B_" + enemyType + ".png");
+            deadImage.setId(enemyType);
             deadImage.setFitHeight(25);
             deadImage.setFitWidth(25);
             deadImage.setTranslateX(0);
+            //bTaken.addAll(Arrays.asList(deadImage));
             score1.getChildren().add(deadImage);
+            
         } else if (this.pieceTeam == "Black"){
             deadImage = new ImageView("Images/W_" + enemyType + ".png");
+            deadImage.setId(enemyType);
             deadImage.setFitHeight(25);
             deadImage.setFitWidth(25);
             deadImage.setTranslateX(0);
-            deadImage.setTranslateY(25);
+            deadImage.setTranslateY(-6);
+            //wTaken.addAll(Arrays.asList(deadImage));
+            
+            // if(wTaken.size() > 1){
+            //     for (int i=0; i<wTaken.size(); i++){ 
+            //     wTaken.sort(Comparator(wTaken.get(i),wTaken.get(i+1)));
+                
+            //     }
+            // }
             score2.getChildren().add(deadImage);
+            
         }
     }
     
+    // private Comparator<? super ImageView> Comparator(ImageView deadImage1, ImageView deadImage2) {
+    //     if (deadImage1.getId().equals("king"))
+    //         return 1;
+    //     return null;
+    // }
+
     /**
      * checkRookMoves - Method that returns a true or false statement regarding a rook movement pattern and this piece.
      * It requires specified "friendly" and "ene<?xml version="1.0" encoding="UTF-8"?>

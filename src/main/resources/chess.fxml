@@ -35,7 +35,7 @@
          <children>
             <AnchorPane prefHeight="79.0" prefWidth="692.0">
                <children>
-                  <HBox fx:id="score2" alignment="BASELINE_LEFT" layoutX="200.0" prefHeight="50.0" prefWidth="500.0">
+                  <HBox alignment="BASELINE_LEFT" layoutX="200.0" prefHeight="50.0" prefWidth="500.0">
                      <children>
                         <StackPane fx:id="player1" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="119.0">
                            <children>
@@ -47,12 +47,13 @@
                            </children>
                         </StackPane>
                      </children></HBox>
+                  <HBox fx:id="score2" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="376.0" translateX="239.0" />
                </children>
             </AnchorPane>
             <VBox fx:id="chessGrid" alignment="CENTER" prefHeight="437.0" prefWidth="800.0" />
             <AnchorPane prefHeight="79.0" prefWidth="320.0">
                <children>
-                  <HBox fx:id="score1" layoutX="200.0" prefHeight="50.0" prefWidth="500.0">
+                  <HBox fx:id="score1" alignment="BASELINE_LEFT" layoutX="200.0" prefHeight="50.0" prefWidth="500.0">
                      <children>
                         <StackPane fx:id="player2" alignment="BOTTOM_LEFT" prefHeight="20.0" prefWidth="119.0">
                            <children>
@@ -63,6 +64,7 @@
                               </Label>
                            </children>
                         </StackPane>
+                        <HBox fx:id="score1" prefHeight="43.0" prefWidth="376.0" translateX="-70.0" />
                      </children></HBox>
                </children>
             </AnchorPane>
