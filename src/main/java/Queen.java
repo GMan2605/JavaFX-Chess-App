@@ -40,32 +40,4 @@ public class Queen extends Piece {
         this.inValidMovement();
         return false;
     }
-
-    // @Override
-    // public boolean isCheck() { // 'checkRookMoves' Doesn't Work Correctly with it 
-    //     if (this.pieceTeam == "Black"){
-    //         for (int i=0; i<wPieces.size(); i++){ 
-    //             Piece tempPiece = wPieces.get(i);
-    //             if (tempPiece.getType() == "King"){
-    //                 this.xMove = tempPiece.getX();
-    //                 this.yMove = tempPiece.getY();
-    //                 if (checkRookMoves(bPieces, wPieces) || checkBishopMoves(bPieces, wPieces))
-    //                     return true;
-    //                 }
-    //             }
-    //         }
-        
-    //     else{
-    //         for (int i=0; i<bPieces.size(); i++){ 
-    //             Piece tempPiece = bPieces.get(i);
-    //             if (tempPiece.getType() == "King"){
-    //                 this.xMove = tempPiece.getX();
-    //                 this.yMove = tempPiece.getY();
-    //                 if (checkRookMoves(wPieces, bPieces) || checkBishopMoves(wPieces, bPieces))
-    //                     return true;
-    //             }
-    //         }
-    //     }
-    //     return false;
-    // }
 }

@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="800.0" style="-fx-background-color: #49524c;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HelpMenu">
    <children>
-      <Button fx:id="returnButton" layoutX="657.0" layoutY="592.0" mnemonicParsing="false" onAction="#returnClicked" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #a60000;" text="Button">
+      <Button fx:id="returnButton" layoutX="657.0" layoutY="592.0" mnemonicParsing="false" onAction="#returnClicked" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #a60000;" text="Back">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="195.0" prefWidth="800.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="958.0" text="Instructions &amp; How to Play." textFill="#b3ee00">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Text fill="#7ec601" layoutX="27.0" layoutY="219.0" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Basic Chess! &#10;&#10;To navigate menus throughout the progam, simply click with your mouse on the various menu buttons. &#10;&#10;Objective of the game: capture the enemy king!&#10;&#10;- To select a piece, simply click on its image (if it is on your turn!)&#10;- To move a piece, click on a square or enemy piece to capture and move there (it will be captured automatically)&#10;- All pieces will automatically de-select themselves if the move is invalid&#10;&#10;Make sure to use the in-game help menu and have fun!" wrappingWidth="700.13671875">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

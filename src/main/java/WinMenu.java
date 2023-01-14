@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 public class WinMenu extends MainMenu implements Initializable{
 
@@ -21,14 +22,11 @@ public class WinMenu extends MainMenu implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // if (App.wString == "Black"){
-        //     winLabel.setTextFill(null);
-        // } else if (App.wString == "White") {
-        //     winLabel.setTextFill(null);
-        // }
-        System.out.println(App.wString);
-        winLabel.setText( "..." + App.wString);
-        
+        if (App.wString == "Black")
+            winLabel.setTextFill(Color.BLACK);
+        else if (App.wString == "White")
+            winLabel.setTextFill(Color.WHITESMOKE);
+        winLabel.setText(App.wString + " team has won the game!");
     }
 
     //-----Win-Return-Methods-----
