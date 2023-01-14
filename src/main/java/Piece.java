@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+// import java.util.Arrays;
+// import java.util.Comparator;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -351,13 +351,6 @@ public abstract class Piece extends chessController {
             deadImage.setTranslateX(0);
             deadImage.setTranslateY(-6);
             //wTaken.addAll(Arrays.asList(deadImage));
-            
-            // if(wTaken.size() > 1){
-            //     for (int i=0; i<wTaken.size(); i++){ 
-            //     wTaken.sort(Comparator(wTaken.get(i),wTaken.get(i+1)));
-                
-            //     }
-            // }
             score2.getChildren().add(deadImage);
             
         }
@@ -365,7 +358,9 @@ public abstract class Piece extends chessController {
     
     // private Comparator<? super ImageView> Comparator(ImageView deadImage1, ImageView deadImage2) {
     //     if (deadImage1.getId().equals("king"))
-    //         return 1;
+    //         return null;
+    //     if (deadImage1.getId().equals("pawn"))
+    //         return null;
     //     return null;
     // }
 
