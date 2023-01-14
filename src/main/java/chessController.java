@@ -253,5 +253,4 @@ public class chessController implements Initializable{
             pieceInfo.setText(queenText);
         }
     }
-
 }

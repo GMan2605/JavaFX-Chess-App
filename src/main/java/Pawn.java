@@ -54,7 +54,6 @@ public class Pawn extends Piece {
                     Piece tempPiece = wPieces.get(i);
                     if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
                         this.isFirstMove = false;
-                        // wPieces.remove(i+1); TODO: Find out why specific "this" data is transfered by removal of object from piece list
                         captureEnemy(tempPiece, i);
                         return true;
                     }
@@ -64,7 +63,6 @@ public class Pawn extends Piece {
                     Piece tempPiece = bPieces.get(i);
                     if (tempPiece.getX() == this.xMove && tempPiece.getY() == this.yMove){
                         this.isFirstMove = false;
-                        // bPieces.remove(i+1);
                         captureEnemy(tempPiece, i);
                         return true;
                     }
