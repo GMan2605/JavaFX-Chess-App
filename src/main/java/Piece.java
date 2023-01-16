@@ -10,22 +10,21 @@ import javafx.scene.paint.Color;
 
 public abstract class Piece extends chessController {
 
-    int pDirection = 1; // an int variable that is special to pawns (pawns cannot move backwards, needs something to tell direction)
     public static ArrayList<ImageView> wTaken = new ArrayList<>();
     public static ArrayList<ImageView> bTaken = new ArrayList<>();
-    HBox score1;
-    HBox score2;
-    StackPane player1;
-    StackPane player2;
-    VBox referenceGrid;
-    ImageView myImage;
-    int yPos;
-    int xPos;
-    int xMove;
-    int yMove;
-    String pieceTeam;
-    String pieceType;
-    boolean isSelected;
+    protected HBox score1;
+    protected HBox score2;
+    protected StackPane player1;
+    protected StackPane player2;
+    protected VBox referenceGrid;
+    protected ImageView myImage;
+    protected int yPos;
+    protected int xPos;
+    protected int xMove;
+    protected int yMove;
+    protected String pieceTeam;
+    protected String pieceType;
+    protected boolean isSelected;
 
     /**
      * moveValid - An abstact boolean used as a template for subclasses to validate their
