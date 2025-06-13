@@ -1,29 +1,29 @@
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 /**
  * JavaFX App
  */
 public class App extends Application {
 
-    private static Scene scene;
+    private static Scene s_scene;
     public static String wString;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("mainMenu"), 800, 675);
-        stage.setScene(scene);
+        s_scene = new Scene(loadFXML("mainMenu"), 800, 675);
+        stage.setScene(s_scene);
         stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        s_scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

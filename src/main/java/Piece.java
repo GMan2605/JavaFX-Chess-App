@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-// import java.util.Arrays;
-// import java.util.Comparator;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -8,7 +6,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public abstract class Piece extends chessController {
+public abstract class Piece extends ChessController {
 
     public static ArrayList<ImageView> wTaken = new ArrayList<>();
     public static ArrayList<ImageView> bTaken = new ArrayList<>();

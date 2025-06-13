@@ -1,6 +1,8 @@
-import java.util.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class chessController implements Initializable{
+public class ChessController implements Initializable{
 
     public static ArrayList<Piece> wPieces = new ArrayList<>();
     public static ArrayList<Piece> bPieces = new ArrayList<>();
@@ -88,7 +90,7 @@ public class chessController implements Initializable{
         /* Confirm variables are what they should be for a new game to start
             (To avoid bugs/reset game for a retry game/when user has pressed a replay button)
         */
-        wPieces.clear();;
+        wPieces.clear();
         bPieces.clear();
         pieceChosen = false;
         turnString = "White's Turn";
